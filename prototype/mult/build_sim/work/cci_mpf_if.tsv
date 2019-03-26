@@ -1,0 +1,124 @@
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           541940000 (0)	MMIORdReq	000	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           541955000	MMIORdRsp	000	af639d09858310e5
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           541965000 (1)	MMIORdReq	000	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542105000 (1)	MMIORdReq	001	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542120000	MMIORdRsp	001	1cddcf01c26644de
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542130000 (2)	MMIORdReq	001	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542270000 (2)	MMIORdReq	002	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542285000	MMIORdRsp	002	af639d09858310e5
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542295000 (3)	MMIORdReq	002	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542435000 (3)	MMIORdReq	003	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542450000	MMIORdRsp	003	1cddcf01c26644de
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542460000 (0)	MMIORdReq	003	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542600000 (0)	MMIORdReq	004	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542615000	MMIORdRsp	004	af639d09858310e5
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542625000 (1)	MMIORdReq	004	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542765000 (1)	MMIORdReq	005	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542780000	MMIORdRsp	005	1cddcf01c26644de
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542790000 (2)	MMIORdReq	005	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542930000 (2)	MMIORdReq	006	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           542945000	MMIORdRsp	006	af639d09858310e5
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           542955000 (3)	MMIORdReq	006	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           543095000 (3)	MMIORdReq	007	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           543110000	MMIORdRsp	007	1cddcf01c26644de
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           543120000 (0)	MMIORdReq	007	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544125000 (1)	MMIORdReq	008	          8 bytes	0000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544140000	MMIORdRsp	008	1000000010000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           544150000 (2)	MMIORdReq	008	          8 bytes	0000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544290000 (2)	MMIORdReq	009	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544305000	MMIORdRsp	009	af639d09858310e5
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           544315000 (3)	MMIORdReq	009	          8 bytes	0002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544455000 (3)	MMIORdReq	00a	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544470000	MMIORdRsp	00a	1cddcf01c26644de
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           544480000 (0)	MMIORdReq	00a	          8 bytes	0004
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544620000 (0)	MMIORdReq	00b	          8 bytes	0400
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           544645000 (1)	MMIORdReq	00b	          8 bytes	0400
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544675000	MMIORdRsp	00b	2000000000780001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544825000 (1)	MMIORdReq	00c	          8 bytes	0402
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           544850000 (2)	MMIORdReq	00c	          8 bytes	0402
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           544880000	MMIORdRsp	00c	a70545727f501901
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545030000 (2)	MMIORdReq	00d	          8 bytes	0404
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           545055000 (3)	MMIORdReq	00d	          8 bytes	0404
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545085000	MMIORdRsp	00d	c8a2982fff9642bf
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545235000 (3)	MMIORdReq	00e	          8 bytes	041e
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           545260000 (0)	MMIORdReq	00e	          8 bytes	041e
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545290000	MMIORdRsp	00e	2000000000180001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545440000 (0)	MMIORdReq	00f	          8 bytes	0420
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           545465000 (1)	MMIORdReq	00f	          8 bytes	0420
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545495000	MMIORdRsp	00f	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545645000 (1)	MMIORdReq	010	          8 bytes	0422
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           545670000 (2)	MMIORdReq	010	          8 bytes	0422
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545700000	MMIORdRsp	010	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545850000 (2)	MMIORdReq	011	          8 bytes	0424
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           545875000 (3)	MMIORdReq	011	          8 bytes	0424
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           545905000	MMIORdRsp	011	2000000000300001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546055000 (3)	MMIORdReq	012	          8 bytes	0426
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           546080000 (0)	MMIORdReq	012	          8 bytes	0426
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546110000	MMIORdRsp	012	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546260000 (0)	MMIORdReq	013	          8 bytes	0428
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           546285000 (1)	MMIORdReq	013	          8 bytes	0428
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546315000	MMIORdRsp	013	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546465000 (1)	MMIORdReq	014	          8 bytes	0430
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           546490000 (2)	MMIORdReq	014	          8 bytes	0430
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546520000	MMIORdRsp	014	2000000000200001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546670000 (2)	MMIORdReq	015	          8 bytes	0432
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           546695000 (3)	MMIORdReq	015	          8 bytes	0432
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546725000	MMIORdRsp	015	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546875000 (3)	MMIORdReq	016	          8 bytes	0434
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           546900000 (0)	MMIORdReq	016	          8 bytes	0434
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           546930000	MMIORdRsp	016	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547080000 (0)	MMIORdReq	017	          8 bytes	0438
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           547105000 (1)	MMIORdReq	017	          8 bytes	0438
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547135000	MMIORdRsp	017	2000000000400001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547285000 (1)	MMIORdReq	018	          8 bytes	043a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           547310000 (2)	MMIORdReq	018	          8 bytes	043a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547365000	MMIORdRsp	018	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547515000 (3)	MMIORdReq	019	          8 bytes	043c
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           547540000 (0)	MMIORdReq	019	          8 bytes	043c
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547570000	MMIORdRsp	019	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547720000 (0)	MMIORdReq	01a	          8 bytes	0448
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           547745000 (1)	MMIORdReq	01a	          8 bytes	0448
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547775000	MMIORdRsp	01a	2000010000200001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547925000 (1)	MMIORdReq	01b	          8 bytes	044a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           547950000 (2)	MMIORdReq	01b	          8 bytes	044a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           547980000	MMIORdRsp	01b	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548130000 (2)	MMIORdReq	01c	          8 bytes	044c
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548155000 (3)	MMIORdReq	01c	          8 bytes	044c
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548185000	MMIORdRsp	01c	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548340000 (0)	MMIOWrReq	01d	          8 bytes	0406	0000000000000002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548365000 (1)	MMIOWrReq	01d	          8 bytes	0406	0000000000000002
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548390000 (2)	MMIOWrReq	01e	          8 bytes	0406	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548415000 (3)	MMIOWrReq	01e	          8 bytes	0406	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548440000 (0)	MMIOWrReq	01f	          8 bytes	0408	000000022d10adc0
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548465000 (1)	MMIOWrReq	01f	          8 bytes	0408	000000022d10adc0
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548490000 (2)	MMIOWrReq	020	          8 bytes	0406	0000000000000001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548515000 (3)	MMIOWrReq	020	          8 bytes	0406	0000000000000001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548540000 (0)	MMIORdReq	021	          8 bytes	0406
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548565000 (1)	MMIORdReq	021	          8 bytes	0406
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548580000	MMIORdRsp	021	000000000000000c
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548735000 (3)	MMIOWrReq	022	          8 bytes	041a	000000022d10ae80
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548760000 (0)	MMIOWrReq	022	          8 bytes	041a	000000022d10ae80
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548790000 (2)	MMIOWrReq	023	          8 bytes	0040	000001fdd2ef5100
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548815000 (3)	MMIOWrReq	023	          8 bytes	0040	000001fdd2ef5100
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548845000 (1)	MMIOWrReq	024	          8 bytes	0042	0000000000000005
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548870000 (2)	MMIOWrReq	024	          8 bytes	0042	0000000000000005
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           548900000 (0)	MMIOWrReq	025	          8 bytes	0044	000000000000000a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548925000	VA 	0	S	WrLine_I  	0000	V 1fdd2ef5100	00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           548925000 (1)	MMIOWrReq	025	          8 bytes	0044	000000000000000a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551015000	VH0	0	S	WrLine_I  	4000	P 0022d10ae80	000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007f74bbd44001
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551560000 (0)	VH0	0	F	WrRsp      	4000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551560000 (0)	MMIOWrReq	026	          8 bytes	041c	000000022d10aec0
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           551585000 (1)	MMIOWrReq	026	          8 bytes	041c	000000022d10aec0
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551635000	VA 	0	S	WrLine_I  	0000	P 0022d10aec0	00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551990000 (2)	VL0	0	x	WrRsp      	0000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           551990000 (2)	MMIORdReq	027	          8 bytes	0010
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           552005000	MMIORdRsp	027	00000000000000c8
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           552015000 (3)	MMIORdReq	027	          8 bytes	0010
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           552020000 (0)	VL0	0	F	WrRsp      	0000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           552155000 (3)	MMIORdReq	028	          8 bytes	040a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           552180000 (0)	MMIORdReq	028	          8 bytes	040a
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           552195000	MMIORdRsp	028	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           552350000 (2)	MMIOWrReq	029	          8 bytes	040a	000001fdd2ef5100
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           552375000 (3)	MMIOWrReq	029	          8 bytes	040a	000001fdd2ef5100
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.fiu.logger_proc:	           552400000 (0)	MMIOWrReq	02a	          8 bytes	0406	0000000000000000
+ase_top.platform_shim_ccip_std_afu.ccip_std_afu.afu.logger_proc:	           552425000 (1)	MMIOWrReq	02a	          8 bytes	0406	0000000000000000

@@ -1,0 +1,399 @@
+{
+    "reusePaths": {},
+    "Modules": {
+        "platform_shim_ccip_std_afu": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccis_if_funcs_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_shim_ccip_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0007": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "outoforder_wrf_channel_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_if_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.altsyncram_0000_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_svc_vtp_wrapper_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_prim_ram_simple_init_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_csr_if_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.altsyncram_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_logger": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "std": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_shim_buffer_afu_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_fefifo_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_prim_fifo_lutram_ctrl_0002": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "_vcs_DPI_package": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_utils_ccip_c1_active_cnt": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_top": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_prim_ram_simple_0000_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_shim_edge_if": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_shim_vtp_svc_if": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "reYIK_d": {
+            "mod": "std",
+            "out": "reYIK_d.o",
+            "bytes": 34146,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "KsnuC_d": {
+            "mod": "platform_shim_ccip_std_afu",
+            "out": "KsnuC_d.o",
+            "bytes": 91332,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "jiHZS_d": {
+            "mod": "platform_shim_ccip_0000",
+            "out": "jiHZS_d.o",
+            "bytes": 229992,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "DY6kV_d": {
+            "mod": "ccis_if_funcs_pkg",
+            "out": "DY6kV_d.o",
+            "bytes": 7114,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "zTVPy_d": {
+            "mod": "outoforder_wrf_channel_0001",
+            "out": "zTVPy_d.o",
+            "bytes": 343739,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "YpzfP_d": {
+            "mod": "cci_mpf_svc_vtp_wrapper_0000",
+            "out": "YpzfP_d.o",
+            "bytes": 181406,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "J6aks_d": {
+            "mod": "ALTERA_MF_VER.dcfifo_fefifo_0000",
+            "out": "J6aks_d.o",
+            "bytes": 17365,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "uM9F1_d": {
+            "mod": "_vcs_DPI_package",
+            "out": "uM9F1_d.o",
+            "bytes": 21706,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "r6vU0_d": {
+            "mod": "ALTERA_MF_VER.altsyncram_0000_0003",
+            "out": "r6vU0_d.o",
+            "bytes": 86794,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "dIWbL_d": {
+            "mod": "ALTERA_MF_VER.altsyncram_0000",
+            "out": "dIWbL_d.o",
+            "bytes": 93631,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "aUsad_d": {
+            "mod": "ccip_logger",
+            "out": "aUsad_d.o",
+            "bytes": 70329,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "bKHSF_d": {
+            "mod": "cci_mpf_if_pkg",
+            "out": "bKHSF_d.o",
+            "bytes": 42460,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "yc7x8_d": {
+            "mod": "cci_mpf_shim_buffer_afu_0000",
+            "out": "yc7x8_d.o",
+            "bytes": 43521,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "RAuY9_d": {
+            "mod": "cci_mpf_prim_fifo_lutram_ctrl_0002",
+            "out": "RAuY9_d.o",
+            "bytes": 18193,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "dkfee_d": {
+            "mod": "cci_mpf_prim_ram_simple_0000_0003",
+            "out": "dkfee_d.o",
+            "bytes": 12879,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "w0q9C_d": {
+            "mod": "ase_svfifo_0000",
+            "out": "w0q9C_d.o",
+            "bytes": 15920,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "WKnFy_d": {
+            "mod": "cci_mpf_prim_ram_simple_init_0000",
+            "out": "WKnFy_d.o",
+            "bytes": 19979,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "ucR7k_d": {
+            "mod": "platform_utils_ccip_c1_active_cnt",
+            "out": "ucR7k_d.o",
+            "bytes": 14216,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "gJv91_d": {
+            "mod": "cci_csr_if_pkg",
+            "out": "gJv91_d.o",
+            "bytes": 8090,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "kkLh6_d": {
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0003",
+            "out": "kkLh6_d.o",
+            "bytes": 10216,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "ZYNBA_d": {
+            "mod": "ase_top",
+            "out": "ZYNBA_d.o",
+            "bytes": 10347,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "zCqDr_d": {
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0007",
+            "out": "zCqDr_d.o",
+            "bytes": 10444,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "Nbvg5_d": {
+            "mod": "cci_mpf_shim_edge_if",
+            "out": "Nbvg5_d.o",
+            "bytes": 8837,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        },
+        "QzcvA_d": {
+            "mod": "cci_mpf_shim_vtp_svc_if",
+            "out": "QzcvA_d.o",
+            "bytes": 8164,
+            "mode": 4,
+            "checksum": 0,
+            "archive": "archive.0/_15906_archive_1.a"
+        }
+    },
+    "ObjArchives": [
+        {
+            "objects": [
+                [
+                    "jiHZS_d.o",
+                    229992
+                ],
+                [
+                    "zTVPy_d.o",
+                    343739
+                ],
+                [
+                    "YpzfP_d.o",
+                    181406
+                ],
+                [
+                    "dIWbL_d.o",
+                    93631
+                ],
+                [
+                    "r6vU0_d.o",
+                    86794
+                ],
+                [
+                    "KsnuC_d.o",
+                    91332
+                ],
+                [
+                    "bKHSF_d.o",
+                    42460
+                ],
+                [
+                    "aUsad_d.o",
+                    70329
+                ],
+                [
+                    "reYIK_d.o",
+                    34146
+                ],
+                [
+                    "yc7x8_d.o",
+                    43521
+                ],
+                [
+                    "J6aks_d.o",
+                    17365
+                ],
+                [
+                    "RAuY9_d.o",
+                    18193
+                ],
+                [
+                    "uM9F1_d.o",
+                    21706
+                ],
+                [
+                    "w0q9C_d.o",
+                    15920
+                ],
+                [
+                    "WKnFy_d.o",
+                    19979
+                ],
+                [
+                    "ucR7k_d.o",
+                    14216
+                ],
+                [
+                    "gJv91_d.o",
+                    8090
+                ],
+                [
+                    "dkfee_d.o",
+                    12879
+                ],
+                [
+                    "kkLh6_d.o",
+                    10216
+                ],
+                [
+                    "zCqDr_d.o",
+                    10444
+                ],
+                [
+                    "ZYNBA_d.o",
+                    10347
+                ],
+                [
+                    "DY6kV_d.o",
+                    7114
+                ],
+                [
+                    "Nbvg5_d.o",
+                    8837
+                ],
+                [
+                    "QzcvA_d.o",
+                    8164
+                ]
+            ],
+            "archive": "archive.0/_15906_archive_1.a",
+            "size": 1400820
+        }
+    ]
+}

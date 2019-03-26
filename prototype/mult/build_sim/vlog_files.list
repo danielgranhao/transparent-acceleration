@@ -1,0 +1,6 @@
++incdir+/home/Daniel/Desktop/transparent-acceleration/prototype/base/hw/rtl
++incdir+/home/Daniel/Desktop/transparent-acceleration/prototype/mult/hw/rtl
+-F /home/Daniel/Downloads/intel-fpga-bbb/BBB_cci_mpf/hw/sim/cci_mpf_sim_addenda.txt
+/home/Daniel/Desktop/transparent-acceleration/prototype/base/hw/rtl/cci_afu_with_mpf.sv
+/home/Daniel/Desktop/transparent-acceleration/prototype/base/hw/rtl/csr_mgr.sv
+/home/Daniel/Desktop/transparent-acceleration/prototype/mult/hw/rtl/cci_mpf_mult_afu.sv

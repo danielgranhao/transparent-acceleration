@@ -46,7 +46,7 @@ using namespace std;
 // State from the AFU's JSON file, extracted using OPAE's afu_json_mgr script
 #include "afu_json_info.h"
 
-uint64_t mult(uint64_t a, uint64_t b){
+extern "C" uint64_t mult(uint64_t a, uint64_t b){
     // Find and connect to the accelerator
     OPAE_SVC_WRAPPER fpga(AFU_ACCEL_UUID);
     assert(fpga.isOk());

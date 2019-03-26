@@ -56,7 +56,16 @@ int main(int argc, char *argv[]){
  
 	inject_shared_lib(child, argv[1]);
 
-	func_process(child);
+	// TODO: Replace call to dummy_mult with trap
+
+	while(1){
+		// TODO: check if we got control due to inserted trap
+		if(1){
+			// TODO: call mult instead
+		}
+	}	
+
+	//func_process(child);
 
 	waitpid(child, NULL, 0);
     }
