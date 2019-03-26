@@ -1,0 +1,14 @@
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_alloc_ping_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_mmioreq_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_umsg_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_alloc_pong_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_mmiorsp_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_portctrl_req_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_dealloc_ping_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_dealloc_pong_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_portctrl_rsp_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_intr_request_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_membus_rd_req_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_membus_rd_rsp_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/sim2app_membus_wr_req_smq
+MQ	/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/basic/build_sim/work/app2sim_membus_wr_rsp_smq

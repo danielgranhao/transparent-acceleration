@@ -7,7 +7,7 @@
 
 SIMULATOR ?= VCS
 
-DUT_VLOG_SRC_LIST = /home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/vlog_files.list 
+DUT_VLOG_SRC_LIST = /home/Daniel/Desktop/transparent-acceleration/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/vlog_files.list 
 
 ASE_PLATFORM ?= FPGA_PLATFORM_INTG_XEON
 

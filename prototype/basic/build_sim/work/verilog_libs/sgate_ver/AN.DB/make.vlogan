@@ -1,0 +1,12 @@
+
+VLOGAN	= vlogan
+VLOGAN_OPT	= +incdir+/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib -work sgate_ver -full64
+
+all :		_VCSgd_i5zINd_1.db \
+
+
+
+_VCSgd_i5zINd_1.db :	/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/sgate.v 
+		${VLOGAN}  ${VLOGAN_OPT} /home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/sgate.v
+
+

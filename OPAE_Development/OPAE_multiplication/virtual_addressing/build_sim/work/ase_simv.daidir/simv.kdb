@@ -1,13 +1,13 @@
 rc file Version 1.0
 
 [Design]
-COMPILE_PATH=/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim
+COMPILE_PATH=/home/Daniel/Desktop/transparent-acceleration/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim
 SystemC=FALSE
 UUM=TRUE
 KDB=FALSE
 USE_NOVAS_HOME=FALSE
 COSIM=FALSE
-SYNOPSYS_SIM_SETUP=/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/synopsys_sim.setup 
+SYNOPSYS_SIM_SETUP=/home/Daniel/Desktop/transparent-acceleration/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/synopsys_sim.setup 
 TOP=ase_top 
 
 [Value]
