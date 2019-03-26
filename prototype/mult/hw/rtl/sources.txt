@@ -1,0 +1,6 @@
+cci_mpf_mult.json
+
+C:../../../base/hw/rtl/base_sources.txt
+
++incdir+.
+cci_mpf_mult_afu.sv
