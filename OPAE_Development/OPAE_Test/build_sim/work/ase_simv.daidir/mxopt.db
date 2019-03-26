@@ -1,0 +1,10 @@
++reflib+WORK 
++reflib+DEFAULT 
++reflib+ALTERA_LNSIM_VER 
++reflib+ALTERA_MF_VER 
++reflib+ALTERA_VER 
++reflib+LPM_VER 
++reflib+SGATE_VER 
++reflib+TWENTYNM_HIP_VER 
++reflib+TWENTYNM_HSSI_VER 
++reflib+TWENTYNM_VER 

@@ -1,0 +1,6 @@
+5
+641118283
+/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/twentynm_hip_atoms.v 
++v2k5 +incdir+/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib -work twentynm_hip_ver /home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/twentynm_hip_atoms.v
+   /eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/bin/vcs1 -Mcc=gcc -Mcplusplus=g++ -Masflags= -Mcfl=' -pipe -O -I/eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/include ' -Mldflags=" -Wl,-E,-rpath /eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/lib " -Mout=simv -Mamsrun="" -Mvcsaceobjs="" -Mobjects=" " -Msaverestoreobj= -Mcrt0="" -Mcrtn="" -Mcsrc="" -Msyslibs="-lncurses -L/usr/X11R6/lib64 -lX11 -ldl -ldl "
+-Xvlogan=0x1 +v2k5 +incdir+/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib  -work=twentynm_hip_ver  "/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/twentynm_hip_atoms.v"  +mixedhdl2    

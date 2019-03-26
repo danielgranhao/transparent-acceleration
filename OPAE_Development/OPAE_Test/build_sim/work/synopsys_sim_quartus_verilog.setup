@@ -1,0 +1,8 @@
+altera_lnsim_ver: work/verilog_libs/altera_lnsim_ver
+altera_mf_ver: work/verilog_libs/altera_mf_ver
+altera_ver: work/verilog_libs/altera_ver
+lpm_ver: work/verilog_libs/lpm_ver
+sgate_ver: work/verilog_libs/sgate_ver
+twentynm_hip_ver: work/verilog_libs/twentynm_hip_ver
+twentynm_hssi_ver: work/verilog_libs/twentynm_hssi_ver
+twentynm_ver: work/verilog_libs/twentynm_ver

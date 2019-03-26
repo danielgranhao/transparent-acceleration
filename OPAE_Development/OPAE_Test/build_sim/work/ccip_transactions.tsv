@@ -1,0 +1,57 @@
+              110000	SoftReset toggled from 1 to 0
+              110000	C0Tx AlmFull toggled from 1 to 0
+              110000	C1Tx AlmFull toggled from 1 to 0
+        896618665000	SoftReset toggled from 0 to 1
+        896618712500	SoftReset toggled from 1 to 0
+-----------------------------------------------------
+        896618922500	MMIO map allocated, index 0 (located /dev/shm/mmio.14440730201851) =>
+		Host app virtual addr   = 0x7f7ab40ee000
+		HW physical addr (byte) = 0x854beee000
+		HW physical addr (line) = 0x2152fbb80
+		Workspace size (bytes)  = 524288
+
+-----------------------------------------------------
+        896618930000	UMAS allocated, index 1 (located /dev/shm/umas.14440730201851) =>
+		Host app virtual addr   = 0x7f7ab39b3000
+		HW physical addr (byte) = 0x854c7b3000
+		HW physical addr (line) = 0x21531ecc0
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+        896618937500	UMSG Mode mask set to 0x0
+        896618990000	   	MMIORdReq   	000	0002	          8 bytes
+        896618995000	   	MMIORdRsp   	000	abc11d9f0709dcc3
+        896619040000	   	MMIORdReq   	001	0004	          8 bytes
+        896619045000	   	MMIORdRsp   	001	c6aa954a9b914a37
+-----------------------------------------------------
+        896619077500	Pinned host memory page =>
+		Host app virtual addr   = 0x7f7ab419f000
+		HW physical addr (byte) = 0x854be60000
+		HW physical addr (line) = 0x2152f9800
+		Page size (bytes)       = 4096
+
+        896619097500	   	MMIOWrReq   	  	0000	          8 bytes	00000002152f9800
+        896619147500	   	MMIOWrReq   	  	0002	          8 bytes	0000000000000005
+        896619197500	   	MMIOWrReq   	  	0004	          8 bytes	000000000000000a
+        896619207500	VA 	Wr_I       	0000	002152f9800	00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032	#1CL
+-----------------------------------------------------
+        896619430000	Unpinned host memory page =>
+		HW physical addr (byte) = 0x854be60000
+		HW physical addr (line) = 0x2152f9800
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+        896619437500	Buffer deallocated, index 1 (located /dev/shm/umas.14440730201851) =>
+		Host app virtual addr   = 0x7f7ab39b3000
+		HW physical addr (byte) = 0x854c7b3000
+		HW physical addr (line) = 0x21531ecc0
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+        896619445000	Buffer deallocated, index 0 (located /dev/shm/mmio.14440730201851) =>
+		Host app virtual addr   = 0x7f7ab40ee000
+		HW physical addr (byte) = 0x854beee000
+		HW physical addr (line) = 0x2152fbb80
+		Workspace size (bytes)  = 524288
+
+        896619445000	VL0	WrResp     	0000	#1CL

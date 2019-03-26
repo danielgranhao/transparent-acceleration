@@ -1,0 +1,207 @@
+{
+    "Modules": {
+        "outoforder_wrf_channel_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_logger": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_utils_ccip_c0_active_cnt": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_utils_dc_fifo_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "cci_mpf_if": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.ALTERA_MF_HINT_EVALUATION": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0008": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0004": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0009": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "_vcs_unit__1748715068": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccis_if_funcs_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_19145_archive_1.a",
+            "size": 694963,
+            "objects": [
+                [
+                    "Tscfg_d.o",
+                    327978
+                ],
+                [
+                    "W1B5x_d.o",
+                    98129
+                ],
+                [
+                    "aUsad_d.o",
+                    70337
+                ],
+                [
+                    "gSzRh_d.o",
+                    41750
+                ],
+                [
+                    "W01i6_d.o",
+                    13739
+                ],
+                [
+                    "Bujg0_d.o",
+                    15915
+                ],
+                [
+                    "dPwMN_d.o",
+                    14268
+                ],
+                [
+                    "IGsm5_d.o",
+                    10992
+                ],
+                [
+                    "SEmeI_d.o",
+                    10415
+                ],
+                [
+                    "FVILA_d.o",
+                    10469
+                ],
+                [
+                    "vAV2j_d.o",
+                    73849
+                ],
+                [
+                    "DY6kV_d.o",
+                    7122
+                ]
+            ]
+        }
+    ],
+    "CompUnits": {
+        "Tscfg_d": {
+            "mode": 4,
+            "mod": "outoforder_wrf_channel_0000",
+            "out": "Tscfg_d.o",
+            "bytes": 327978,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "gSzRh_d": {
+            "mode": 4,
+            "mod": "cci_mpf_if",
+            "out": "gSzRh_d.o",
+            "bytes": 41750,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "W1B5x_d": {
+            "mode": 4,
+            "mod": "platform_utils_dc_fifo_0003",
+            "out": "W1B5x_d.o",
+            "bytes": 98129,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "aUsad_d": {
+            "mode": 4,
+            "mod": "ccip_logger",
+            "out": "aUsad_d.o",
+            "bytes": 70337,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "Bujg0_d": {
+            "mode": 4,
+            "mod": "ase_svfifo_0001",
+            "out": "Bujg0_d.o",
+            "bytes": 15915,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "IGsm5_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0008",
+            "out": "IGsm5_d.o",
+            "bytes": 10992,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "W01i6_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.ALTERA_MF_HINT_EVALUATION",
+            "out": "W01i6_d.o",
+            "bytes": 13739,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "dPwMN_d": {
+            "mode": 4,
+            "mod": "platform_utils_ccip_c0_active_cnt",
+            "out": "dPwMN_d.o",
+            "bytes": 14268,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "SEmeI_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0004",
+            "out": "SEmeI_d.o",
+            "bytes": 10415,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "FVILA_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0009",
+            "out": "FVILA_d.o",
+            "bytes": 10469,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "vAV2j_d": {
+            "mode": 4,
+            "mod": "_vcs_unit__1748715068",
+            "out": "vAV2j_d.o",
+            "bytes": 73849,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        },
+        "DY6kV_d": {
+            "mode": 4,
+            "mod": "ccis_if_funcs_pkg",
+            "out": "DY6kV_d.o",
+            "bytes": 7122,
+            "checksum": 0,
+            "archive": "archive.0/_19145_archive_1.a"
+        }
+    },
+    "reusePaths": {}
+}

@@ -1,0 +1,97 @@
+{
+    "ccip_if_pkg": [
+        "ccip_if_pkg",
+        "v4JVt",
+        "module"
+    ],
+    "ase_svfifo_0000": [
+        "ase_svfifo_0000",
+        "w0q9C",
+        "module"
+    ],
+    "std": [
+        "std",
+        "reYIK",
+        "module"
+    ],
+    "ccip_emulator_0000": [
+        "ccip_emulator_0000",
+        "DCUPF",
+        "module"
+    ],
+    "ase_pkg": [
+        "ase_pkg",
+        "P6CGW",
+        "module"
+    ],
+    "_vcs_unit__1520759726": [
+        "_vcs_unit__1520759726",
+        "KU5iV",
+        "module"
+    ],
+    "ase_top": [
+        "ase_top",
+        "ZYNBA",
+        "module"
+    ],
+    "_vcs_DPI_package": [
+        "_vcs_DPI_package",
+        "uM9F1",
+        "module"
+    ],
+    "outoforder_wrf_channel_0000": [
+        "outoforder_wrf_channel_0000",
+        "Tscfg",
+        "module"
+    ],
+    "ase_svfifo": [
+        "ase_svfifo",
+        "WzJrk",
+        "module"
+    ],
+    "ase_svfifo_0001": [
+        "ase_svfifo_0001",
+        "Bujg0",
+        "module"
+    ],
+    "ase_svfifo_0003": [
+        "ase_svfifo_0003",
+        "mqYes",
+        "module"
+    ],
+    "ase_svfifo_0002": [
+        "ase_svfifo_0002",
+        "GspNz",
+        "module"
+    ],
+    "outoforder_wrf_channel_0001": [
+        "outoforder_wrf_channel_0001",
+        "zTVPy",
+        "module"
+    ],
+    "ccip_checker_0000": [
+        "ccip_checker_0000",
+        "mQC9W",
+        "module"
+    ],
+    "ccip_logger": [
+        "ccip_logger",
+        "aUsad",
+        "module"
+    ],
+    "platform_shim_ccip_std_afu": [
+        "platform_shim_ccip_std_afu",
+        "KsnuC",
+        "module"
+    ],
+    "_vcs_unit__1320943377": [
+        "_vcs_unit__1320943377",
+        "fFAAf",
+        "module"
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module"
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "Modules": {
+        "outoforder_wrf_channel_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_shim_ccip_std_afu": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_top": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "zTVPy_d": {
+            "mod": "outoforder_wrf_channel_0001",
+            "mode": 4,
+            "out": "zTVPy_d.o",
+            "bytes": 343543,
+            "checksum": 0,
+            "archive": "archive.0/_15503_archive_1.a"
+        },
+        "w0q9C_d": {
+            "mod": "ase_svfifo_0000",
+            "mode": 4,
+            "out": "w0q9C_d.o",
+            "bytes": 15752,
+            "checksum": 0,
+            "archive": "archive.0/_15503_archive_1.a"
+        },
+        "KsnuC_d": {
+            "mod": "platform_shim_ccip_std_afu",
+            "mode": 4,
+            "out": "KsnuC_d.o",
+            "bytes": 43399,
+            "checksum": 0,
+            "archive": "archive.0/_15503_archive_1.a"
+        },
+        "ZYNBA_d": {
+            "mod": "ase_top",
+            "mode": 4,
+            "out": "ZYNBA_d.o",
+            "bytes": 10163,
+            "checksum": 0,
+            "archive": "archive.0/_15503_archive_1.a"
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_15503_archive_1.a",
+            "objects": [
+                [
+                    "zTVPy_d.o",
+                    343543
+                ],
+                [
+                    "KsnuC_d.o",
+                    43399
+                ],
+                [
+                    "w0q9C_d.o",
+                    15752
+                ],
+                [
+                    "ZYNBA_d.o",
+                    10163
+                ]
+            ],
+            "size": 412857
+        }
+    ],
+    "reusePaths": {}
+}

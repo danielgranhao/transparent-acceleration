@@ -1,0 +1,95 @@
+{
+    "Modules": {
+        "ase_svfifo": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "outoforder_wrf_channel_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "_vcs_unit__1320943377": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "Tscfg_d": {
+            "out": "Tscfg_d.o",
+            "mod": "outoforder_wrf_channel_0000",
+            "mode": 4,
+            "bytes": 327782,
+            "archive": "archive.0/_1381_archive_1.a",
+            "checksum": 0
+        },
+        "P6CGW_d": {
+            "out": "P6CGW_d.o",
+            "mod": "ase_pkg",
+            "mode": 4,
+            "bytes": 69253,
+            "archive": "archive.0/_1381_archive_1.a",
+            "checksum": 0
+        },
+        "WzJrk_d": {
+            "out": "WzJrk_d.o",
+            "mod": "ase_svfifo",
+            "mode": 4,
+            "bytes": 15750,
+            "archive": "archive.0/_1381_archive_1.a",
+            "checksum": 0
+        },
+        "mqYes_d": {
+            "out": "mqYes_d.o",
+            "mod": "ase_svfifo_0003",
+            "mode": 4,
+            "bytes": 15583,
+            "archive": "archive.0/_1381_archive_1.a",
+            "checksum": 0
+        },
+        "fFAAf_d": {
+            "out": "fFAAf_d.o",
+            "mod": "_vcs_unit__1320943377",
+            "mode": 4,
+            "bytes": 9451,
+            "archive": "archive.0/_1381_archive_1.a",
+            "checksum": 0
+        }
+    },
+    "reusePaths": {},
+    "ObjArchives": [
+        {
+            "objects": [
+                [
+                    "Tscfg_d.o",
+                    327782
+                ],
+                [
+                    "P6CGW_d.o",
+                    69253
+                ],
+                [
+                    "WzJrk_d.o",
+                    15750
+                ],
+                [
+                    "mqYes_d.o",
+                    15583
+                ],
+                [
+                    "fFAAf_d.o",
+                    9451
+                ]
+            ],
+            "archive": "archive.0/_1381_archive_1.a",
+            "size": 437819
+        }
+    ]
+}

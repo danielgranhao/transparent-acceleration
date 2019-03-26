@@ -1,0 +1,77 @@
+              110000	SoftReset toggled from 1 to 0
+              110000	C0Tx AlmFull toggled from 1 to 0
+              110000	C1Tx AlmFull toggled from 1 to 0
+           234637500	SoftReset toggled from 0 to 1
+           234685000	SoftReset toggled from 1 to 0
+-----------------------------------------------------
+           234780000	MMIO map allocated, index 0 (located /dev/shm/mmio.3052310905083) =>
+		Host app virtual addr   = 0x7fa48f1ce000
+		HW physical addr (byte) = 0x5b70fce000
+		HW physical addr (line) = 0x16dc3f380
+		Workspace size (bytes)  = 524288
+
+-----------------------------------------------------
+           234787500	UMAS allocated, index 1 (located /dev/shm/umas.3052310905083) =>
+		Host app virtual addr   = 0x7fa48cdd9000
+		HW physical addr (byte) = 0x5b733d9000
+		HW physical addr (line) = 0x16dccf640
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+           234795000	UMSG Mode mask set to 0x0
+           234832500	   	MMIORdReq   	000	0002	          8 bytes
+           234970000	   	MMIORdRsp   	000	af639d09858310e5
+           235000000	   	MMIORdReq   	001	0004	          8 bytes
+           235135000	   	MMIORdRsp   	001	1cddcf01c26644de
+           235165000	   	MMIORdReq   	002	0002	          8 bytes
+           235300000	   	MMIORdRsp   	002	af639d09858310e5
+           235327500	   	MMIORdReq   	003	0004	          8 bytes
+           235465000	   	MMIORdRsp   	003	1cddcf01c26644de
+           235497500	   	MMIORdReq   	004	0002	          8 bytes
+           235635000	   	MMIORdRsp   	004	af639d09858310e5
+           235662500	   	MMIORdReq   	005	0004	          8 bytes
+           235800000	   	MMIORdRsp   	005	1cddcf01c26644de
+           235830000	   	MMIORdReq   	006	0002	          8 bytes
+           235965000	   	MMIORdRsp   	006	af639d09858310e5
+           235995000	   	MMIORdReq   	007	0004	          8 bytes
+           236130000	   	MMIORdRsp   	007	1cddcf01c26644de
+           236162500	   	MMIORdReq   	008	0000	          8 bytes
+           236300000	   	MMIORdRsp   	008	1000010000000000
+           236330000	   	MMIORdReq   	009	0002	          8 bytes
+           236465000	   	MMIORdRsp   	009	af639d09858310e5
+           236495000	   	MMIORdReq   	00a	0004	          8 bytes
+           236630000	   	MMIORdRsp   	00a	1cddcf01c26644de
+-----------------------------------------------------
+           236647500	Pinned host memory page =>
+		Host app virtual addr   = 0x7fa48f264000
+		HW physical addr (byte) = 0x5b70d9b000
+		HW physical addr (line) = 0x16dc366c0
+		Page size (bytes)       = 4096
+
+           236667500	   	MMIOWrReq   	  	0040	          8 bytes	000000016dc366c0
+           236717500	   	MMIOWrReq   	  	0042	          8 bytes	0000000000000005
+           236767500	   	MMIOWrReq   	  	0044	          8 bytes	000000000000000a
+           236915000	VA 	Wr_I       	0000	0016dc366c0	00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032	#1CL
+           237152500	   	MMIORdReq   	00e	0010	          8 bytes
+           237152500	VL0	WrResp     	0000	#1CL
+           237290000	   	MMIORdRsp   	00e	00000000000000c8
+-----------------------------------------------------
+           237312500	Unpinned host memory page =>
+		HW physical addr (byte) = 0x5b70d9b000
+		HW physical addr (line) = 0x16dc366c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+           237320000	Buffer deallocated, index 1 (located /dev/shm/umas.3052310905083) =>
+		Host app virtual addr   = 0x7fa48cdd9000
+		HW physical addr (byte) = 0x5b733d9000
+		HW physical addr (line) = 0x16dccf640
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+           237327500	Buffer deallocated, index 0 (located /dev/shm/mmio.3052310905083) =>
+		Host app virtual addr   = 0x7fa48f1ce000
+		HW physical addr (byte) = 0x5b70fce000
+		HW physical addr (line) = 0x16dc3f380
+		Workspace size (bytes)  = 524288
+

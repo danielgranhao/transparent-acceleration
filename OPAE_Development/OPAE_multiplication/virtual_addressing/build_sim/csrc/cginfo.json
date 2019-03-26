@@ -1,0 +1,611 @@
+{
+    "NameTable": {
+        "cci_mpf_if_pkg": [
+            "cci_mpf_if_pkg",
+            "bKHSF",
+            "module"
+        ],
+        "cci_mpf_shim_pwrite_lock_if": [
+            "cci_mpf_shim_pwrite_lock_if",
+            "n2i6s",
+            "module"
+        ],
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "platform_utils_dc_fifo_0003": [
+            "platform_utils_dc_fifo_0003",
+            "W1B5x",
+            "module"
+        ],
+        "ase_top": [
+            "ase_top",
+            "ZYNBA",
+            "module"
+        ],
+        "ase_svfifo": [
+            "ase_svfifo",
+            "WzJrk",
+            "module"
+        ],
+        "csr_mgr": [
+            "csr_mgr",
+            "fvjTT",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0000": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0000",
+            "Z8h4e",
+            "module"
+        ],
+        "ccip_wires_to_mpf_0000": [
+            "ccip_wires_to_mpf_0000",
+            "nrqRI",
+            "module"
+        ],
+        "ccip_if_pkg": [
+            "ccip_if_pkg",
+            "v4JVt",
+            "module"
+        ],
+        "ccip_checker_0000": [
+            "ccip_checker_0000",
+            "mQC9W",
+            "module"
+        ],
+        "ase_pkg": [
+            "ase_pkg",
+            "P6CGW",
+            "module"
+        ],
+        "cci_mpf_if": [
+            "cci_mpf_if",
+            "gSzRh",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_ctrl": [
+            "cci_mpf_prim_fifo_lutram_ctrl",
+            "kxa6R",
+            "module"
+        ],
+        "cci_mpf_pipe_std_0000": [
+            "cci_mpf_pipe_std_0000",
+            "CeB25",
+            "module"
+        ],
+        "cci_mpf_csrs_pkg": [
+            "cci_mpf_csrs_pkg",
+            "cmrS9",
+            "module"
+        ],
+        "cci_mpf_prim_ram_dualport_byteena_0000": [
+            "cci_mpf_prim_ram_dualport_byteena_0000",
+            "UGA8J",
+            "module"
+        ],
+        "_vcs_unit__1520759726": [
+            "_vcs_unit__1520759726",
+            "KU5iV",
+            "module"
+        ],
+        "app_csrs": [
+            "app_csrs",
+            "ct0cd",
+            "module"
+        ],
+        "ccip_emulator_0000": [
+            "ccip_emulator_0000",
+            "DCUPF",
+            "module"
+        ],
+        "outoforder_wrf_channel_0001": [
+            "outoforder_wrf_channel_0001",
+            "zTVPy",
+            "module"
+        ],
+        "outoforder_wrf_channel_0000": [
+            "outoforder_wrf_channel_0000",
+            "Tscfg",
+            "module"
+        ],
+        "platform_shim_ccip_std_afu": [
+            "platform_shim_ccip_std_afu",
+            "KsnuC",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0004": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0004",
+            "SEmeI",
+            "module"
+        ],
+        "ase_svfifo_0000": [
+            "ase_svfifo_0000",
+            "w0q9C",
+            "module"
+        ],
+        "ccip_feature_list_pkg": [
+            "ccip_feature_list_pkg",
+            "Lj2WQ",
+            "module"
+        ],
+        "_vcs_DPI_package": [
+            "_vcs_DPI_package",
+            "uM9F1",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000_0001": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000_0001",
+            "c9SW2",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_fefifo_0001": [
+            "ALTERA_MF_VER0x2edcfifo_fefifo_0001",
+            "f8GaT",
+            "module"
+        ],
+        "ALTERA_MF_VER.ALTERA_DEVICE_FAMILIES": [
+            "ALTERA_MF_VER0x2eALTERA_DEVICE_FAMILIES",
+            "BsLFL",
+            "module"
+        ],
+        "cci_mpf_prim_ram_simple_init_0001": [
+            "cci_mpf_prim_ram_simple_init_0001",
+            "VYq5b",
+            "module"
+        ],
+        "ALTERA_MF_VER.ALTERA_MF_MEMORY_INITIALIZATION": [
+            "ALTERA_MF_VER0x2eALTERA_MF_MEMORY_INITIALIZATION",
+            "dBRWt",
+            "module"
+        ],
+        "ccis_if_pkg": [
+            "ccis_if_pkg",
+            "q7q7p",
+            "module"
+        ],
+        "cci_mpf_shim_null": [
+            "cci_mpf_shim_null",
+            "LduDM",
+            "module"
+        ],
+        "ase_svfifo_0001": [
+            "ase_svfifo_0001",
+            "Bujg0",
+            "module"
+        ],
+        "ase_svfifo_0002": [
+            "ase_svfifo_0002",
+            "GspNz",
+            "module"
+        ],
+        "ase_svfifo_0003": [
+            "ase_svfifo_0003",
+            "mqYes",
+            "module"
+        ],
+        "cci_csr_if_pkg": [
+            "cci_csr_if_pkg",
+            "gJv91",
+            "module"
+        ],
+        "ccip_if_funcs_pkg": [
+            "ccip_if_funcs_pkg",
+            "Iussx",
+            "module"
+        ],
+        "ccip_logger": [
+            "ccip_logger",
+            "aUsad",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_svc_if": [
+            "cci_mpf_shim_vtp_svc_if",
+            "QzcvA",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000_0002": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000_0002",
+            "ysJiM",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_chan_inval_epoch_0000": [
+            "cci_mpf_shim_vtp_chan_inval_epoch_0000",
+            "BnHbG",
+            "module"
+        ],
+        "cci_mpf_shim_pkg": [
+            "cci_mpf_shim_pkg",
+            "aHkzK",
+            "module"
+        ],
+        "cci_mpf_csrs": [
+            "cci_mpf_csrs",
+            "Tz5Cr",
+            "module"
+        ],
+        "platform_shim_ccip_0000": [
+            "platform_shim_ccip_0000",
+            "jiHZS",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_chan_l1_caches": [
+            "cci_mpf_shim_vtp_chan_l1_caches",
+            "qCB8D",
+            "module"
+        ],
+        "cci_mpf_svc_vtp_tlb_0000": [
+            "cci_mpf_svc_vtp_tlb_0000",
+            "nAe0u",
+            "module"
+        ],
+        "platform_utils_ccip_reg_0000": [
+            "platform_utils_ccip_reg_0000",
+            "x3ehq",
+            "module"
+        ],
+        "platform_utils_ccip_c1_active_cnt": [
+            "platform_utils_ccip_c1_active_cnt",
+            "ucR7k",
+            "module"
+        ],
+        "ccip_cfg_pkg": [
+            "ccip_cfg_pkg",
+            "cm1qV",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0009": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0009",
+            "FVILA",
+            "module"
+        ],
+        "ccis_if_funcs_pkg": [
+            "ccis_if_funcs_pkg",
+            "DY6kV",
+            "module"
+        ],
+        "_vcs_unit__1748715068": [
+            "_vcs_unit__1748715068",
+            "vAV2j",
+            "module"
+        ],
+        "cci_mpf_shim_edge_if": [
+            "cci_mpf_shim_edge_if",
+            "Nbvg5",
+            "module"
+        ],
+        "cci_mpf_shim_pwrite_if": [
+            "cci_mpf_shim_pwrite_if",
+            "HqDmE",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000_0004": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000_0004",
+            "pM939",
+            "module"
+        ],
+        "cci_mpf_prim_heap_0000": [
+            "cci_mpf_prim_heap_0000",
+            "w6wJR",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_pt_fim_if": [
+            "cci_mpf_shim_vtp_pt_fim_if",
+            "ZeiuL",
+            "module"
+        ],
+        "platform_utils_ccip_c0_active_cnt": [
+            "platform_utils_ccip_c0_active_cnt",
+            "dPwMN",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0005": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0005",
+            "qq2ma",
+            "module"
+        ],
+        "cci_mpf_shim_buffer_afu_0000": [
+            "cci_mpf_shim_buffer_afu_0000",
+            "yc7x8",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_0001": [
+            "cci_mpf_prim_fifo_lutram_0001",
+            "zPGgJ",
+            "module"
+        ],
+        "platform_utils_dc_fifo_0001": [
+            "platform_utils_dc_fifo_0001",
+            "ymCLp",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_0000_0002": [
+            "cci_mpf_prim_fifo_lutram_0000_0002",
+            "xJgfS",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000",
+            "dIWbL",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_0001_0000": [
+            "cci_mpf_prim_fifo_lutram_0001_0000",
+            "gRw1q",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_ctrl_0003": [
+            "cci_mpf_prim_fifo_lutram_ctrl_0003",
+            "bk0wJ",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_0001_0001": [
+            "cci_mpf_prim_fifo_lutram_0001_0001",
+            "gZddF",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_ctrl_0002": [
+            "cci_mpf_prim_fifo_lutram_ctrl_0002",
+            "RAuY9",
+            "module"
+        ],
+        "cci_mpf_prim_fifo_lutram_ctrl_0004": [
+            "cci_mpf_prim_fifo_lutram_ctrl_0004",
+            "Iav7V",
+            "module"
+        ],
+        "cci_mpf_shim_csr": [
+            "cci_mpf_shim_csr",
+            "L9Q4V",
+            "module"
+        ],
+        "cci_mpf_prim_ram_simple_init_0000": [
+            "cci_mpf_prim_ram_simple_init_0000",
+            "WKnFy",
+            "module"
+        ],
+        "cci_mpf_prim_ram_simple_0000_0003": [
+            "cci_mpf_prim_ram_simple_0000_0003",
+            "dkfee",
+            "module"
+        ],
+        "cci_mpf_shim_csr_events": [
+            "cci_mpf_shim_csr_events",
+            "UKx5L",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000_0000": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000_0000",
+            "qIUcx",
+            "module"
+        ],
+        "ALTERA_MF_VER.altsyncram_0000_0003": [
+            "ALTERA_MF_VER0x2ealtsyncram_0000_0003",
+            "r6vU0",
+            "module"
+        ],
+        "cci_mpf_svc_vtp_wrapper_0000": [
+            "cci_mpf_svc_vtp_wrapper_0000",
+            "YpzfP",
+            "module"
+        ],
+        "cci_mpf_shim_detect_eop_track_flits": [
+            "cci_mpf_shim_detect_eop_track_flits",
+            "dtL18",
+            "module"
+        ],
+        "cci_mpf_prim_heap_ctrl_0002": [
+            "cci_mpf_prim_heap_ctrl_0002",
+            "VnySW",
+            "module"
+        ],
+        "app_afu": [
+            "app_afu",
+            "jrFCU",
+            "module"
+        ],
+        "platform_utils_dc_fifo_0002": [
+            "platform_utils_dc_fifo_0002",
+            "WdBzL",
+            "module"
+        ],
+        "ALTERA_MF_VER.ALTERA_MF_HINT_EVALUATION": [
+            "ALTERA_MF_VER0x2eALTERA_MF_HINT_EVALUATION",
+            "W01i6",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0001": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0001",
+            "Macce",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0003": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0003",
+            "kkLh6",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0006": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0006",
+            "sWR0D",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0007": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0007",
+            "zCqDr",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_dffpipe_0008": [
+            "ALTERA_MF_VER0x2edcfifo_dffpipe_0008",
+            "IGsm5",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_pt_walk_if": [
+            "cci_mpf_shim_vtp_pt_walk_if",
+            "zE9jK",
+            "module"
+        ],
+        "cci_mpf_shim_vtp_tlb_if": [
+            "cci_mpf_shim_vtp_tlb_if",
+            "MsicS",
+            "module"
+        ],
+        "cci_mpf_svc_vtp_tlb_0000_0000": [
+            "cci_mpf_svc_vtp_tlb_0000_0000",
+            "Lh8Tb",
+            "module"
+        ],
+        "cci_mpf_prim_repl_random": [
+            "cci_mpf_prim_repl_random",
+            "jaU82",
+            "module"
+        ],
+        "cci_mpf_shim_vtp": [
+            "cci_mpf_shim_vtp",
+            "LG0MF",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_fefifo": [
+            "ALTERA_MF_VER0x2edcfifo_fefifo",
+            "TGmND",
+            "module"
+        ],
+        "ALTERA_MF_VER.dcfifo_fefifo_0000": [
+            "ALTERA_MF_VER0x2edcfifo_fefifo_0000",
+            "J6aks",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ]
+    },
+    "CurCompileModules": [
+        "...MASTER...",
+        "...MASTER...",
+        "outoforder_wrf_channel_0000",
+        "outoforder_wrf_channel_0000",
+        "cci_mpf_shim_vtp",
+        "cci_mpf_shim_vtp",
+        "platform_utils_dc_fifo_0001",
+        "platform_utils_dc_fifo_0001",
+        "ALTERA_MF_VER.altsyncram_0000_0002",
+        "ALTERA_MF_VER.altsyncram_0000_0002",
+        "cci_mpf_prim_heap_0000",
+        "cci_mpf_prim_heap_0000",
+        "cci_mpf_svc_vtp_tlb_0000_0000",
+        "cci_mpf_svc_vtp_tlb_0000_0000",
+        "csr_mgr",
+        "csr_mgr",
+        "cci_mpf_shim_vtp_chan_l1_caches",
+        "cci_mpf_shim_vtp_chan_l1_caches",
+        "cci_mpf_if",
+        "cci_mpf_if",
+        "ALTERA_MF_VER.dcfifo_fefifo",
+        "ALTERA_MF_VER.dcfifo_fefifo",
+        "cci_mpf_prim_fifo_lutram_ctrl",
+        "cci_mpf_prim_fifo_lutram_ctrl",
+        "cci_mpf_prim_repl_random",
+        "cci_mpf_prim_repl_random",
+        "ase_svfifo",
+        "ase_svfifo",
+        "ase_svfifo_0003",
+        "ase_svfifo_0003",
+        "_vcs_unit__1748715068",
+        "_vcs_unit__1748715068",
+        "ccip_if_funcs_pkg",
+        "ccip_if_funcs_pkg",
+        "ALTERA_MF_VER.dcfifo_dffpipe_0008",
+        "ALTERA_MF_VER.dcfifo_dffpipe_0008",
+        "cci_mpf_shim_null",
+        "cci_mpf_shim_null",
+        "ALTERA_MF_VER.dcfifo_dffpipe_0006",
+        "ALTERA_MF_VER.dcfifo_dffpipe_0006",
+        "ccip_cfg_pkg",
+        "ccip_cfg_pkg",
+        "ccis_if_pkg",
+        "ccis_if_pkg",
+        "cci_mpf_csrs",
+        "cci_mpf_csrs",
+        "cci_mpf_shim_vtp_pt_fim_if",
+        "cci_mpf_shim_vtp_pt_fim_if"
+    ],
+    "MlibObjs": {},
+    "LVLData": [
+        "SIM"
+    ],
+    "PrevCompiledModules": {},
+    "stat": {
+        "ru_self_cgstart": {
+            "ru_minflt": 34060,
+            "ru_utime_sec": 4.0466290000000003,
+            "ru_stime_sec": 0.078127000000000002,
+            "ru_nvcsw": 375,
+            "ru_maxrss_kb": 121760,
+            "ru_majflt": 252,
+            "ru_nivcsw": 198
+        },
+        "ru_childs_cgstart": {
+            "ru_minflt": 614,
+            "ru_utime_sec": 0.0,
+            "ru_stime_sec": 0.0039220000000000001,
+            "ru_nvcsw": 1,
+            "ru_maxrss_kb": 70560,
+            "ru_majflt": 0,
+            "ru_nivcsw": 3
+        },
+        "ru_self_end": {
+            "ru_minflt": 40781,
+            "ru_utime_sec": 4.6428080000000005,
+            "ru_stime_sec": 0.119072,
+            "ru_nvcsw": 426,
+            "ru_maxrss_kb": 128116,
+            "ru_majflt": 277,
+            "ru_nivcsw": 282
+        },
+        "nMops": 78688,
+        "totalObjSize": 1324724,
+        "nQuads": 35165,
+        "ru_childs_end": {
+            "ru_minflt": 37703,
+            "ru_utime_sec": 2.4937399999999998,
+            "ru_stime_sec": 0.164683,
+            "ru_nvcsw": 141,
+            "ru_maxrss_kb": 86828,
+            "ru_majflt": 35,
+            "ru_nivcsw": 203
+        },
+        "mop/quad": 2.2376795108772929,
+        "mopSpeed": 131987.20518501988,
+        "Frontend(%)": 87.159085622321669,
+        "quadSpeed": 58983.962870211777,
+        "outputSizePerQuad": 37.0,
+        "CodeGen(%)": 12.84091437767834,
+        "peak_mem_kb": 337160
+    },
+    "CompileStrategy": "fullobj",
+    "CurCompileUdps": {},
+    "SIMBData": {
+        "archive": "archive.0/_25364_archive_1.a",
+        "out": "amcQwB.o",
+        "bytes": 90683
+    },
+    "PEModules": [],
+    "CompileProcesses": [
+        "cgproc.25364.json",
+        "cgproc.25684.json",
+        "cgproc.25685.json",
+        "cgproc.25686.json"
+    ],
+    "Misc": {
+        "csrc": "csrc",
+        "cwd": "/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim",
+        "archive_dir": "archive.0",
+        "daidir_abs": "/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/work/ase_simv.daidir",
+        "csrc_abs": "/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/csrc",
+        "default_output_dir": "csrc",
+        "daidir": "/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/virtual_addressing/build_sim/work/ase_simv.daidir"
+    },
+    "CompileStatus": "Successful"
+}

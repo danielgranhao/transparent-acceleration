@@ -1,0 +1,223 @@
+{
+    "Modules": {
+        "std": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_emulator_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_utils_dc_fifo_0002": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0007": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.ALTERA_DEVICE_FAMILIES": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_fefifo_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "platform_utils_ccip_c1_active_cnt": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccis_if_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ALTERA_MF_VER.dcfifo_dffpipe_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_top": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "app_csrs": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_19144_archive_1.a",
+            "size": 902601,
+            "objects": [
+                [
+                    "DCUPF_d.o",
+                    375297
+                ],
+                [
+                    "WdBzL_d.o",
+                    101360
+                ],
+                [
+                    "BsLFL_d.o",
+                    279914
+                ],
+                [
+                    "reYIK_d.o",
+                    34154
+                ],
+                [
+                    "f8GaT_d.o",
+                    17381
+                ],
+                [
+                    "w0q9C_d.o",
+                    15928
+                ],
+                [
+                    "ucR7k_d.o",
+                    14224
+                ],
+                [
+                    "Macce_d.o",
+                    10935
+                ],
+                [
+                    "kkLh6_d.o",
+                    10224
+                ],
+                [
+                    "zCqDr_d.o",
+                    10452
+                ],
+                [
+                    "ZYNBA_d.o",
+                    10363
+                ],
+                [
+                    "q7q7p_d.o",
+                    13414
+                ],
+                [
+                    "ct0cd_d.o",
+                    8955
+                ]
+            ]
+        }
+    ],
+    "CompUnits": {
+        "DCUPF_d": {
+            "mode": 4,
+            "mod": "ccip_emulator_0000",
+            "out": "DCUPF_d.o",
+            "bytes": 375297,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "WdBzL_d": {
+            "mode": 4,
+            "mod": "platform_utils_dc_fifo_0002",
+            "out": "WdBzL_d.o",
+            "bytes": 101360,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "BsLFL_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.ALTERA_DEVICE_FAMILIES",
+            "out": "BsLFL_d.o",
+            "bytes": 279914,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "w0q9C_d": {
+            "mode": 4,
+            "mod": "ase_svfifo_0000",
+            "out": "w0q9C_d.o",
+            "bytes": 15928,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "reYIK_d": {
+            "mode": 4,
+            "mod": "std",
+            "out": "reYIK_d.o",
+            "bytes": 34154,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "q7q7p_d": {
+            "mode": 4,
+            "mod": "ccis_if_pkg",
+            "out": "q7q7p_d.o",
+            "bytes": 13414,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "f8GaT_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_fefifo_0001",
+            "out": "f8GaT_d.o",
+            "bytes": 17381,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "ucR7k_d": {
+            "mode": 4,
+            "mod": "platform_utils_ccip_c1_active_cnt",
+            "out": "ucR7k_d.o",
+            "bytes": 14224,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "Macce_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0001",
+            "out": "Macce_d.o",
+            "bytes": 10935,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "kkLh6_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0003",
+            "out": "kkLh6_d.o",
+            "bytes": 10224,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "ZYNBA_d": {
+            "mode": 4,
+            "mod": "ase_top",
+            "out": "ZYNBA_d.o",
+            "bytes": 10363,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "zCqDr_d": {
+            "mode": 4,
+            "mod": "ALTERA_MF_VER.dcfifo_dffpipe_0007",
+            "out": "zCqDr_d.o",
+            "bytes": 10452,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        },
+        "ct0cd_d": {
+            "mode": 4,
+            "mod": "app_csrs",
+            "out": "ct0cd_d.o",
+            "bytes": 8955,
+            "checksum": 0,
+            "archive": "archive.0/_19144_archive_1.a"
+        }
+    },
+    "reusePaths": {}
+}

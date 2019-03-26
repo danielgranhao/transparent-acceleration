@@ -1,0 +1,188 @@
+{
+    "CurCompileUdps": {},
+    "CompileStatus": "Successful",
+    "MlibObjs": {},
+    "PrevCompiledModules": {},
+    "NameTable": {
+        "ccip_if_pkg": [
+            "ccip_if_pkg",
+            "v4JVt",
+            "module"
+        ],
+        "ase_svfifo_0000": [
+            "ase_svfifo_0000",
+            "w0q9C",
+            "module"
+        ],
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "ccip_emulator_0000": [
+            "ccip_emulator_0000",
+            "DCUPF",
+            "module"
+        ],
+        "ase_pkg": [
+            "ase_pkg",
+            "P6CGW",
+            "module"
+        ],
+        "_vcs_unit__1520759726": [
+            "_vcs_unit__1520759726",
+            "KU5iV",
+            "module"
+        ],
+        "ase_top": [
+            "ase_top",
+            "ZYNBA",
+            "module"
+        ],
+        "_vcs_DPI_package": [
+            "_vcs_DPI_package",
+            "uM9F1",
+            "module"
+        ],
+        "outoforder_wrf_channel_0000": [
+            "outoforder_wrf_channel_0000",
+            "Tscfg",
+            "module"
+        ],
+        "ase_svfifo": [
+            "ase_svfifo",
+            "WzJrk",
+            "module"
+        ],
+        "ase_svfifo_0001": [
+            "ase_svfifo_0001",
+            "Bujg0",
+            "module"
+        ],
+        "ase_svfifo_0003": [
+            "ase_svfifo_0003",
+            "mqYes",
+            "module"
+        ],
+        "ase_svfifo_0002": [
+            "ase_svfifo_0002",
+            "GspNz",
+            "module"
+        ],
+        "outoforder_wrf_channel_0001": [
+            "outoforder_wrf_channel_0001",
+            "zTVPy",
+            "module"
+        ],
+        "ccip_checker_0000": [
+            "ccip_checker_0000",
+            "mQC9W",
+            "module"
+        ],
+        "ccip_logger": [
+            "ccip_logger",
+            "aUsad",
+            "module"
+        ],
+        "platform_shim_ccip_std_afu": [
+            "platform_shim_ccip_std_afu",
+            "KsnuC",
+            "module"
+        ],
+        "_vcs_unit__1320943377": [
+            "_vcs_unit__1320943377",
+            "fFAAf",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ]
+    },
+    "PEModules": [],
+    "CompileStrategy": "fullobj",
+    "stat": {
+        "totalObjSize": 1561512,
+        "peak_mem_kb": 328656,
+        "ru_self_cgstart": {
+            "ru_majflt": 0,
+            "ru_minflt": 27388,
+            "ru_utime_sec": 2.2924860000000002,
+            "ru_nvcsw": 45,
+            "ru_stime_sec": 0.049987999999999998,
+            "ru_maxrss_kb": 94020,
+            "ru_nivcsw": 17
+        },
+        "nMops": 171624,
+        "ru_self_end": {
+            "ru_majflt": 0,
+            "ru_minflt": 37646,
+            "ru_utime_sec": 3.0483389999999999,
+            "ru_nvcsw": 61,
+            "ru_stime_sec": 0.086037000000000002,
+            "ru_maxrss_kb": 105704,
+            "ru_nivcsw": 34
+        },
+        "ru_childs_end": {
+            "ru_majflt": 0,
+            "ru_minflt": 29647,
+            "ru_utime_sec": 0.67254000000000003,
+            "ru_nvcsw": 96,
+            "ru_stime_sec": 0.099083000000000004,
+            "ru_maxrss_kb": 56820,
+            "ru_nivcsw": 53
+        },
+        "ru_childs_cgstart": {
+            "ru_majflt": 0,
+            "ru_minflt": 613,
+            "ru_utime_sec": 0.0019239999999999999,
+            "ru_nvcsw": 1,
+            "ru_stime_sec": 0.0019239999999999999,
+            "ru_maxrss_kb": 44940,
+            "ru_nivcsw": 2
+        },
+        "quadSpeed": 84857.769963207174,
+        "nQuads": 64140,
+        "mopSpeed": 227060.0235760129,
+        "Frontend(%)": 75.204431003244721,
+        "mop/quad": 2.6757717492984097,
+        "outputSizePerQuad": 24.0,
+        "CodeGen(%)": 24.795568996755271
+    },
+    "Misc": {
+        "csrc_abs": "/home/Daniel/Desktop/OPAE_Development/OPAE_Test/build_sim/csrc",
+        "cwd": "/home/Daniel/Desktop/OPAE_Development/OPAE_Test/build_sim",
+        "csrc": "csrc",
+        "daidir": "/home/Daniel/Desktop/OPAE_Development/OPAE_Test/build_sim/work/ase_simv.daidir",
+        "archive_dir": "archive.0",
+        "daidir_abs": "/home/Daniel/Desktop/OPAE_Development/OPAE_Test/build_sim/work/ase_simv.daidir",
+        "default_output_dir": "csrc"
+    },
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 88863,
+        "archive": "archive.0/_15314_archive_1.a"
+    },
+    "LVLData": [
+        "SIM"
+    ],
+    "CurCompileModules": [
+        "...MASTER...",
+        "...MASTER...",
+        "ccip_checker_0000",
+        "ccip_checker_0000",
+        "std",
+        "std",
+        "ase_svfifo_0001",
+        "ase_svfifo_0001",
+        "ccip_if_pkg",
+        "ccip_if_pkg"
+    ],
+    "CompileProcesses": [
+        "cgproc.15314.json",
+        "cgproc.15501.json",
+        "cgproc.15502.json",
+        "cgproc.15503.json"
+    ]
+}

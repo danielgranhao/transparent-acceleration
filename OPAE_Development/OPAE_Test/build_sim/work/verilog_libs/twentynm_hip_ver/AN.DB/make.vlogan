@@ -1,0 +1,17 @@
+
+VLOGAN	= vlogan
+VLOGAN_OPT	= +incdir+/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib -work twentynm_hip_ver -full64
+
+all :		_VCSgd_VGSNLc_1.db \
+	_VCSgd_NQX3re_1.db \
+
+
+
+_VCSgd_VGSNLc_1.db :	/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/twentynm_hip_atoms.v 
+		${VLOGAN}  ${VLOGAN_OPT} /home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/twentynm_hip_atoms.v
+
+
+_VCSgd_NQX3re_1.db :	/home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v 
+		${VLOGAN}  ${VLOGAN_OPT} /home/Daniel/altera_pro/16.0/quartus/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v
+
+

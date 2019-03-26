@@ -1,0 +1,91 @@
+{
+    "Modules": {
+        "...MASTER...": {},
+        "ccip_checker_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_if_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "std": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0001": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "mQC9W_d": {
+            "mod": "ccip_checker_0000",
+            "mode": 4,
+            "out": "mQC9W_d.o",
+            "bytes": 1392161,
+            "checksum": 0,
+            "archive": "archive.0/_15314_archive_1.a"
+        },
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "mode": 4,
+            "out": "objs/amcQw_d.o",
+            "bytes": 8359,
+            "checksum": 0
+        },
+        "reYIK_d": {
+            "mod": "std",
+            "mode": 4,
+            "out": "reYIK_d.o",
+            "bytes": 33970,
+            "checksum": 0,
+            "archive": "archive.0/_15314_archive_1.a"
+        },
+        "Bujg0_d": {
+            "mod": "ase_svfifo_0001",
+            "mode": 4,
+            "out": "Bujg0_d.o",
+            "bytes": 15739,
+            "checksum": 0,
+            "archive": "archive.0/_15314_archive_1.a"
+        },
+        "v4JVt_d": {
+            "mod": "ccip_if_pkg",
+            "mode": 4,
+            "out": "v4JVt_d.o",
+            "bytes": 22420,
+            "checksum": 0,
+            "archive": "archive.0/_15314_archive_1.a"
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_15314_archive_1.a",
+            "objects": [
+                [
+                    "mQC9W_d.o",
+                    1392161
+                ],
+                [
+                    "reYIK_d.o",
+                    33970
+                ],
+                [
+                    "Bujg0_d.o",
+                    15739
+                ],
+                [
+                    "v4JVt_d.o",
+                    22420
+                ],
+                [
+                    "amcQwB.o",
+                    88863
+                ]
+            ],
+            "size": 1553153
+        }
+    ],
+    "reusePaths": {}
+}

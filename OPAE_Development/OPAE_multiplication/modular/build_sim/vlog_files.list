@@ -1,0 +1,6 @@
++incdir+/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/base/hw/rtl
++incdir+/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/modular/hw/rtl
+-F /home/Daniel/Downloads/intel-fpga-bbb/BBB_cci_mpf/hw/sim/cci_mpf_sim_addenda.txt
+/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/base/hw/rtl/cci_afu_with_mpf.sv
+/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/base/hw/rtl/csr_mgr.sv
+/home/Daniel/Desktop/OPAE_Development/OPAE_multiplication/modular/hw/rtl/cci_mpf_mult_afu.sv

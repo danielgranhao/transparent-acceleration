@@ -1,0 +1,95 @@
+{
+    "Modules": {
+        "_vcs_unit__1520759726": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_emulator_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ccip_logger": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "_vcs_DPI_package": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo_0002": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "DCUPF_d": {
+            "mod": "ccip_emulator_0000",
+            "mode": 4,
+            "out": "DCUPF_d.o",
+            "bytes": 375089,
+            "checksum": 0,
+            "archive": "archive.0/_15501_archive_1.a"
+        },
+        "aUsad_d": {
+            "mod": "ccip_logger",
+            "mode": 4,
+            "out": "aUsad_d.o",
+            "bytes": 70133,
+            "checksum": 0,
+            "archive": "archive.0/_15501_archive_1.a"
+        },
+        "GspNz_d": {
+            "mod": "ase_svfifo_0002",
+            "mode": 4,
+            "out": "GspNz_d.o",
+            "bytes": 15759,
+            "checksum": 0,
+            "archive": "archive.0/_15501_archive_1.a"
+        },
+        "uM9F1_d": {
+            "mod": "_vcs_DPI_package",
+            "mode": 4,
+            "out": "uM9F1_d.o",
+            "bytes": 21511,
+            "checksum": 0,
+            "archive": "archive.0/_15501_archive_1.a"
+        },
+        "KU5iV_d": {
+            "mod": "_vcs_unit__1520759726",
+            "mode": 4,
+            "out": "KU5iV_d.o",
+            "bytes": 23099,
+            "checksum": 0,
+            "archive": "archive.0/_15501_archive_1.a"
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_15501_archive_1.a",
+            "objects": [
+                [
+                    "DCUPF_d.o",
+                    375089
+                ],
+                [
+                    "aUsad_d.o",
+                    70133
+                ],
+                [
+                    "uM9F1_d.o",
+                    21511
+                ],
+                [
+                    "GspNz_d.o",
+                    15759
+                ],
+                [
+                    "KU5iV_d.o",
+                    23099
+                ]
+            ],
+            "size": 505591
+        }
+    ],
+    "reusePaths": {}
+}

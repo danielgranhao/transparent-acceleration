@@ -1,0 +1,95 @@
+{
+    "Modules": {
+        "ase_svfifo_0003": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "outoforder_wrf_channel_0000": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ase_svfifo": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "_vcs_unit__1320943377": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "fFAAf_d": {
+            "mod": "_vcs_unit__1320943377",
+            "mode": 4,
+            "out": "fFAAf_d.o",
+            "bytes": 9403,
+            "checksum": 0,
+            "archive": "archive.0/_15502_archive_1.a"
+        },
+        "mqYes_d": {
+            "mod": "ase_svfifo_0003",
+            "mode": 4,
+            "out": "mqYes_d.o",
+            "bytes": 15567,
+            "checksum": 0,
+            "archive": "archive.0/_15502_archive_1.a"
+        },
+        "Tscfg_d": {
+            "mod": "outoforder_wrf_channel_0000",
+            "mode": 4,
+            "out": "Tscfg_d.o",
+            "bytes": 327766,
+            "checksum": 0,
+            "archive": "archive.0/_15502_archive_1.a"
+        },
+        "P6CGW_d": {
+            "mod": "ase_pkg",
+            "mode": 4,
+            "out": "P6CGW_d.o",
+            "bytes": 69221,
+            "checksum": 0,
+            "archive": "archive.0/_15502_archive_1.a"
+        },
+        "WzJrk_d": {
+            "mod": "ase_svfifo",
+            "mode": 4,
+            "out": "WzJrk_d.o",
+            "bytes": 15734,
+            "checksum": 0,
+            "archive": "archive.0/_15502_archive_1.a"
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.0/_15502_archive_1.a",
+            "objects": [
+                [
+                    "Tscfg_d.o",
+                    327766
+                ],
+                [
+                    "P6CGW_d.o",
+                    69221
+                ],
+                [
+                    "WzJrk_d.o",
+                    15734
+                ],
+                [
+                    "mqYes_d.o",
+                    15567
+                ],
+                [
+                    "fFAAf_d.o",
+                    9403
+                ]
+            ],
+            "size": 437691
+        }
+    ],
+    "reusePaths": {}
+}

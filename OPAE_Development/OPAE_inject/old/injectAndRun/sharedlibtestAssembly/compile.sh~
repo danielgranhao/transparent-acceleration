@@ -1,0 +1,4 @@
+gcc -c -Wall -Werror -fpic hello.c
+gcc -shared -o libhello.so hello.o
+gcc -L. -o main_test main_test.c -lhello
+setenv LD_LIBRARY_PATH /home/Daniel/Desktop/experimentation/injector
