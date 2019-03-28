@@ -1,0 +1,5 @@
+Buffer allocated, index 2 (located /dev/shm/mmio.24965782656574) =>
+		Host app virtual addr   = 0x7f3d45ae8000
+		HW physical addr (byte) = 0xc2ba4e8000
+		HW physical addr (line) = 0x30ae93a00
+		Workspace size (bytes)  = 524288

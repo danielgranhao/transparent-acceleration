@@ -1,3 +1,12 @@
               110000	SoftReset toggled from 1 to 0
               110000	C0Tx AlmFull toggled from 1 to 0
               110000	C1Tx AlmFull toggled from 1 to 0
+           189807500	SoftReset toggled from 0 to 1
+           189855000	SoftReset toggled from 1 to 0
+-----------------------------------------------------
+           189900000	Buffer allocated, index 2 (located /dev/shm/mmio.24965782656574) =>
+		Host app virtual addr   = 0x7f3d45ae8000
+		HW physical addr (byte) = 0xc2ba4e8000
+		HW physical addr (line) = 0x30ae93a00
+		Workspace size (bytes)  = 524288
+

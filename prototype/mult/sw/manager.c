@@ -21,6 +21,8 @@
 
 #include "to_inject/mult.h"
 
+#define DEBUG 1
+
 // function to be called
 #define FUNC mult
 
@@ -55,9 +57,9 @@ int main(int argc, char *argv[]){
 	printf("ERROR ON EXECVE!\n"); // execve doesn't return unless it fails
     }
     else { // Parent
-        usleep(50000);
+        usleep(50000); // Used so that parent continues only after child runs execve
 
-	printf("Child pid is %d\n", child);
+	if(DEBUG) printf("DEBUG: Child pid is %d\n", child);
  
 	inject_shared_lib(child, argv[1]);
 
@@ -87,8 +89,20 @@ int main(int argc, char *argv[]){
     		perror("Error replacing call with int3");
     		return -1;
   	}
+	trap_instruction[1] = 0x90; 
+	trap_instruction[2] = 0x90;
+	trap_instruction[3] = 0x90;
+	trap_instruction[4] = 0x90;
+	trap_instruction[5] = old_instruction[5];
+	trap_instruction[6] = old_instruction[6];
+	trap_instruction[7] = old_instruction[7];
+  	if (poke_text(child, (void*)BREAKADDR, &trap_instruction, &old_instruction, 8)) {
+    		perror("Error replacing call with int3");
+    		return -1;
+  	}
+
 	// continue the program, and wait for the trap
-  	printf("continuing execution\n");
+  	if(DEBUG) printf("DEBUG: continuing execution\n");
  	ptrace(PTRACE_CONT, child, NULL, NULL);
   	if (do_wait("PTRACE_CONT")) {
   		perror("Error cont");
@@ -100,17 +114,60 @@ int main(int argc, char *argv[]){
 	 *					*
 	 * *************************************/
 
-	printf("Manager received control!\n");
+	if(DEBUG) printf("DEBUG: Manager received control!\n");
+
+	struct user_regs_struct regs;
 
 	while(1){
-		// TODO: check if we got control due to inserted trap
+		
+		// Check if we got control due to inserted trap
+		if (ptrace(PTRACE_GETREGS, child, NULL, &regs)) {
+    			perror("Error retrieving registers");
+    			return -1;
+  		}
+		if(DEBUG) printf("Current rip = %p\n", regs.rip);
+		if(regs.rip != BREAKADDR+1) perror("Control was given back due to unknown reasons");
+		
 		if(1){
-			// TODO: call mult instead
+			// call mult instead
+			if(func_process(child) < 0){
+				perror("Could not call mult");
+			}
 		}
+
+		// Advance to next instruction (call uses 5 bytes and next one (mov) uses 3)
+		if (ptrace(PTRACE_GETREGS, child, NULL, &regs)) {
+    			perror("Error retrieving registers");
+    			return -1;
+  		}
+		//printf("RAX = %d\n", regs.rax);
+		regs.rip += 5;
+		if (ptrace(PTRACE_SETREGS, child, NULL, &regs)) {
+    			perror("PTRACE_SETREGS");
+    			return -1;
+  		}
+
+		
+		// continue the program, and wait for the trap
+  		if(DEBUG) printf("DEBUG: continuing execution\n");
+ 		ptrace(PTRACE_CONT, child, NULL, NULL);
+  		if (do_wait("PTRACE_CONT")) {
+  			perror("Error cont");
+  		}
+		/*
+		// detach the process
+  		if(DEBUG) printf("detaching\n");
+  		if (ptrace(PTRACE_DETACH, child, NULL, NULL)) {
+  		  	perror("PTRACE_DETACH");
+  		  	return -1;
+  		}	
+
+		break;*/
+
 	}	
 
-	//func_process(child);
-
+	printf("Saiu do while\n");
+	while(1);
 	waitpid(child, NULL, 0);
     }
 }
@@ -241,19 +298,23 @@ int32_t compute_jmp(void *from, void *to) {
   return (int32_t)delta;
 }
 
+
+
+
+// Assumes process is already attached to target and it already stopped
 int func_process(pid_t pid) {
   // attach to the process
-  if (ptrace(PTRACE_ATTACH, pid, NULL, NULL)) {
-    perror("PTRACE_ATTACH");
-    check_yama();
-    return -1;
-  }
+  //if (ptrace(PTRACE_ATTACH, pid, NULL, NULL)) {
+  //  perror("PTRACE_ATTACH");
+  //  check_yama();
+  //  return -1;
+  //}
 
   // wait for the process to actually stop
-  if (waitpid(pid, 0, WSTOPPED) == -1) {
-    perror("wait");
-    return -1;
-  }
+  //if (waitpid(pid, 0, WSTOPPED) == -1) {
+  //  perror("wait");
+  //  return -1;
+  //}
 
   // save the register state of the remote process
   struct user_regs_struct oldregs;
@@ -263,7 +324,7 @@ int func_process(pid_t pid) {
     return -1;
   }
   void *rip = (void *)oldregs.rip;
-  printf("their %%rip           %p\n", rip);
+  if(DEBUG) printf("their %%rip           %p\n", rip);
 
   // First, we are going to allocate some memory for ourselves so we don't
   // need
@@ -315,9 +376,9 @@ int func_process(pid_t pid) {
     printf("failed to mmap\n");
     goto fail;
   }
-  printf("allocated memory at  %p\n", mmap_memory);
+  if(DEBUG) printf("allocated memory at  %p\n", mmap_memory);
 
-  printf("executing jump to mmap region\n");
+  if(DEBUG) printf("executing jump to mmap region\n");
   if (singlestep(pid)) {
     goto fail;
   }
@@ -327,7 +388,7 @@ int func_process(pid_t pid) {
     goto fail;
   }
   if (newregs.rip == (long)mmap_memory) {
-    printf("successfully jumped to mmap area\n");
+    if(DEBUG) printf("successfully jumped to mmap area\n");
   } else {
     printf("unexpectedly jumped to %p\n", (void *)newregs.rip);
     goto fail;
@@ -354,42 +415,31 @@ int func_process(pid_t pid) {
   void *their_lib = find_library(pid, lib_string);
   void *our_lib = find_library(getpid(), lib_string);
   void *their_func = their_lib + ((void *)FUNC - our_lib);
-  printf("their lib            %p\n", their_lib);
-  printf("their func           %p\n", their_lib);
+  if(DEBUG) printf("their lib            %p\n", their_lib);
+  if(DEBUG) printf("their func           %p\n", their_lib);
 
-  // We want to make a call like:
-  //
-  //   fprintf(stderr, "instruction pointer = %p\n", rip);
-  //
-  // To do this we're going to do the following:
-  //
-  //   * put a CALL instruction into the mmap area that calls fprintf
-  //   * put a TRAP instruction right after the CALL
-  //   * put the format string right after the TRAP
-  //   * use the TRAP to restore the original text/program state
-
-  // memory we are going to copy into our mmap area
+    // memory we are going to copy into our mmap area
   uint8_t new_text[32];
   memset(new_text, 0, sizeof(new_text));
 
   // insert a CALL instruction
   size_t offset = 0;
-  printf("Adding rel32 to new_text[%d]", offset);
+  if(DEBUG) printf("Adding rel32 to new_text[%d]", offset);
   new_text[offset++] = 0xe8; // CALL rel32
   int32_t func_delta = compute_jmp(mmap_memory, their_func);
-  printf("Adding func_delta to new_text[%d-%d]", offset, offset+sizeof(func_delta)-1);
+  if(DEBUG) printf("Adding func_delta to new_text[%d-%d]", offset, offset+sizeof(func_delta)-1);
   memmove(new_text + offset, &func_delta, sizeof(func_delta));
   offset += sizeof(func_delta);
 
   // insert a TRAP instruction 
-  printf("Adding TRAP to new_text[%d]", offset);
+  if(DEBUG) printf("Adding TRAP to new_text[%d]", offset);
   new_text[offset] = 0xcc;
 
   // copy our fprintf format string right after the TRAP instruction
   //memmove(new_text + offset, format, strlen(format));
 
   // update the mmap area
-  printf("inserting code/data into the mmap area at %p\n", mmap_memory);
+  if(DEBUG) printf("inserting code/data into the mmap area at %p\n", mmap_memory);
   if (poke_text(pid, mmap_memory, new_text, NULL, sizeof(new_text))) {
     goto fail;
   }
@@ -402,32 +452,19 @@ int func_process(pid_t pid) {
   // set up our registers with the args to fprintf
   //memmove(&newregs, &oldregs, sizeof(newregs));
   //newregs.rax = 0;                          // no vector registers are used 
-  newregs.rdi = 5; // Operand a
-  newregs.rsi = 10; // Operand b
+  newregs.rdi = oldregs.rdi; // Operand a
+  newregs.rsi = oldregs.rsi; // Operand b
 
-  //newregs.rsp = newregs.rsp & 0xfffffffffffffff0; 
-  printf("rsp = %p\n", newregs.rsp);
+  //if(DEBUG) printf("rsp = %p\n", newregs.rsp);
 
-  printf("setting the registers of the remote process\n");
+  if(DEBUG) printf("setting the registers of the remote process\n");
   if (ptrace(PTRACE_SETREGS, pid, NULL, &newregs)) {
     perror("PTRACE_SETREGS");
     goto fail;
   }
 
-/*
-  if (singlestep(pid)) {
-    goto fail;
-  }
-  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {
-    perror("PTRACE_GETREGS");
-    goto fail;
-  }
-  printf("after single step: rsp = %p\n", newregs.rsp);
-  printf("after single step: rip = %p\n", newregs.rip);
-*/
-
   // continue the program, and wait for the trap
-  printf("continuing execution\n");
+  if(DEBUG) printf("continuing execution\n");
   ptrace(PTRACE_CONT, pid, NULL, NULL);
   if (do_wait("PTRACE_CONT")) {
     goto fail;
@@ -444,7 +481,7 @@ int func_process(pid_t pid) {
 
   // Print return of mult
   ret = newregs.rax;
-  printf("%" PRIu64 "\n", ret);
+  if(DEBUG) printf("mult() returned: %" PRIu64 "\n", ret);
 
 
 
@@ -463,7 +500,7 @@ int func_process(pid_t pid) {
   new_word[1] = 0xe0; // JMP %rax
   poke_text(pid, (void *)newregs.rip, new_word, NULL, sizeof(new_word));
 
-  printf("jumping back to original rip\n");
+  if(DEBUG) printf("jumping back to original rip\n");
   if (singlestep(pid)) {
     goto fail;
   }
@@ -473,7 +510,7 @@ int func_process(pid_t pid) {
   }
 
   if (newregs.rip == (long)rip) {
-    printf("successfully jumped back to original %%rip at %p\n", rip);
+    if(DEBUG) printf("successfully jumped back to original %%rip at %p\n", rip);
   } else {
     printf("unexpectedly jumped to %p (expected to be at %p)\n",
            (void *)newregs.rip, rip);
@@ -490,7 +527,7 @@ int func_process(pid_t pid) {
   }
 
   // make the system call
-  printf("making call to mmap\n");
+  if(DEBUG) printf("making call to mmap\n");
   if (singlestep(pid)) {
     goto fail;
   }
@@ -498,29 +535,32 @@ int func_process(pid_t pid) {
     perror("PTRACE_GETREGS");
     goto fail;
   }
-  printf("munmap returned with status %llu\n", newregs.rax);
+  if(DEBUG) printf("munmap returned with status %llu\n", newregs.rax);
 
-  printf("restoring old text at %p\n", rip);
+  if(DEBUG) printf("restoring old text at %p\n", rip);
   poke_text(pid, rip, old_word, NULL, sizeof(old_word));
 
-  printf("restoring old registers\n");
+
+  oldregs.rax = ret;
+
+  if(DEBUG) printf("restoring old registers\n");
   if (ptrace(PTRACE_SETREGS, pid, NULL, &oldregs)) {
     perror("PTRACE_SETREGS");
     goto fail;
   }
 
   // detach the process
-  printf("detaching\n");
-  if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
-    perror("PTRACE_DETACH");
-    goto fail;
-  }
+  //if(DEBUG) printf("detaching\n");
+  //if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
+  //  perror("PTRACE_DETACH");
+  //  goto fail;
+  //}
   return 0;
 
 fail:
   poke_text(pid, rip, old_word, NULL, sizeof(old_word));
-  if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
-    perror("PTRACE_DETACH");
-  }
-  return 1;
+  //if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
+  //  perror("PTRACE_DETACH");
+  //}
+  return -1;
 }
