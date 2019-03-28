@@ -9,7 +9,7 @@ Note: Bumping stack limit from 8192 to 65536 Kbytes.
 Command: vcs -nc -V +vcs+lic+wait -full64 -debug_pp -Mupdate -lca -j 4 -l vcs_elab.log \
 +vhdllib+work -Mlib=work +lint=TFIPC-L -override_timescale=1ps/1ps -o work/ase_simv \
 ase_top work/ase_libs.so -lrt -lpthread
-/eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/bin/comelab -nc -unielab -nc -verbose -lca -output vcs_elab.log -override_timescale 1ps/1ps -exe work/ase_simv -picarchive -debug 1 -uum   -ldlibs work/ase_libs.so -lrt -lpthread  -mxuumtop ase_top  -verilogcomp  -nc -V +vcs+lic+wait -full64 -debug_pp -Mupdate -lca -j 4 -l vcs_elab.log +vhdllib+work -Mlib=work +lint=TFIPC-L -override_timescale=1ps/1ps -o work/ase_simv work/ase_libs.so -lrt -lpthread -uum   -elaboration_options /tmp/vcs_20190326154317_2552/elaboptfile_2552
+/eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/bin/comelab -nc -unielab -nc -verbose -lca -output vcs_elab.log -override_timescale 1ps/1ps -exe work/ase_simv -picarchive -debug 1 -uum   -ldlibs work/ase_libs.so -lrt -lpthread  -mxuumtop ase_top  -verilogcomp  -nc -V +vcs+lic+wait -full64 -debug_pp -Mupdate -lca -j 4 -l vcs_elab.log +vhdllib+work -Mlib=work +lint=TFIPC-L -override_timescale=1ps/1ps -o work/ase_simv work/ase_libs.so -lrt -lpthread -uum   -elaboration_options /tmp/vcs_20190328121928_9600/elaboptfile_9600
 Doing common elaboration 
 
 Warning-[LNX_OS_VERUN] Unsupported Linux version
@@ -28,10 +28,10 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
 -Mcrt0= -Mcrtn="" -Mcsrc="" -Mupdate -Mlib=work -Msyslibs=-ldl  -l vcs_elab.log -uum \
 ase_top -mxunielab -uni_make -nc -V +vcs+lic+wait -full64 -Xcbug=0x1 -Xpiyushb1=0x80 \
 -lca -j4 +vhdllib+work +lint=TFIPC-L -override_timescale=1ps/1ps -o work/ase_simv \
--uum -elaboration_options=/tmp/vcs_20190326154317_2552/elaboptfile_2552 -full64 -picarchive \
+-uum -elaboration_options=/tmp/vcs_20190328121928_9600/elaboptfile_9600 -full64 -picarchive \
 +vcsd +itf+/eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/lib/vcsdp.tab \
 +cli+1 -debug=1 +memcbk +vpi -VHDLelab=-mxunielab -uni_make -nc -nc -verbose -lca \
--override_timescale 1ps/1ps -exe work/ase_simv -uum -elaboration_options /tmp/vcs_20190326154317_2552/elaboptfile_2552 \
+-override_timescale 1ps/1ps -exe work/ase_simv -uum -elaboration_options /tmp/vcs_20190328121928_9600/elaboptfile_9600 \
 -picarchive -debug 1  -gen_obj -f work/ase_simv.daidir/mxopt.db  
 Top Level Modules:
        ase_top
@@ -141,6 +141,27 @@ Note-[VCS_PARAL] Parallel code-gen enabled
   VCS is running with parallel code generation(-j)...
 
 62 unique modules to generate
+recompiling module platform_shim_ccip
+recompiling module outoforder_wrf_channel
+recompiling module cci_mpf_svc_vtp_wrapper
+recompiling module altsyncram
+recompiling module platform_shim_ccip_std_afu
+recompiling package cci_mpf_if_pkg
+recompiling module ccip_logger
+recompiling module cci_mpf_shim_buffer_afu
+recompiling module dcfifo_fefifo
+recompiling module cci_mpf_prim_fifo_lutram_ctrl
+recompiling package _vcs_DPI_package
+recompiling module ase_svfifo
+recompiling module cci_mpf_prim_ram_simple_init
+recompiling module platform_utils_ccip_c1_active_cnt
+recompiling package cci_csr_if_pkg
+recompiling module cci_mpf_prim_ram_simple
+recompiling module dcfifo_dffpipe
+recompiling module ase_top
+recompiling package ccis_if_funcs_pkg
+recompiling module cci_mpf_shim_edge_if
+recompiling module cci_mpf_shim_vtp_svc_if
 recompiling module ccip_emulator
 recompiling module ALTERA_MF_MEMORY_INITIALIZATION
 recompiling module platform_utils_dc_fifo
@@ -164,27 +185,6 @@ recompiling package ccip_feature_list_pkg
 recompiling module app_csrs
 recompiling module cci_mpf_shim_pwrite_lock_if
 recompiling module cci_mpf_shim_vtp_tlb_if
-recompiling module platform_shim_ccip
-recompiling module outoforder_wrf_channel
-recompiling module cci_mpf_svc_vtp_wrapper
-recompiling module altsyncram
-recompiling module platform_shim_ccip_std_afu
-recompiling package cci_mpf_if_pkg
-recompiling module ccip_logger
-recompiling module cci_mpf_shim_buffer_afu
-recompiling module dcfifo_fefifo
-recompiling module cci_mpf_prim_fifo_lutram_ctrl
-recompiling package _vcs_DPI_package
-recompiling module ase_svfifo
-recompiling module cci_mpf_prim_ram_simple_init
-recompiling module platform_utils_ccip_c1_active_cnt
-recompiling package cci_csr_if_pkg
-recompiling module cci_mpf_prim_ram_simple
-recompiling module dcfifo_dffpipe
-recompiling module ase_top
-recompiling package ccis_if_funcs_pkg
-recompiling module cci_mpf_shim_edge_if
-recompiling module cci_mpf_shim_vtp_svc_if
 recompiling module cci_mpf_pipe_std
 recompiling module ccip_checker
 recompiling module platform_utils_dc_fifo
@@ -228,7 +228,7 @@ recompiling package ccip_cfg_pkg
 recompiling package ccis_if_pkg
 recompiling module cci_mpf_csrs
 recompiling module cci_mpf_shim_vtp_pt_fim_if
-( cd csrc ; make -f Makefile SNPS_VCS_TMPDIR=/tmp/vcs_20190326154317_2552 product \
+( cd csrc ; make -f Makefile SNPS_VCS_TMPDIR=/tmp/vcs_20190328121928_9600 product \
 )
 make[1]: Entering directory `/home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/csrc' \
 
@@ -236,8 +236,8 @@ rm -f _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../work/ase_simv ]; then chmod -x ../work/ase_simv; fi
 g++  -o ../work/ase_simv   -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/ase_simv.daidir/ \
 -Wl,-rpath=./ase_simv.daidir/ -Wl,-rpath='$ORIGIN'/ase_simv.daidir//scsim.db.dir \
--rdynamic  objs/amcQw_d.o   _3654_archive_1.so _15906_archive_1.so _15907_archive_1.so \
-_15908_archive_1.so  SIM_l.o       rmapats_mop.o rmapats.o rmar.o  rmar_llvm_0_1.o \
+-rdynamic  objs/amcQw_d.o   _10703_archive_1.so _10980_archive_1.so _10981_archive_1.so \
+_10982_archive_1.so  SIM_l.o       rmapats_mop.o rmapats.o rmar.o  rmar_llvm_0_1.o \
 rmar_llvm_0_0.o          /eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/lib/libzerosoft_rt_stubs.so \
 /eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/lib/liberrorinf.so /eda/synopsys/2016-17/RHELx86/VCSMX_2016.06-SP2/linux64/lib/libsnpsmalloc.so \
 /home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/work/ase_libs.so \

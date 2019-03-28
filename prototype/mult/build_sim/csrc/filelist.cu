@@ -1,36 +1,36 @@
 PIC_LD=ld
 
 ARCHIVE_OBJS=
-ARCHIVE_OBJS += _3654_archive_1.so
-_3654_archive_1.so : archive.0/_3654_archive_1.a
+ARCHIVE_OBJS += _10703_archive_1.so
+_10703_archive_1.so : archive.0/_10703_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_3654_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_10703_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../work/ase_simv.daidir//_3654_archive_1.so $@
+	@ln -sf .//../work/ase_simv.daidir//_10703_archive_1.so $@
 
 
-ARCHIVE_OBJS += _15906_archive_1.so
-_15906_archive_1.so : archive.0/_15906_archive_1.a
+ARCHIVE_OBJS += _10980_archive_1.so
+_10980_archive_1.so : archive.0/_10980_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_15906_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_10980_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../work/ase_simv.daidir//_15906_archive_1.so $@
+	@ln -sf .//../work/ase_simv.daidir//_10980_archive_1.so $@
 
 
-ARCHIVE_OBJS += _15907_archive_1.so
-_15907_archive_1.so : archive.0/_15907_archive_1.a
+ARCHIVE_OBJS += _10981_archive_1.so
+_10981_archive_1.so : archive.0/_10981_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_15907_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_10981_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../work/ase_simv.daidir//_15907_archive_1.so $@
+	@ln -sf .//../work/ase_simv.daidir//_10981_archive_1.so $@
 
 
-ARCHIVE_OBJS += _15908_archive_1.so
-_15908_archive_1.so : archive.0/_15908_archive_1.a
+ARCHIVE_OBJS += _10982_archive_1.so
+_10982_archive_1.so : archive.0/_10982_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_15908_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -o .//../work/ase_simv.daidir//_10982_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../work/ase_simv.daidir//_15908_archive_1.so $@
+	@ln -sf .//../work/ase_simv.daidir//_10982_archive_1.so $@
 
 
 
