@@ -27,6 +27,9 @@
 // number of bytes in a JMP/CALL rel32 instruction
 #define REL32_SZ 5
 
+// callq dummy_mult addr
+#define BREAKADDR 0x40064c
+
 static const char *text_area = " r-xp ";
 static const char *lib_string = "/libmult";
 
@@ -53,10 +56,51 @@ int main(int argc, char *argv[]){
     }
     else { // Parent
         usleep(50000);
+
+	printf("Child pid is %d\n", child);
  
 	inject_shared_lib(child, argv[1]);
 
-	// TODO: Replace call to dummy_mult with trap
+	/****************************************
+	 *					*
+	 * Replace call to dummy_mult with trap *
+	 *					*
+	 * *************************************/
+
+	// attach to the process
+  	if (ptrace(PTRACE_ATTACH, child, NULL, NULL)) {
+    		perror("PTRACE_ATTACH");
+    		check_yama();
+    		return -1;
+  	}
+  	// wait for the process to actually stop
+  	if (waitpid(child, 0, WSTOPPED) == -1) {
+    		perror("wait");
+    		return -1;
+  	}
+	uint8_t trap_instruction[8];
+	trap_instruction[0]= 0xcc;
+	uint8_t old_instruction[8];
+
+	// Insert int3 instruction where call dummy_mult was 
+  	if (poke_text(child, (void*)BREAKADDR, &trap_instruction, &old_instruction, 8)) {
+    		perror("Error replacing call with int3");
+    		return -1;
+  	}
+	// continue the program, and wait for the trap
+  	printf("continuing execution\n");
+ 	ptrace(PTRACE_CONT, child, NULL, NULL);
+  	if (do_wait("PTRACE_CONT")) {
+  		perror("Error cont");
+  	}
+	
+	/****************************************
+	 *					*
+	 * 		Call mult 		*
+	 *					*
+	 * *************************************/
+
+	printf("Manager received control!\n");
 
 	while(1){
 		// TODO: check if we got control due to inserted trap

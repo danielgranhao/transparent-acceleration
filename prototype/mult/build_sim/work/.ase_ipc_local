@@ -12,5 +12,3 @@ MQ	/home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/work/s
 MQ	/home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/work/app2sim_membus_rd_rsp_smq
 MQ	/home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/work/sim2app_membus_wr_req_smq
 MQ	/home/Daniel/Desktop/transparent-acceleration/prototype/mult/build_sim/work/app2sim_membus_wr_rsp_smq
-SHM	/mmio.3738666840636
-SHM	/umas.3738666840636
