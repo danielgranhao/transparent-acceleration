@@ -1,12 +1,189 @@
               110000	SoftReset toggled from 1 to 0
               110000	C0Tx AlmFull toggled from 1 to 0
               110000	C1Tx AlmFull toggled from 1 to 0
-           189807500	SoftReset toggled from 0 to 1
-           189855000	SoftReset toggled from 1 to 0
+            36495000	SoftReset toggled from 0 to 1
+            36542500	SoftReset toggled from 1 to 0
 -----------------------------------------------------
-           189900000	Buffer allocated, index 2 (located /dev/shm/mmio.24965782656574) =>
-		Host app virtual addr   = 0x7f3d45ae8000
-		HW physical addr (byte) = 0xc2ba4e8000
-		HW physical addr (line) = 0x30ae93a00
+            36590000	MMIO map allocated, index 0 (located /dev/shm/mmio.10051720022596) =>
+		Host app virtual addr   = 0x7f5355f24000
+		HW physical addr (byte) = 0xacaa124000
+		HW physical addr (line) = 0x2b2a84900
+		Workspace size (bytes)  = 524288
+
+-----------------------------------------------------
+            36597500	UMAS allocated, index 1 (located /dev/shm/umas.10051720022596) =>
+		Host app virtual addr   = 0x7f5353b2f000
+		HW physical addr (byte) = 0xacac52f000
+		HW physical addr (line) = 0x2b2b14bc0
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+            36605000	UMSG Mode mask set to 0x0
+            36632500	   	MMIORdReq   	000	0002	          8 bytes
+            36770000	   	MMIORdRsp   	000	af639d09858310e5
+            36800000	   	MMIORdReq   	001	0004	          8 bytes
+            36935000	   	MMIORdRsp   	001	1cddcf01c26644de
+            36965000	   	MMIORdReq   	002	0002	          8 bytes
+            37100000	   	MMIORdRsp   	002	af639d09858310e5
+            37130000	   	MMIORdReq   	003	0004	          8 bytes
+            37265000	   	MMIORdRsp   	003	1cddcf01c26644de
+            37295000	   	MMIORdReq   	004	0002	          8 bytes
+            37430000	   	MMIORdRsp   	004	af639d09858310e5
+            37457500	   	MMIORdReq   	005	0004	          8 bytes
+            37595000	   	MMIORdRsp   	005	1cddcf01c26644de
+            37625000	   	MMIORdReq   	006	0002	          8 bytes
+            37760000	   	MMIORdRsp   	006	af639d09858310e5
+            37790000	   	MMIORdReq   	007	0004	          8 bytes
+            37925000	   	MMIORdRsp   	007	1cddcf01c26644de
+            37955000	   	MMIORdReq   	008	0000	          8 bytes
+            38090000	   	MMIORdRsp   	008	1000000010000000
+            38120000	   	MMIORdReq   	009	0002	          8 bytes
+            38255000	   	MMIORdRsp   	009	af639d09858310e5
+            38285000	   	MMIORdReq   	00a	0004	          8 bytes
+            38420000	   	MMIORdRsp   	00a	1cddcf01c26644de
+            38450000	   	MMIORdReq   	00b	0400	          8 bytes
+            38625000	   	MMIORdRsp   	00b	2000000000780001
+            38655000	   	MMIORdReq   	00c	0402	          8 bytes
+            38830000	   	MMIORdRsp   	00c	a70545727f501901
+            38860000	   	MMIORdReq   	00d	0404	          8 bytes
+            39035000	   	MMIORdRsp   	00d	c8a2982fff9642bf
+            39065000	   	MMIORdReq   	00e	041e	          8 bytes
+            39240000	   	MMIORdRsp   	00e	2000000000180001
+            39267500	   	MMIORdReq   	00f	0420	          8 bytes
+            39445000	   	MMIORdRsp   	00f	0000000000000000
+            39472500	   	MMIORdReq   	010	0422	          8 bytes
+            39650000	   	MMIORdRsp   	010	0000000000000000
+            39680000	   	MMIORdReq   	011	0424	          8 bytes
+            39855000	   	MMIORdRsp   	011	2000000000300001
+            39885000	   	MMIORdReq   	012	0426	          8 bytes
+            40060000	   	MMIORdRsp   	012	0000000000000000
+            40090000	   	MMIORdReq   	013	0428	          8 bytes
+            40265000	   	MMIORdRsp   	013	0000000000000000
+            40295000	   	MMIORdReq   	014	0430	          8 bytes
+            40470000	   	MMIORdRsp   	014	2000000000200001
+            40500000	   	MMIORdReq   	015	0432	          8 bytes
+            40675000	   	MMIORdRsp   	015	0000000000000000
+            40705000	   	MMIORdReq   	016	0434	          8 bytes
+            40880000	   	MMIORdRsp   	016	0000000000000000
+            40910000	   	MMIORdReq   	017	0438	          8 bytes
+            41085000	   	MMIORdRsp   	017	2000000000400001
+            41115000	   	MMIORdReq   	018	043a	          8 bytes
+            41290000	   	MMIORdRsp   	018	0000000000000000
+            41317500	   	MMIORdReq   	019	043c	          8 bytes
+            41495000	   	MMIORdRsp   	019	0000000000000000
+            41525000	   	MMIORdReq   	01a	0448	          8 bytes
+            41700000	   	MMIORdRsp   	01a	2000010000200001
+            41727500	   	MMIORdReq   	01b	044a	          8 bytes
+            41925000	   	MMIORdRsp   	01b	0000000000000000
+            41955000	   	MMIORdReq   	01c	044c	          8 bytes
+            42155000	   	MMIORdRsp   	01c	0000000000000000
+-----------------------------------------------------
+            42172500	Pinned host memory page =>
+		Host app virtual addr   = 0x7f5355fb8000
+		HW physical addr (byte) = 0xacaa047000
+		HW physical addr (line) = 0x2b2a811c0
+		Page size (bytes)       = 4096
+
+            42192500	   	MMIOWrReq   	  	0406	          8 bytes	0000000000000002
+            42242500	   	MMIOWrReq   	  	0406	          8 bytes	0000000000000000
+            42292500	   	MMIOWrReq   	  	0408	          8 bytes	00000002b2a811c0
+            42342500	   	MMIOWrReq   	  	0406	          8 bytes	0000000000000001
+            42392500	   	MMIORdReq   	021	0406	          8 bytes
+            42555000	   	MMIORdRsp   	021	000000000000000c
+-----------------------------------------------------
+            42570000	Pinned host memory page =>
+		Host app virtual addr   = 0x7f5355fb4000
+		HW physical addr (byte) = 0xacaa04b000
+		HW physical addr (line) = 0x2b2a812c0
+		Page size (bytes)       = 4096
+
+            42590000	   	MMIOWrReq   	  	041a	          8 bytes	00000002b2a812c0
+            42640000	   	MMIOWrReq   	  	0040	          8 bytes	000001fff3644894
+            42690000	   	MMIOWrReq   	  	0042	          8 bytes	0000000000000005
+            42740000	   	MMIOWrReq   	  	0044	          8 bytes	000000000000000a
+            44990000	VH0	Wr_I       	4000	002b2a812c0	000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007ffcd9122001	#1CL
+            45412500	VH0	WrResp     	4000	#1CL
+-----------------------------------------------------
+            45420000	Pinned host memory page =>
+		Host app virtual addr   = 0x7ffcd9122000
+		HW physical addr (byte) = 0x326edd000
+		HW physical addr (line) = 0xc9bb740
+		Page size (bytes)       = 4096
+
+            45440000	   	MMIOWrReq   	  	041c	          8 bytes	000000000c9bb740
+-----------------------------------------------------
+            45475000	Pinned host memory page =>
+		Host app virtual addr   = 0x7f5355fae000
+		HW physical addr (byte) = 0xacaa051000
+		HW physical addr (line) = 0x2b2a81440
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            45482500	Pinned host memory page =>
+		Host app virtual addr   = 0x7f5355f20000
+		HW physical addr (byte) = 0xacaa0df000
+		HW physical addr (line) = 0x2b2a837c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            45490000	Pinned host memory page =>
+		Host app virtual addr   = 0x7f5355f1c000
+		HW physical addr (byte) = 0xacaa0e3000
+		HW physical addr (line) = 0x2b2a838c0
+		Page size (bytes)       = 4096
+
+            45635000	VA 	Wr_I       	0000	0000c9bb754	00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032	#1CL
+            45862500	   	MMIORdReq   	027	0010	          8 bytes
+            45865000	VL0	WrResp     	0000	#1CL
+            46000000	   	MMIORdRsp   	027	00000000000000c8
+            46030000	   	MMIOWrReq   	  	0406	          8 bytes	0000000000000000
+-----------------------------------------------------
+            48670000	Unpinned host memory page =>
+		HW physical addr (byte) = 0xacaa04b000
+		HW physical addr (line) = 0x2b2a812c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48677500	Unpinned host memory page =>
+		HW physical addr (byte) = 0x326edd000
+		HW physical addr (line) = 0xc9bb740
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48685000	Unpinned host memory page =>
+		HW physical addr (byte) = 0xacaa0e3000
+		HW physical addr (line) = 0x2b2a838c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48692500	Unpinned host memory page =>
+		HW physical addr (byte) = 0xacaa0df000
+		HW physical addr (line) = 0x2b2a837c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48700000	Unpinned host memory page =>
+		HW physical addr (byte) = 0xacaa051000
+		HW physical addr (line) = 0x2b2a81440
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48707500	Unpinned host memory page =>
+		HW physical addr (byte) = 0xacaa047000
+		HW physical addr (line) = 0x2b2a811c0
+		Page size (bytes)       = 4096
+
+-----------------------------------------------------
+            48715000	Buffer deallocated, index 1 (located /dev/shm/umas.10051720022596) =>
+		Host app virtual addr   = 0x7f5353b2f000
+		HW physical addr (byte) = 0xacac52f000
+		HW physical addr (line) = 0x2b2b14bc0
+		Workspace size (bytes)  = 2097152
+
+-----------------------------------------------------
+            48722500	Buffer deallocated, index 0 (located /dev/shm/mmio.10051720022596) =>
+		Host app virtual addr   = 0x7f5355f24000
+		HW physical addr (byte) = 0xacaa124000
+		HW physical addr (line) = 0x2b2a84900
 		Workspace size (bytes)  = 524288
 

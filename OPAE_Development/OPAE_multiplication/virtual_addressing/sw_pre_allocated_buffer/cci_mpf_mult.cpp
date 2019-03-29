@@ -47,10 +47,6 @@ using namespace std;
 // State from the AFU's JSON file, extracted using OPAE's afu_json_mgr script
 #include "afu_json_info.h"
 
-using namespace opae::fpga::types;
-using namespace opae::fpga::bbb::mpf::types;
-
-
 int main(int argc, char *argv[])
 {
     // Find and connect to the accelerator
@@ -60,63 +56,50 @@ int main(int argc, char *argv[])
     // Connect the CSR manager
     CSR_MGR csrs(fpga);
 
-
-
-    volatile uint64_t buf = 0;
-    printf("buf addr is %p\n", &buf);
-    printf("buf addr is %" PRIu64 "\n", (uint64_t)&buf);
-    
-    printf("pagesize = %d\n", getpagesize());
-
-   // if(fpgaPrepareBuffer(*fpga.accel, sizeof(uint64_t), (void**)&buf, NULL, FPGA_BUF_PREALLOCATED) != FPGA_OK){
-//	    cout << "Error preparing buffer" << endl;
-//	    return 0;
-  //  }
-
-   if (!mpfVtpIsAvailable(*fpga.mpf)) {
-       cout << "Error MPF VTP not available" << endl;
-   }
-   
-    const size_t p_mask = mpfPageSizeEnumToBytes(MPF_VTP_PAGE_4KB) - 1; 
-    volatile uint64_t *buf_ptr = &buf;
-    //uint64_t *buf_ptr2 =(uint64_t*)( (uint64_t)buf_ptr & p_mask);
-
-//   fpga_result res = mpfVtpPrepareBuffer(*fpga.mpf, sizeof(uint64_t), (void**)&buf_ptr, FPGA_BUF_PREALLOCATED);
-//   fpga_result res = mpfVtpPrepareBuffer(*fpga.mpf, sizeof(uint64_t), (void**)&buf_ptr, FPGA_BUF_PREALLOCATED);
-//   ASSERT_FPGA_OK(res);
-
-   shared_buffer::ptr_t xpto;
-//   xpto = mpf_shared_buffer::attach(fpga.mpf, (uint8_t*)buf_ptr, sizeof(uint64_t));
-   xpto = mpf_shared_buffer::attach(fpga.mpf, (uint8_t*)buf_ptr, getpagesize());
-
-
     // Allocate a single page memory buffer
     //auto buf_handle = fpga.allocBuffer(getpagesize());
     //auto *buf = reinterpret_cast<volatile uint64_t*>(buf_handle->c_type());
     //uint64_t buf_pa = buf_handle->io_address();
     //assert(NULL != buf);
+    
+    //volatile uint64_t b; 
+    //volatile uint64_t *buf = &b;
+    
+    volatile uint64_t buf[16] = {0};
+
+    printf("Result address is %p\n", buf);
 
     // Set the low byte of the shared buffer to 0.  The FPGA will write
     // a non-zero value to it.
-    buf = 0;
+    //*buf = 0;
 
     // Tell the accelerator the address of the buffer using cache line
     // addresses by writing to application CSR 0.  The CSR manager maps
     // its registers to MMIO space.  The accelerator will respond by
     // writing to the buffer.
-    csrs.writeCSR(0, (uint64_t)(&buf) / CL(1));
+    csrs.writeCSR(0, (uint64_t)&(buf[8]) / CL(1));
     csrs.writeCSR(1, 5);
     csrs.writeCSR(2, 10);
 
+    printf("CL(1) = %" PRIu64 "\n", (uint64_t)CL(1));
+    printf("(uint64_t)buf / CL(1) = %" PRIu64 "\n", (uint64_t)&(buf[8]) / CL(1));
+    printf("(uint64_t)buf (R) CL(1) = %" PRIu64 "\n", (uint64_t)&(buf[8]) % CL(1));
+
+    int offset;
+    if((uint64_t)&(buf[8]) % CL(1) != 0){
+        offset = ( (uint64_t)&(buf[8]) % CL(1) ) / 8;
+    } else {
+        offset = 0;
+    }
     // Spin, waiting for the value in memory to change to something non-zero.
-    while (0 == buf)
+    while (0 == buf[8-offset])
     {
         // A well-behaved program would use _mm_pause(), nanosleep() or
         // equivalent to save power here.
     };
 
     // Print the string written by the FPGA
-    printf("%" PRIu64 "\n", buf);
+    printf("%" PRIu64 "\n", buf[8-offset]);
     //cout << buf << endl;
 
     // Ask the FPGA-side CSR manager the AFU's frequency

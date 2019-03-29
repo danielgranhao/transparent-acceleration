@@ -62,6 +62,8 @@ int main(int argc, char *argv[])
     uint64_t buf_pa = buf_handle->io_address();
     assert(NULL != buf);
 
+    printf("Result address is %p\n", buf);
+
     // Set the low byte of the shared buffer to 0.  The FPGA will write
     // a non-zero value to it.
     *buf = 0;
