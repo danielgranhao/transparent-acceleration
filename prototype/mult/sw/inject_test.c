@@ -16,6 +16,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <inttypes.h>
+#include <dlfcn.h>
 
 #include "injector/injector.h"
 
@@ -35,7 +36,11 @@
 static const char *text_area = " r-xp ";
 static const char *lib_string = "/libmult";
 
-void inject_shared_lib(pid_t traced_process, char *lib);
+void* __libc_dlopen_mode(const char*, int);
+void* __libc_dlsym(void*, const char*);
+int   __libc_dlclose(void*);
+
+int inject_shared_lib(pid_t traced_process, char *lib);
 void *find_library(pid_t pid, const char *libname); 
 int poke_text(pid_t pid, void *where, void *new_text, void *old_text, size_t len);
 int do_wait(const char *name);
@@ -55,11 +60,13 @@ int main(int argc, char *argv[]){
 	extern char** environ;
         execve("dummy_mult", NULL, environ);
 	printf("ERROR ON EXECVE!\n"); // execve doesn't return unless it fails
+	printf("errno = %s\n", strerror(errno));
     }
     else { // Parent
         usleep(50000); // Used so that parent continues only after child runs execve
 
 	if(DEBUG) printf("DEBUG: Child pid is %d\n", child);
+	if(DEBUG) printf("DEBUG: PAGE_SIZE is %d\n", getpagesize());
  
 	inject_shared_lib(child, argv[1]);
 
@@ -167,27 +174,8 @@ int main(int argc, char *argv[]){
 	}	
 
 	printf("Saiu do while\n");
-	while(1);
 	waitpid(child, NULL, 0);
     }
-}
-
-void inject_shared_lib(pid_t traced_process, char *lib){
-        injector_t *injector;
-        // attach to a process whose process id is traced_process.
-        if (injector_attach(&injector, traced_process) != 0) {
-            printf("ATTACH ERROR: %s\n", injector_error());
-            exit(-1);
-        }
-        // inject a shared library into the process. 
-        if (injector_inject(injector, lib) != 0) {
-            printf("INJECT ERROR: %s\n", injector_error());
-	    exit(-1);
-        }
-        // cleanup
-        injector_detach(injector);
-
-	printf("Injected shared library on process %d.\n", traced_process);
 }
 
 // find the location of a shared library in memory
@@ -254,8 +242,12 @@ int do_wait(const char *name) {
     if (WSTOPSIG(status) == SIGTRAP) {
       return 0;
     }
-    printf("%s unexpectedly got status %s\n", name, strsignal(status));
+    printf("%s unexpectedly got status %s - WSTOPSIG(status) %d\n", name, strsignal(status), WSTOPSIG(status));
     return -1;
+  }
+  if(WIFEXITED(status)){
+    printf("Child exited normally.\n");
+    exit(0);
   }
   printf("%s got unexpected status %d\n", name, status);
   return -1;
@@ -564,3 +556,261 @@ fail:
   //}
   return -1;
 }
+
+int inject_shared_lib(pid_t pid, char *lib){
+	
+  // attach to the process
+  if (ptrace(PTRACE_ATTACH, pid, NULL, NULL)) {
+    perror("PTRACE_ATTACH");
+    check_yama();
+    return -1;
+  }
+
+  // wait for the process to actually stop
+  if (waitpid(pid, 0, WSTOPPED) == -1) {
+    perror("wait");
+    return -1;
+  }
+
+  // save the register state of the remote process
+  struct user_regs_struct oldregs;
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &oldregs)) {
+    perror("PTRACE_GETREGS");
+    ptrace(PTRACE_DETACH, pid, NULL, NULL);
+    return -1;
+  }
+  void *rip = (void *)oldregs.rip;
+  if(DEBUG) printf("their %%rip           %p\n", rip);
+
+  // First, we are going to allocate some memory for ourselves so we don't
+  // need
+  // to stop on the remote process' memory. We will do this by directly
+  // invoking
+  // the mmap(2) system call and asking for a single page.
+  struct user_regs_struct newregs;
+  memmove(&newregs, &oldregs, sizeof(newregs));
+  newregs.rax = 9;                           // mmap
+  newregs.rdi = 0;                           // addr
+  newregs.rsi = PAGE_SIZE;                   // length
+  newregs.rdx = PROT_READ | PROT_EXEC;       // prot
+  newregs.r10 = MAP_PRIVATE | MAP_ANONYMOUS; // flags
+  newregs.r8 = -1;                           // fd
+  newregs.r9 = 0;                            //  offset
+
+  uint8_t old_word[8];
+  uint8_t new_word[8];
+  new_word[0] = 0x0f; // SYSCALL
+  new_word[1] = 0x05; // SYSCALL
+  new_word[2] = 0xff; // JMP %rax
+  new_word[3] = 0xe0; // JMP %rax
+
+  // insert the SYSCALL instruction into the process, and save the old word
+  if (poke_text(pid, rip, new_word, old_word, sizeof(new_word))) {
+    goto fail;
+  }
+
+  // set the new registers with our syscall arguments
+  if (ptrace(PTRACE_SETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_SETREGS");
+    goto fail;
+  }
+
+  // invoke mmap(2)
+  if (singlestep(pid)) {
+    goto fail;
+  }
+
+  // read the new register state, so we can see where the mmap went
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_GETREGS");
+    return -1;
+  }
+
+  // this is the address of the memory we allocated
+  void *mmap_memory = (void *)newregs.rax;
+  if (mmap_memory == (void *)-1) {
+    printf("failed to mmap\n");
+    goto fail;
+  }
+  if(DEBUG) printf("allocated memory at  %p\n", mmap_memory);
+
+  if(DEBUG) printf("executing jump to mmap region\n");
+  if (singlestep(pid)) {
+    goto fail;
+  }
+
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_GETREGS");
+    goto fail;
+  }
+  if (newregs.rip == (long)mmap_memory) {
+    if(DEBUG) printf("successfully jumped to mmap area\n");
+  } else {
+    printf("unexpectedly jumped to %p\n", (void *)newregs.rip);
+    goto fail;
+  }
+
+  // restore old word as suggested on stack overflow
+  if (poke_text(pid, rip, old_word, NULL, sizeof(old_word))) {
+    goto fail;
+  }
+
+  // Calculate the position of the fprintf routine in the other process'
+  // address
+  // space. This is a little bit tricky because of ASLR on Linux. What we do
+  // is
+  // we find the offset in memory that libc has been loaded in their process,
+  // and then we find the offset in memory that libc has been loaded in our
+  // process. Then we take the delta betwen our fprintf and our libc start,
+  // and
+  // assume that the same delta will apply to the other process.
+  //
+  // For this mechanism to work, this program must be compiled with -fPIC to
+  // ensure that our fprintf has an address relative to the one in libc.
+  //
+  // Additionally, this could fail if libc has been updated since the remote
+  // process has been restarted. This is a pretty unlikely situation, but if
+  // the
+  // remote process has been running for a long time and you update libc, the
+  // offset of the symbols could have changed slightly.
+  void *their_lib = find_library(pid, "libc");
+  void *our_lib = find_library(getpid(), "libc");
+  void *their_func = their_lib + ((void *)__libc_dlopen_mode - our_lib);
+  if(DEBUG) printf("their lib            %p\n", their_lib);
+  if(DEBUG) printf("their func           %p\n", their_func);
+
+    // memory we are going to copy into our mmap area
+  uint8_t new_text[64];
+  memset(new_text, 0, sizeof(new_text));
+
+  // insert a CALL instruction
+  size_t offset = 0;
+  if(DEBUG) printf("Adding rel32 to new_text[%d]\n", offset);
+  new_text[offset++] = 0xe8; // CALL rel32
+  int32_t func_delta = compute_jmp(mmap_memory, their_func);
+  if(DEBUG) printf("Adding func_delta to new_text[%d-%d]\n", offset, offset+sizeof(func_delta)-1);
+  memmove(new_text + offset, &func_delta, sizeof(func_delta));
+  offset += sizeof(func_delta);
+
+  // insert a TRAP instruction 
+  if(DEBUG) printf("Adding TRAP to new_text[%d]\n", offset);
+  new_text[offset++] = 0xcc;
+
+  // copy our fprintf format string right after the TRAP instruction
+  if(DEBUG) printf("Adding lib path to new_text[%d-%d]\n", offset, offset+strlen(lib)-1);
+  memmove(new_text + offset, lib, strlen(lib));
+
+  // update the mmap area
+  if(DEBUG) printf("inserting code/data into the mmap area at %p\n", mmap_memory);
+  if (poke_text(pid, mmap_memory, new_text, NULL, sizeof(new_text))) {
+    goto fail;
+  }
+
+  // set up our registers with the args to fprintf
+  //memmove(&newregs, &oldregs, sizeof(newregs));
+  newregs.rdi = (long)mmap_memory + offset;
+  newregs.rsi = (long)2;
+
+  //if(DEBUG) printf("rsp = %p\n", newregs.rsp);
+
+  if(DEBUG) printf("setting the registers of the remote process\n");
+  if (ptrace(PTRACE_SETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_SETREGS");
+    goto fail;
+  }
+
+  // continue the program, and wait for the trap
+  if(DEBUG) printf("continuing execution\n");
+  ptrace(PTRACE_CONT, pid, NULL, NULL);
+  if (do_wait("PTRACE_CONT")) {
+    goto fail;
+  }
+
+
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_GETREGS");
+    goto fail;
+  }
+
+  newregs.rax = (long)rip;
+  if (ptrace(PTRACE_SETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_SETREGS");
+    goto fail;
+  }
+
+  // Set new_work again on original rip as suggested on stack overflow
+  if (poke_text(pid, rip, new_word, NULL, sizeof(new_word))) {
+    goto fail;
+  }
+
+  new_word[0] = 0xff; // JMP %rax
+  new_word[1] = 0xe0; // JMP %rax
+  poke_text(pid, (void *)newregs.rip, new_word, NULL, sizeof(new_word));
+
+  if(DEBUG) printf("jumping back to original rip\n");
+  if (singlestep(pid)) {
+    goto fail;
+  }
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {   
+	  perror("PTRACE_GETREGS");
+    goto fail;
+  }
+
+  if (newregs.rip == (long)rip) {
+    if(DEBUG) printf("successfully jumped back to original %%rip at %p\n", rip);
+  } else {
+    printf("unexpectedly jumped to %p (expected to be at %p)\n",
+           (void *)newregs.rip, rip);
+    goto fail;
+  }
+
+  // unmap the memory we allocated
+  newregs.rax = 11;                // munmap
+  newregs.rdi = (long)mmap_memory; // addr
+  newregs.rsi = PAGE_SIZE;         // size
+  if (ptrace(PTRACE_SETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_SETREGS");
+    goto fail;
+  }
+
+  // make the system call
+  if(DEBUG) printf("making call to mmap\n");
+  if (singlestep(pid)) {
+    goto fail;
+  }
+  if (ptrace(PTRACE_GETREGS, pid, NULL, &newregs)) {
+    perror("PTRACE_GETREGS");
+    goto fail;
+  }
+  if(DEBUG) printf("munmap returned with status %llu\n", newregs.rax);
+
+  if(DEBUG) printf("restoring old text at %p\n", rip);
+  poke_text(pid, rip, old_word, NULL, sizeof(old_word));
+
+
+  if(DEBUG) printf("restoring old registers\n");
+  if (ptrace(PTRACE_SETREGS, pid, NULL, &oldregs)) {
+    perror("PTRACE_SETREGS");
+    goto fail;
+  }
+
+  // detach the process
+  if(DEBUG) printf("detaching\n");
+  if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
+    perror("PTRACE_DETACH");
+    goto fail;
+  }
+
+  printf("Injected shared library on process %d.\n", pid);
+  return 0;
+
+fail:
+  poke_text(pid, rip, old_word, NULL, sizeof(old_word));
+  //if (ptrace(PTRACE_DETACH, pid, NULL, NULL)) {
+  //  perror("PTRACE_DETACH");
+  //}
+  return -1;
+
+}
+
+
