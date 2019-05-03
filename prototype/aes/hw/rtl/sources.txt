@@ -1,0 +1,13 @@
+cci_mpf_aes.json
+
+C:../../../base/hw/rtl/base_sources.txt
+
+#tiny aes
+/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/aes_128.v
+/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/round.v
+/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/table.v
+
+counter_64bit.sv
+
++incdir+.
+cci_mpf_aes_afu.sv
