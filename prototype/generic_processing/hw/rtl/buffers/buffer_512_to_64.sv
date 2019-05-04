@@ -22,6 +22,7 @@ module buffer_512_to_64(
 		);
 
 	logic [2:0] select;
+	logic [2:0] select_shifted;
 	
 	genvar i;
 	generate
@@ -34,7 +35,7 @@ module buffer_512_to_64(
 			logic empty;
 			logic full_n;
 			
-			assign re = (select[2:0] == i && rd_enable)? 1 : 0;
+			assign re = (select_shifted[2:0] == i && rd_enable)? 1 : 0;
 			
 			generic_fifo_sc_a #(
 					.dw(64),
@@ -76,11 +77,14 @@ module buffer_512_to_64(
 	
 	always @(posedge clk)
 	begin
-		if (rst || clr) begin
-			select[2:0] <= 3'b000;
+		if (!rst || clr) begin
+			select[2:0] <= 3'b111;
 		end
 		else begin
-			if (rd_enable && select[2:0] < 3'd7) begin
+			if (rd_enable && select [2:0] == 3'b111) begin // start up
+				select[2:0] <= 3'b000;
+			end
+			else if (rd_enable && select[2:0] < 3'd7) begin
 				select[2:0] <= select[2:0] + 1'b1;
 			end
 			else if (rd_enable && select[2:0] == 3'd7) begin
@@ -88,6 +92,25 @@ module buffer_512_to_64(
 			end
 		end
 	end
+	
+	always @(negedge clk)
+	begin
+		if (!rst || clr) begin
+			select_shifted[2:0] <= 3'b000;
+		end
+		else begin
+			if (rd_enable && select_shifted[2:0] == 3'b111) begin // start up
+				select_shifted[2:0] <= 3'b000;
+			end
+			else if (rd_enable && select_shifted[2:0] < 3'd7) begin
+				select_shifted[2:0] <= select_shifted[2:0] + 1'b1;
+			end
+			else if (rd_enable && select_shifted[2:0] == 3'd7) begin
+				select_shifted[2:0] <= 3'b000;
+			end
+		end
+	end
+	
 	
 	assign full = genfifos[7].full;
 	assign empty = genfifos[7].empty;

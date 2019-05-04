@@ -3,14 +3,14 @@
  ****************************************************************************/
 
 /**
- * Module: buffer_512_to_64_tb
+ * Module: buffer_64_to_512_tb
  * 
  * TODO: Add module documentation
  */
 
 //`timescale 1ns / 100ps; 
  
-module buffer_512_to_64_tb;
+module buffer_64_to_512_tb;
 
 	// general parameters 
 	parameter CLOCK_PERIOD = 10;              // Clock period in ns
@@ -19,16 +19,16 @@ module buffer_512_to_64_tb;
 	
 	// Registers for driving the inputs:
 	reg clk, rst, clr;
-	reg [511:0] data_in;
+	reg [63:0] data_in;
 	reg wr_enable;
 	reg rd_enable;
 	
 	// Wires to connect to the outputs:
-	wire [63:0] data_out;
+	wire [511:0] data_out;
 	wire full, empty, full_n;
 	
 	// Instantiate the module under verification:
-	buffer_512_to_64 buffer_512_to_64 (
+	buffer_64_to_512 buffer_64_to_512 (
 			.clk        (clk       ), 
 			.rst        (rst       ), 
 			.clr        (clr       ), 
@@ -49,7 +49,7 @@ module buffer_512_to_64_tb;
 		clk = 1'b0;
 		rst = 1'b1;
 		clr = 1'b0;
-		data_in = 512'd0;
+		data_in = 64'd0;
 		wr_enable = 1'b0;
 		rd_enable = 1'b0;
   
@@ -81,13 +81,12 @@ module buffer_512_to_64_tb;
 	begin
   
 		#( 10*CLOCK_PERIOD );
-  
-		exec_write( {64'd8, 64'd7, 64'd6, 64'd5, 64'd4, 64'd3, 64'd2, 64'd1} );
-		exec_write( {64'd16, 64'd15, 64'd14, 64'd13, 64'd12, 64'd11, 64'd10, 64'd9} );
-		exec_write( {64'd24, 64'd23, 64'd22, 64'd21, 64'd20, 64'd19, 64'd18, 64'd17} );
 		
-		//repeat (24) exec_read(1);
-		exec_read(24);
+		for(int i = 1; i <= 24; i++) begin
+			exec_write( i );
+		end
+	
+		exec_read(3);
   
 		#( 10*CLOCK_PERIOD );
 		$stop;  
@@ -95,7 +94,7 @@ module buffer_512_to_64_tb;
 
 	// Write to the buffer
 	task exec_write;
-		input [511:0] data;
+		input [63:0] data;
 		begin
 			data_in = data;   // Apply data
 			@(negedge clk);
