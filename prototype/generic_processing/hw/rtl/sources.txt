@@ -1,0 +1,15 @@
+cci_mpf_generic.json
+
+C:../../../base/hw/rtl/base_sources.txt
+
+# Generic DPRAM
+generic_fifos/rtl/verilog/generic_dpram.v
+
+# Generic FIFO
+generic_fifos/rtl/verilog/timescale.v
+generic_fifos/rtl/verilog/generic_fifo_sc_a.v
+
+buffer_512_to_64.sv
+
++incdir+.
+cci_mpf_generic_afu.sv
