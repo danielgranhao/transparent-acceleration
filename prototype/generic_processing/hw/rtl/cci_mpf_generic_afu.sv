@@ -216,6 +216,7 @@ module app_afu
 	logic read_buffer_empty;
 	logic read_buffer_full_n;
 	
+	// For testing purposes 
 	assign read_buffer_rd_enable = ( ! read_buffer_empty )? 1 : 0;
 	
 	buffer_512_to_64 buffer_512_to_64_inst(
