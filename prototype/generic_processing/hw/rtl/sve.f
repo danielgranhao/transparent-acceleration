@@ -1,5 +1,6 @@
 +incdir+./generic_fifos/rtl/verilog
 +incdir+./buffers
++incdir+./state_machines
 +incdir+../../../base/hw/rtl
 +incdir+${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/
 // to avoid error
@@ -25,3 +26,5 @@ ${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/cci_mpf_if.vh
 
 ./buffers/buffer_512_to_64.sv
 ./buffers/buffer_64_to_512.sv
+
+./state_machines/mpf_to_buffer_SM.sv
