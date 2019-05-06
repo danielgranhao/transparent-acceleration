@@ -18,6 +18,7 @@ buffers/buffer_64_to_512.sv
 # State machines to control data flow
 +incdir+./state_machines
 state_machines/mpf_to_buffer_SM.sv
+state_machines/buffer_to_mpf_SM.sv
 
 +incdir+.
 cci_mpf_generic_afu.sv

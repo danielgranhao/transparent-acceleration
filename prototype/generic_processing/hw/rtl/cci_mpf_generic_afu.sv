@@ -211,38 +211,39 @@ module app_afu
 			end
 		end
 	end
-
-
+	
+	
+	//----------------------------------------
+		
+	//
+	// Read buffer
+	//
+	
+	logic [511:0] read_buffer_data_in;
 	logic read_buffer_wr_enable;
 	logic [63:0] read_buffer_data_out;
 	logic read_buffer_rd_enable;
 	logic read_buffer_empty;
 	logic read_buffer_full_n;
 	
+	logic [63:0] write_buffer_data_in;
+	logic write_buffer_wr_enable;
+	logic [511:0] write_buffer_data_out;
+	logic write_buffer_rd_enable;
+	logic write_buffer_empty;
+	logic write_buffer_full_n;
 	
+	assign read_buffer_data_in[511:0] = fiu.c0Rx.data[511:0];
 	
-	logic [2:0] read_buffer_empty_delayed;
-	
-	always_ff @(posedge clk) begin
-		read_buffer_empty_delayed[0:0] <= read_buffer_empty;
-		read_buffer_empty_delayed[1:1] <= read_buffer_empty_delayed[0:0];
-		read_buffer_empty_delayed[2:2] <= read_buffer_empty_delayed[1:1];
-	end
-	
-	
-	
-	
-	
-	// For testing purposes 
-	assign read_buffer_rd_enable = (! read_buffer_empty)? 1 : 0;
-	assign fiu.c1Tx.data[63:0] = read_buffer_data_out[63:0];
+	// Read from read buffer as long as there is something to read and there is space for it to be written on the write buffer
+	assign read_buffer_rd_enable = (! write_buffer_full_n && ! read_buffer_empty)? 1 : 0;
 	
 	buffer_512_to_64 buffer_512_to_64_inst(
 			.clk			(clk					), 
 			.rst			(!reset					), 
 			.clr			(reset					),
 		
-			.data_in		(fiu.c0Rx.data[511:0]	),
+			.data_in		(read_buffer_data_in	),
 			.wr_enable		(read_buffer_wr_enable	),
 
 			.data_out		(read_buffer_data_out	),
@@ -261,23 +262,52 @@ module app_afu
 	
 	mpf_to_buffer_SM mpf_to_buffer_SM_inst (
 			.clk               (clk              		), 
-			.reset             (!reset           		), 
+			.reset             (!reset           		),
+			
 			.run               (mpf_to_buffer_run		), 
 			.data_length       (data_length      		), 
 			.done              (mpf_to_buffer_done		), 
-			.first_clAddr      (src_clAddr       		), 
+			.first_clAddr      (src_clAddr       		),
 			
-			.fiu				(fiu),
-			//.c0Tx              (fiu.c0Tx         		), 
-			//.c0TxAlmFull       (fiu.c0TxAlmFull  		), 
-			//.c0Rx              (fiu.c0Rx         		), 
+			.fiu			   (fiu						),
 			.buffer_wr_enable  (read_buffer_wr_enable 	), 
 			.full_n            (read_buffer_full_n 		)
 		);
-
-
-
 	
+	//
+	// Write buffer
+	//
+
+	assign write_buffer_data_in[63:0] = read_buffer_data_out[63:0];
+	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
+
+	// Enable write 1 clock cycle after read enable 
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			write_buffer_wr_enable <= 1'b0;
+		end
+		else begin
+			write_buffer_wr_enable <= read_buffer_rd_enable;
+		end
+	end	
+	
+	buffer_64_to_512 buffer_64_to_512_inst (
+			.clk        (clk       				), 
+			.rst        (!reset    				), 
+			.clr        (reset     				), 
+		
+			.data_in    (write_buffer_data_in 	), 
+			.wr_enable  (write_buffer_wr_enable	), 
+		
+			.data_out   (write_buffer_data_out	), 
+			.rd_enable  (write_buffer_rd_enable	), 
+		
+			.full       (	      				), 
+			.empty      (write_buffer_empty		), 
+			.full_n     (write_buffer_full_n	)
+		);
+
+	assign write_buffer_rd_enable = (! write_buffer_empty)? 1 : 0;
 
 	//
 	// Write "Hello world!" to memory when in STATE_RUN.

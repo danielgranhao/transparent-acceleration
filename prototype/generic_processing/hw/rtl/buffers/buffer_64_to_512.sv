@@ -80,9 +80,9 @@ module buffer_64_to_512(
 	end
 	
 	
-	assign full = genfifos[0].full;
-	assign empty = genfifos[0].empty;
-	assign full_n = genfifos[0].full_n;
+	assign full = genfifos[7].full;
+	assign empty = genfifos[7].empty;
+	assign full_n = genfifos[7].full_n;
 
 endmodule
 

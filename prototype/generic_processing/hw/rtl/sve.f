@@ -28,3 +28,4 @@ ${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/cci_mpf_if.vh
 ./buffers/buffer_64_to_512.sv
 
 ./state_machines/mpf_to_buffer_SM.sv
+./state_machines/buffer_to_mpf_SM.sv
