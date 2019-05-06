@@ -17,11 +17,14 @@ module mpf_to_buffer_SM(
 		input [63:0] data_length,		// How many cache lines? Must be maintained during operation
 		output done,			// Goes high when all data has been written to buffer
 		
-		t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
+		input t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
 		
-		cci_mpf_if.to_fiu.c0Tx 			c0Tx,			// Read requests go here
-		cci_mpf_if.to_fiu.c0TxAlmFull 	c0TxAlmFull,	// When high we stop sending requests
-		cci_mpf_if.to_fiu.c0Rx 			c0Rx,			// Responses come from here
+		// Connection toward the host.  Reset comes in here.
+		cci_mpf_if.to_fiu fiu,
+		
+		//cci_mpf_if.to_fiu.c0Tx 			c0Tx,			// Read requests go here
+		//cci_mpf_if.to_fiu.c0TxAlmFull 	c0TxAlmFull,	// When high we stop sending requests
+		//cci_mpf_if.to_fiu.c0Rx 			c0Rx,			// Responses come from here
 		
 		output buffer_wr_enable,		// Control signal for buffer
 		input  full_n					// Indicates the buffer as space for N entries (at the moment is set to 40)
@@ -68,7 +71,7 @@ module mpf_to_buffer_SM(
 			if( run ) begin
 				next_clAddr <= first_clAddr;
 			end
-			else if (c0Tx.valid) begin
+			else if (fiu.c0Tx.valid) begin
 				next_clAddr <= next_clAddr + 1'd1;
 			end
 		end
@@ -84,7 +87,7 @@ module mpf_to_buffer_SM(
 	//
 	logic [2:0] read_counter;
 	logic rd_req_trigger;
-	assign rd_req_trigger = (read_counter[2:0] == 3'd)? 1 : 0;
+	assign rd_req_trigger = (read_counter[2:0] == 3'd1)? 1 : 0;
 	
 	always_ff @(posedge clk) begin
 		if(!reset) begin
@@ -124,20 +127,20 @@ module mpf_to_buffer_SM(
 				rd_hdr_params);
 	end
 	
-	// When to effectively request a read? This will drive c0Tx.valid
+	// When to effectively request a read? This will drive fiu.c0Tx.valid
 	logic read_valid;
 	assign read_valid = (rd_req_trigger && 
 			! fiu.c0TxAlmFull && 
-			full_n && 
+			! full_n && 
 			! requests_done && 
 			state == STATE_RUN)? 1 : 0;
 	
 	// Send read requests to the FIU
 	always_ff @(posedge clk)
 	begin
-		if (reset)
+		if (!reset)
 		begin
-			c0Tx.valid <= 1'b0;
+			fiu.c0Tx.valid <= 1'b0;
 		end
 		else
 		begin
@@ -158,7 +161,7 @@ module mpf_to_buffer_SM(
 	// READ RESPONSE HANDLING
 	//
 	
-	assign buffer_wr_enable = cci_c0Rx_isReadRsp(c0Rx);
+	assign buffer_wr_enable = cci_c0Rx_isReadRsp(fiu.c0Rx);
 	
 	// Check when all data has been received so that done condition can be detected
 	t_cci_clAddr addr_to_be_received;
@@ -169,10 +172,11 @@ module mpf_to_buffer_SM(
 		end
 		else begin
 			if (run) begin
-				addr_to_be_received <= first_addr;
+				addr_to_be_received <= first_clAddr;
 			end
-			else if (cci_c0Rx_isReadRsp(c0Rx)) begin
+			else if (cci_c0Rx_isReadRsp(fiu.c0Rx)) begin
 				addr_to_be_received <= addr_to_be_received + 1'b1;
+				$display("Received a response for request number %d", addr_to_be_received - first_clAddr + 1);
 			end
 		end
 	end

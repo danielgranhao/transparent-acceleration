@@ -1229,3 +1229,83 @@ write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/daniel/De
 quit -sim
 # End time: 18:04:19 on May 04,2019, Elapsed time: 0:19:07
 # Errors: 1, Warnings: 5
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 14:02:12 on May 06,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+do wave_buffer_512_to_64_tb.do
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[6]/generic_fifo_sc_a_inst/full_n
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position end sim:/buffer_512_to_64_tb/buffer_512_to_64/*
+add wave -position end {sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[7]/*}
+add wave -position 4  sim:/buffer_512_to_64_tb/buffer_512_to_64/empty
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+step -current
+# ** Note: (vsim-12048) Current thread #IMPLICIT-WIRE(1)#192 is Done.
+# 
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position 9  sim:/buffer_512_to_64_tb/buffer_512_to_64/select_shifted
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+quit -sim
+# End time: 17:28:56 on May 06,2019, Elapsed time: 3:26:44
+# Errors: 1, Warnings: 4
+vsim -novopt work.buffer_64_to_512_tb
+# vsim -novopt work.buffer_64_to_512_tb 
+# Start time: 17:28:58 on May 06,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading sv_std.std
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+run -all
+# Break key hit
+# Simulation stop requested.
+# End time: 17:29:26 on May 06,2019, Elapsed time: 0:00:28
+# Errors: 0, Warnings: 1

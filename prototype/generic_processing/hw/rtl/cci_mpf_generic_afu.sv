@@ -143,32 +143,34 @@ module app_afu
 
 	always_ff @(posedge clk)
 	begin
-		if (reset)
-		begin
+		if (reset) begin
 			src_addr <= 64'h0000_0000_0000_0000;
 			dest_addr <= 64'h0000_0000_0000_0000;
 			data_length <= 64'h0000_0000_0000_0000;
 			run <= 64'h0000_0000_0000_0000;
 		end
-		else if (is_src_addr_csr_write)
-		begin
-			src_addr <= csrs.cpu_wr_csrs[0].data;
-			$display("Received source address: %0h", csrs.cpu_wr_csrs[0].data);
-		end
-		else if (is_dest_addr_csr_write)
-		begin
-			dest_addr <= csrs.cpu_wr_csrs[1].data;
-			$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
-		end
-		else if (is_data_length_addr_csr_write)
-		begin
-			data_length <= csrs.cpu_wr_csrs[2].data;
-			$display("Received data length: %0d", csrs.cpu_wr_csrs[2].data);
-		end
-		else if (is_run_csr_write)
-		begin
-			run <= csrs.cpu_wr_csrs[3].data;
-			$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
+		else begin
+			if (run) begin
+				run <= 64'h0000_0000_0000_0000;
+			end
+			else begin
+				if (is_src_addr_csr_write) begin
+					src_addr <= csrs.cpu_wr_csrs[0].data;
+					$display("Received source address: %0h", csrs.cpu_wr_csrs[0].data);
+				end
+				else if (is_dest_addr_csr_write) begin
+					dest_addr <= csrs.cpu_wr_csrs[1].data;
+					$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
+				end
+				else if (is_data_length_addr_csr_write) begin
+					data_length <= csrs.cpu_wr_csrs[2].data;
+					$display("Received data length: %0d", csrs.cpu_wr_csrs[2].data);
+				end
+				else if (is_run_csr_write) begin
+					run <= csrs.cpu_wr_csrs[3].data;
+					$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
+				end
+			end
 		end
 	end
 
@@ -194,7 +196,8 @@ module app_afu
 			// tells us the address to which the FPGA should write a message.)
 			if ((state == STATE_IDLE) && run)
 			begin
-				state <= STATE_RUN;
+				//state <= STATE_RUN;
+				state <= STATE_IDLE;
 				$display("AFU running...");
 			end
 
@@ -216,8 +219,23 @@ module app_afu
 	logic read_buffer_empty;
 	logic read_buffer_full_n;
 	
+	
+	
+	logic [2:0] read_buffer_empty_delayed;
+	
+	always_ff @(posedge clk) begin
+		read_buffer_empty_delayed[0:0] <= read_buffer_empty;
+		read_buffer_empty_delayed[1:1] <= read_buffer_empty_delayed[0:0];
+		read_buffer_empty_delayed[2:2] <= read_buffer_empty_delayed[1:1];
+	end
+	
+	
+	
+	
+	
 	// For testing purposes 
-	assign read_buffer_rd_enable = ( ! read_buffer_empty )? 1 : 0;
+	assign read_buffer_rd_enable = (! read_buffer_empty)? 1 : 0;
+	assign fiu.c1Tx.data[63:0] = read_buffer_data_out[63:0];
 	
 	buffer_512_to_64 buffer_512_to_64_inst(
 			.clk			(clk					), 
@@ -235,10 +253,11 @@ module app_afu
 			.full_n			(read_buffer_full_n 	)
 		);
 
-	// TODO: drive the run signal
 	logic mpf_to_buffer_run;
+	// TODO: check done signal
 	logic mpf_to_buffer_done;
 	
+	assign mpf_to_buffer_run = run[0:0];
 	
 	mpf_to_buffer_SM mpf_to_buffer_SM_inst (
 			.clk               (clk              		), 
@@ -247,9 +266,11 @@ module app_afu
 			.data_length       (data_length      		), 
 			.done              (mpf_to_buffer_done		), 
 			.first_clAddr      (src_clAddr       		), 
-			.c0Tx              (fiu.c0Tx         		), 
-			.c0TxAlmFull       (fiu.c0TxAlmFull  		), 
-			.c0Rx              (fiu.c0Rx         		), 
+			
+			.fiu				(fiu),
+			//.c0Tx              (fiu.c0Tx         		), 
+			//.c0TxAlmFull       (fiu.c0TxAlmFull  		), 
+			//.c0Rx              (fiu.c0Rx         		), 
 			.buffer_wr_enable  (read_buffer_wr_enable 	), 
 			.full_n            (read_buffer_full_n 		)
 		);
@@ -266,7 +287,7 @@ module app_afu
 	// the same, since we write to only one address.
 	t_cci_mpf_c1_ReqMemHdr wr_hdr;
 	assign wr_hdr = cci_mpf_c1_genReqHdr(eREQ_WRLINE_I,
-			plain_addr,
+			dest_addr,
 			t_cci_mdata'(0),
 			cci_mpf_defaultReqHdrParams());
 
@@ -289,7 +310,7 @@ module app_afu
 			fiu.c1Tx.valid <= 1'b1;
 			//fiu.c1Tx.data <= t_ccip_clData'(sum[63:0]);
 			$display("Write requested! sum = %d", sum);
-			$display("Destination address = %p", plain_addr);
+			$display("Destination address = %p", dest_addr);
 		end
 		else
 		begin

@@ -1,16 +1,16 @@
-/home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv
-QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
--- Compiling module buffer_64_to_512_tb
-
-Top level modules:
-	buffer_64_to_512_tb
-
-} {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv
+/home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv
 QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
 -- Compiling module buffer_512_to_64_tb
 
 Top level modules:
 	buffer_512_to_64_tb
+
+} {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv
+QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
+-- Compiling module buffer_64_to_512_tb
+
+Top level modules:
+	buffer_64_to_512_tb
 
 } {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v {1 {vlog -work work -vopt -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v
 QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
@@ -19,18 +19,18 @@ QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
 Top level modules:
 	generic_dpram
 
-} {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64.sv
-QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
--- Compiling module buffer_512_to_64
-
-Top level modules:
-	buffer_512_to_64
-
 } {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_fifo_sc_a.v {1 {vlog -work work -vopt -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_fifo_sc_a.v
 QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
 -- Compiling module generic_fifo_sc_a
 
 Top level modules:
 	generic_fifo_sc_a
+
+} {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64.sv {1 {vlog -work work -vopt -sv -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64.sv
+QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
+-- Compiling module buffer_512_to_64
+
+Top level modules:
+	buffer_512_to_64
 
 } {} {}}

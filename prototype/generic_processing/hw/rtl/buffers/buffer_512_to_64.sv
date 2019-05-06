@@ -93,7 +93,7 @@ module buffer_512_to_64(
 		end
 	end
 	
-	always @(negedge clk)
+	always @(posedge clk)
 	begin
 		if (!rst || clr) begin
 			select_shifted[2:0] <= 3'b000;
