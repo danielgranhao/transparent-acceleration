@@ -201,7 +201,7 @@ module generic_dpram(
 		.rdclock(rclk),
 		.rdclocken(rce),
 		.rdaddress(raddr),
-		.q(do),
+		.q(do_),
 
 		// write port
 		.wrclock(wclk),
@@ -226,7 +226,7 @@ module generic_dpram(
 	//
 	art_hsdp #(dw, 1<<aw, aw) artisan_sdp(
 		// read port
-		.qa(do),
+		.qa(do_),
 		.clka(rclk),
 		.cena(~rce),
 		.wena(1'b1),
@@ -262,7 +262,7 @@ module generic_dpram(
 		.ra(raddr),
 		.wa(waddr),
 		.di(di),
-		.do(do)
+		.do(do_)
 	);
 
 `else
@@ -282,7 +282,7 @@ module generic_dpram(
 		.DA( {dw{1'b0}} ),
 		.WEA(1'b0),
 		.OEA(oe),
-		.QA(do),
+		.QA(do_),
 
 		// write port
 		.CLKB(wclk),

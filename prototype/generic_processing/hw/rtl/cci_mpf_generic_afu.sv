@@ -257,6 +257,8 @@ module app_afu
 	logic mpf_to_buffer_run;
 	// TODO: check done signal
 	logic mpf_to_buffer_done;
+
+	//assign fiu.c1Tx.data[63:0] = read_buffer_data_out[63:0];
 	
 	assign mpf_to_buffer_run = run[0:0];
 	
@@ -269,7 +271,12 @@ module app_afu
 			.done              (mpf_to_buffer_done		), 
 			.first_clAddr      (src_clAddr       		),
 			
-			.fiu			   (fiu						),
+			.c0TxAlmFull	   (fiu.c0TxAlmFull		),
+			.c0TxValid	   (fiu.c0Tx.valid		),
+			.reqMemHdr	   (fiu.c0Tx.hdr		),
+
+			.c0Rx		   (fiu.c0Rx			),
+
 			.buffer_wr_enable  (read_buffer_wr_enable 	), 
 			.full_n            (read_buffer_full_n 		)
 		);
@@ -322,7 +329,12 @@ module app_afu
 			.done              (buffer_to_mpf_done  	), 
 			.first_clAddr      (dest_clAddr     		),
 			
-			.fiu               (fiu              		), 
+			.c1TxAlmFull	   (fiu.c1TxAlmFull		),
+			.c1TxValid	   (fiu.c1Tx.valid		),
+			.reqMemHdr	   (fiu.c1Tx.hdr		),
+
+			.c1Rx		   (fiu.c1Rx			),
+			
 			.buffer_rd_enable  (write_buffer_rd_enable 	), 
 			.buffer_empty      (write_buffer_empty 		)
 		);

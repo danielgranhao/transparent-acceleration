@@ -20,7 +20,11 @@ module buffer_to_mpf_SM(
 		input t_cci_clAddr first_clAddr,	// First virtual address to write to - Must be maintained during operation
 		
 		// Connection toward the host.  
-		cci_mpf_if.to_fiu fiu,
+		input					c1TxAlmFull,
+		output reg 				c1TxValid,
+		output reg [CCI_MPF_C1TX_MEMHDR_WIDTH-1:0] 	reqMemHdr,
+
+		input t_if_ccip_c1_Rx 			c1Rx,
 		
 		output buffer_rd_enable,		// Control signal for buffer
 		input  buffer_empty				// Indicates if the buffer is empty
@@ -70,7 +74,7 @@ module buffer_to_mpf_SM(
 			if( run ) begin
 				next_clAddr <= first_clAddr;
 			end
-			else if (fiu.c1Tx.valid) begin
+			else if (c1TxValid) begin
 				next_clAddr <= next_clAddr + 1'd1;
 			end
 		end
@@ -92,7 +96,7 @@ module buffer_to_mpf_SM(
 			cci_mpf_defaultReqHdrParams(1));
 	
 	// Read from buffer when it isn't empty and it is possible to request write to memory
-	assign buffer_rd_enable = (!fiu.c1TxAlmFull && 
+	assign buffer_rd_enable = (!c1TxAlmFull && 
 			!buffer_empty && 
 			state == STATE_RUN
 			)? 1 : 0;
@@ -102,12 +106,12 @@ module buffer_to_mpf_SM(
 	begin
 		if (!reset)
 		begin
-			fiu.c1Tx.valid <= 1'b0;
+			c1TxValid <= 1'b0;
 		end
 		else
 		begin
 			// Request write when we read from buffer
-			fiu.c1Tx.valid <= buffer_rd_enable;
+			c1TxValid <= buffer_rd_enable;
 
 			if (buffer_rd_enable)
 			begin
@@ -115,7 +119,7 @@ module buffer_to_mpf_SM(
 			end
 		end
 		
-		fiu.c1Tx.hdr <= wr_hdr;
+		reqMemHdr <= wr_hdr;
 	end
 	
 	//
@@ -133,7 +137,7 @@ module buffer_to_mpf_SM(
 			if (run) begin
 				addr_to_be_received <= first_clAddr;
 			end
-			else if (cci_c1Rx_isWriteRsp(fiu.c1Rx)) begin
+			else if (cci_c1Rx_isWriteRsp(c1Rx)) begin
 				addr_to_be_received <= addr_to_be_received + 1'b1;
 				$display("Received a response for write request number %d", addr_to_be_received - first_clAddr + 1);
 			end

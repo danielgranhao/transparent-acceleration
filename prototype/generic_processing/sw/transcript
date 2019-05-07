@@ -1,0 +1,54 @@
+# //  Questa Sim
+# //  Version 10.4c_5 linux Nov 14 2015
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+project open /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/generic_processing
+# Loading project generic_processing
+vsim -novopt work.buffer_64_to_512_tb
+# vsim -novopt work.buffer_64_to_512_tb 
+# Start time: 17:30:17 on May 06,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Loading sv_std.std
+# Loading work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+# Causality operation skipped due to absence of debug database file
+
+do wave_buffer_64_to_512_tb.do
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92

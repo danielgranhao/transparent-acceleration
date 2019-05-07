@@ -12,13 +12,6 @@ QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
 Top level modules:
 	buffer_64_to_512_tb
 
-} {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v {1 {vlog -work work -vopt -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v
-QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
--- Compiling module generic_dpram
-
-Top level modules:
-	generic_dpram
-
 } {} {}} /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_fifo_sc_a.v {1 {vlog -work work -vopt -stats=none /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_fifo_sc_a.v
 QuestaSim vlog 10.4c_5 Compiler 2015.11 Nov 14 2015
 -- Compiling module generic_fifo_sc_a

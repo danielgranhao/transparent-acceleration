@@ -20,7 +20,11 @@ module mpf_to_buffer_SM(
 		input t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
 		
 		// Connection toward the host.
-		cci_mpf_if.to_fiu fiu,
+		input 				c0TxAlmFull,
+		output reg			c0TxValid,
+		output reg [CCI_MPF_C0TX_MEMHDR_WIDTH-1:0] reqMemHdr,
+
+		input t_if_ccip_c0_Rx c0Rx,
 		
 		output buffer_wr_enable,		// Control signal for buffer
 		input  full_n					// Indicates the buffer as space for N entries (at the moment is set to 40)
@@ -70,7 +74,7 @@ module mpf_to_buffer_SM(
 			if( run ) begin
 				next_clAddr <= first_clAddr;
 			end
-			else if (fiu.c0Tx.valid) begin
+			else if (c0TxValid) begin
 				next_clAddr <= next_clAddr + 1'd1;
 			end
 		end
@@ -129,7 +133,7 @@ module mpf_to_buffer_SM(
 	// When to effectively request a read? This will drive fiu.c0Tx.valid
 	logic read_valid;
 	assign read_valid = (rd_req_trigger && 
-			! fiu.c0TxAlmFull && 
+			! c0TxAlmFull && 
 			! full_n && 
 			! requests_done && 
 			state == STATE_RUN)? 1 : 0;
@@ -139,12 +143,15 @@ module mpf_to_buffer_SM(
 	begin
 		if (!reset)
 		begin
-			fiu.c0Tx.valid <= 1'b0;
+			c0TxValid <= 1'b0;
 		end
 		else
 		begin
 			// Generate a read request when needed and the FIU isn't full
-			fiu.c0Tx <= cci_mpf_genC0TxReadReq(rd_hdr,
+			//fiu.c0Tx <= cci_mpf_genC0TxReadReq(rd_hdr,
+			//		read_valid);
+
+			{ reqMemHdr , c0TxValid } <= cci_mpf_genC0TxReadReq(rd_hdr,
 					read_valid);
 
 			if (read_valid)
@@ -160,7 +167,7 @@ module mpf_to_buffer_SM(
 	// READ RESPONSE HANDLING
 	//
 	
-	assign buffer_wr_enable = cci_c0Rx_isReadRsp(fiu.c0Rx);
+	assign buffer_wr_enable = cci_c0Rx_isReadRsp(c0Rx);
 	
 	// Check when all data has been received so that done condition can be detected
 	t_cci_clAddr addr_to_be_received;
@@ -173,7 +180,7 @@ module mpf_to_buffer_SM(
 			if (run) begin
 				addr_to_be_received <= first_clAddr;
 			end
-			else if (cci_c0Rx_isReadRsp(fiu.c0Rx)) begin
+			else if (cci_c0Rx_isReadRsp(c0Rx)) begin
 				addr_to_be_received <= addr_to_be_received + 1'b1;
 				$display("Received a response for read request number %d", addr_to_be_received - first_clAddr + 1);
 			end
