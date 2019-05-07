@@ -19,12 +19,8 @@ module mpf_to_buffer_SM(
 		
 		input t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
 		
-		// Connection toward the host.  Reset comes in here.
+		// Connection toward the host.
 		cci_mpf_if.to_fiu fiu,
-		
-		//cci_mpf_if.to_fiu.c0Tx 			c0Tx,			// Read requests go here
-		//cci_mpf_if.to_fiu.c0TxAlmFull 	c0TxAlmFull,	// When high we stop sending requests
-		//cci_mpf_if.to_fiu.c0Rx 			c0Rx,			// Responses come from here
 		
 		output buffer_wr_enable,		// Control signal for buffer
 		input  full_n					// Indicates the buffer as space for N entries (at the moment is set to 40)
@@ -41,6 +37,9 @@ module mpf_to_buffer_SM(
 	t_state;
 
 	t_state state;
+	
+	// Output done simply shows internal state
+	assign done = (state == STATE_IDLE)? 1 : 0;
 	
 	logic done_condition;
 	
@@ -176,7 +175,7 @@ module mpf_to_buffer_SM(
 			end
 			else if (cci_c0Rx_isReadRsp(fiu.c0Rx)) begin
 				addr_to_be_received <= addr_to_be_received + 1'b1;
-				$display("Received a response for request number %d", addr_to_be_received - first_clAddr + 1);
+				$display("Received a response for read request number %d", addr_to_be_received - first_clAddr + 1);
 			end
 		end
 	end

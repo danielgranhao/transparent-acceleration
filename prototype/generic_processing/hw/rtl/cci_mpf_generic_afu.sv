@@ -278,8 +278,7 @@ module app_afu
 	// Write buffer
 	//
 
-	assign write_buffer_data_in[63:0] = read_buffer_data_out[63:0];
-	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
+	assign write_buffer_data_in[63:0] = read_buffer_data_out[63:0] * 2;
 
 	// Enable write 1 clock cycle after read enable 
 	always_ff @(posedge clk) begin
@@ -306,54 +305,31 @@ module app_afu
 			.empty      (write_buffer_empty		), 
 			.full_n     (write_buffer_full_n	)
 		);
+	
+	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
 
-	assign write_buffer_rd_enable = (! write_buffer_empty)? 1 : 0;
-
-	//
-	// Write "Hello world!" to memory when in STATE_RUN.
-	//
-
-	// Construct a memory write request header.  For this AFU it is always
-	// the same, since we write to only one address.
-	t_cci_mpf_c1_ReqMemHdr wr_hdr;
-	assign wr_hdr = cci_mpf_c1_genReqHdr(eREQ_WRLINE_I,
-			dest_addr,
-			t_cci_mdata'(0),
-			cci_mpf_defaultReqHdrParams());
-
-	// Data to write to memory: little-endian ASCII encoding of "Hello world!"
-	//assign fiu.c1Tx.data = t_ccip_clData'('h0021646c726f77206f6c6c6548);	
-	logic [63:0] sum;
-	assign sum[63:0] = 0;
-
-	// Control logic for memory writes
-	always_ff @(posedge clk)
-	begin
-		if (reset)
-		begin
-			fiu.c1Tx.valid <= 1'b0;
-			//fiu.c1Tx.data <= t_ccip_clData'(64'h0000_0000_0000_0000);
-		end
-		else if (afu_complete)
-		begin
-			// Request the write as long as the channel isn't full.
-			fiu.c1Tx.valid <= 1'b1;
-			//fiu.c1Tx.data <= t_ccip_clData'(sum[63:0]);
-			$display("Write requested! sum = %d", sum);
-			$display("Destination address = %p", dest_addr);
-		end
-		else
-		begin
-			fiu.c1Tx.valid <= 1'b0;
-		end
-		fiu.c1Tx.hdr <= wr_hdr;
-	end
-
+	logic buffer_to_mpf_run;
+	logic buffer_to_mpf_done;
+	
+	assign buffer_to_mpf_run = run[0:0];
+	
+	buffer_to_mpf_SM buffer_to_mpf_SM_inst (
+			.clk               (clk              		), 
+			.reset             (!reset           		),
+			
+			.run               (buffer_to_mpf_run   	), 
+			.data_length       (data_length      		), 
+			.done              (buffer_to_mpf_done  	), 
+			.first_clAddr      (dest_clAddr     		),
+			
+			.fiu               (fiu              		), 
+			.buffer_rd_enable  (write_buffer_rd_enable 	), 
+			.buffer_empty      (write_buffer_empty 		)
+		);
 
 	//
-	// This AFU never makes a read request or handles MMIO reads.
+	// This AFU never handles MMIO reads.
 	//
-	//assign fiu.c0Tx.valid = 1'b0;
 	assign fiu.c2Tx.mmioRdValid = 1'b0;
 
 

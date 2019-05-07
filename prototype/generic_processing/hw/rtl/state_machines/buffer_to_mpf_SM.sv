@@ -13,21 +13,17 @@
 module buffer_to_mpf_SM(
 		input clk, reset, // Reset is active low
 		
-		input run,				// Assert high 1 clock cycle to start reading data from memory
+		input run,						// Assert high 1 clock cycle to start writing data to memory
 		input [63:0] data_length,		// How many cache lines? Must be maintained during operation
-		output done,			// Goes high when all data has been written to buffer
+		output done,					// Goes high when all data has been written to memory
 		
-		input t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
+		input t_cci_clAddr first_clAddr,	// First virtual address to write to - Must be maintained during operation
 		
-		// Connection toward the host.  Reset comes in here.
+		// Connection toward the host.  
 		cci_mpf_if.to_fiu fiu,
 		
-		//cci_mpf_if.to_fiu.c0Tx 			c0Tx,			// Read requests go here
-		//cci_mpf_if.to_fiu.c0TxAlmFull 	c0TxAlmFull,	// When high we stop sending requests
-		//cci_mpf_if.to_fiu.c0Rx 			c0Rx,			// Responses come from here
-		
-		output buffer_wr_enable,		// Control signal for buffer
-		input  full_n					// Indicates the buffer as space for N entries (at the moment is set to 40)
+		output buffer_rd_enable,		// Control signal for buffer
+		input  buffer_empty				// Indicates if the buffer is empty
 		);
 	
 	
@@ -41,6 +37,9 @@ module buffer_to_mpf_SM(
 	t_state;
 
 	t_state state;
+	
+	// Output done simply shows internal state
+	assign done = (state == STATE_IDLE)? 1 : 0;
 	
 	logic done_condition;
 	
@@ -59,7 +58,7 @@ module buffer_to_mpf_SM(
 	end
 	
 	//
-	//	Next addr to read from
+	//	Next addr to write to
 	//
 	t_cci_clAddr next_clAddr;
 	
@@ -71,7 +70,7 @@ module buffer_to_mpf_SM(
 			if( run ) begin
 				next_clAddr <= first_clAddr;
 			end
-			else if (fiu.c0Tx.valid) begin
+			else if (fiu.c1Tx.valid) begin
 				next_clAddr <= next_clAddr + 1'd1;
 			end
 		end
@@ -81,89 +80,49 @@ module buffer_to_mpf_SM(
 	logic requests_done;
 	assign requests_done = ( (next_clAddr - first_clAddr) >= data_length)? 1 : 0;
 	
-	
 	//
-	//	Counter so that read requests are made only at the consumption rate
-	//
-	logic [2:0] read_counter;
-	logic rd_req_trigger;
-	assign rd_req_trigger = (read_counter[2:0] == 3'd1)? 1 : 0;
-	
-	always_ff @(posedge clk) begin
-		if(!reset) begin
-			read_counter <= 3'd0;
-		end
-		else begin
-			if( read_counter[2:0] < 3'd7 ) begin
-				read_counter[2:0] <= read_counter[2:0] + 1'b1;
-			end
-			else begin
-				read_counter[2:0] <= 3'd0;
-			end
-		end
-	end
-	
-	//
-	// Emit read requests to the FIU.
+	// Emit write requests to the FIU.
 	//
 
 	// Read header defines the request to the FIU
-	t_cci_mpf_c0_ReqMemHdr rd_hdr;
-	t_cci_mpf_ReqMemHdrParams rd_hdr_params;
+	t_cci_mpf_c1_ReqMemHdr wr_hdr;
+	assign wr_hdr = cci_mpf_c1_genReqHdr(eREQ_WRLINE_I,
+			next_clAddr,
+			t_cci_mdata'(0),
+			cci_mpf_defaultReqHdrParams(1));
 	
-	always_comb
-	begin
-		// Use virtual addresses
-		rd_hdr_params = cci_mpf_defaultReqHdrParams(1);
-		// Let the FIU pick the channel
-		rd_hdr_params.vc_sel = eVC_VA;
-		// Read 1 lines (could read 1, 2 or 4)
-		rd_hdr_params.cl_len = eCL_LEN_1;
-
-		// Generate the header
-		rd_hdr = cci_mpf_c0_genReqHdr(eREQ_RDLINE_I,
-				next_clAddr,
-				t_cci_mdata'(0),
-				rd_hdr_params);
-	end
+	// Read from buffer when it isn't empty and it is possible to request write to memory
+	assign buffer_rd_enable = (!fiu.c1TxAlmFull && 
+			!buffer_empty && 
+			state == STATE_RUN
+			)? 1 : 0;
 	
-	// When to effectively request a read? This will drive fiu.c0Tx.valid
-	logic read_valid;
-	assign read_valid = (rd_req_trigger && 
-			! fiu.c0TxAlmFull && 
-			! full_n && 
-			! requests_done && 
-			state == STATE_RUN)? 1 : 0;
-	
-	// Send read requests to the FIU
+	// Send write requests to the FIU
 	always_ff @(posedge clk)
 	begin
 		if (!reset)
 		begin
-			fiu.c0Tx.valid <= 1'b0;
+			fiu.c1Tx.valid <= 1'b0;
 		end
 		else
 		begin
-			// Generate a read request when needed and the FIU isn't full
-			fiu.c0Tx <= cci_mpf_genC0TxReadReq(rd_hdr,
-					read_valid);
+			// Request write when we read from buffer
+			fiu.c1Tx.valid <= buffer_rd_enable;
 
-			if (read_valid)
+			if (buffer_rd_enable)
 			begin
-				$display("Sent read request for VA 0x%x", clAddrToByteAddr(next_clAddr));
+				$display("Sent write request to VA 0x%x", clAddrToByteAddr(next_clAddr));
 			end
 		end
+		
+		fiu.c1Tx.hdr <= wr_hdr;
 	end
 	
-	
-	
 	//
-	// READ RESPONSE HANDLING
+	// WRITE RESPONSE HANDLING
 	//
 	
-	assign buffer_wr_enable = cci_c0Rx_isReadRsp(fiu.c0Rx);
-	
-	// Check when all data has been received so that done condition can be detected
+	// Check when all data has been written so that done condition can be detected
 	t_cci_clAddr addr_to_be_received;
 	
 	always_ff @(posedge clk) begin
@@ -174,15 +133,14 @@ module buffer_to_mpf_SM(
 			if (run) begin
 				addr_to_be_received <= first_clAddr;
 			end
-			else if (cci_c0Rx_isReadRsp(fiu.c0Rx)) begin
+			else if (cci_c1Rx_isWriteRsp(fiu.c1Rx)) begin
 				addr_to_be_received <= addr_to_be_received + 1'b1;
-				$display("Received a response for request number %d", addr_to_be_received - first_clAddr + 1);
+				$display("Received a response for write request number %d", addr_to_be_received - first_clAddr + 1);
 			end
 		end
 	end
 	
 	assign done_condition = ( (addr_to_be_received - first_clAddr) >= data_length )? 1 : 0;
-	
 	
 endmodule
 
