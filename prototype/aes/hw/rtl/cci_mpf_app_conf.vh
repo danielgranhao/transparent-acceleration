@@ -32,5 +32,7 @@
 // Application configuration.
 //
 
+
+`define MPF_CONF_SORT_READ_RESPONSES 1
 `define MPF_CONF_ENABLE_VTP 1
 

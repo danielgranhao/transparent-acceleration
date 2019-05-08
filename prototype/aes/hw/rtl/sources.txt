@@ -2,12 +2,23 @@ cci_mpf_aes.json
 
 C:../../../base/hw/rtl/base_sources.txt
 
-#tiny aes
-/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/aes_128.v
-/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/round.v
-/home/daniel/Desktop/transparent-acceleration/prototype/aes/hw/rtl/tiny_aes/rtl/table.v
+# Generic DPRAM
++incdir+./generic_fifos
+generic_fifos/rtl/verilog/generic_dpram.v
 
-counter_64bit.sv
+# Generic FIFO
+generic_fifos/rtl/verilog/timescale.v
+generic_fifos/rtl/verilog/generic_fifo_sc_a.v
+
+# Read and write buffers
++incdir+./buffers
+buffers/buffer_512_to_64.sv
+buffers/buffer_64_to_512.sv
+
+# State machines to control data flow
++incdir+./state_machines
+state_machines/mpf_to_buffer_SM.sv
+state_machines/buffer_to_mpf_SM.sv
 
 +incdir+.
 cci_mpf_aes_afu.sv

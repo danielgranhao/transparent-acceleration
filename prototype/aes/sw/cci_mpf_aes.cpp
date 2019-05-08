@@ -47,59 +47,73 @@ using namespace std;
 // State from the AFU's JSON file, extracted using OPAE's afu_json_mgr script
 #include "afu_json_info.h"
 
+#define DATA_LENGTH 4096
+
 int main(int argc, char *argv[])
 {
-    // Find and connect to the accelerator
-    OPAE_SVC_WRAPPER fpga(AFU_ACCEL_UUID);
-    assert(fpga.isOk());
+	// Find and connect to the accelerator
+	OPAE_SVC_WRAPPER fpga(AFU_ACCEL_UUID);
+	assert(fpga.isOk());
 
-    // Connect the CSR manager
-    CSR_MGR csrs(fpga);
+	// Connect the CSR manager
+	CSR_MGR csrs(fpga);
 
-    uint8_t buf[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+	printf("Page size is %d\n", getpagesize());
 
-    // Allocate a single page memory buffer
-    //auto buf_handle = fpga.allocBuffer(getpagesize());
-    //auto *buf = reinterpret_cast<volatile uint64_t*>(buf_handle->c_type());
-    //uint64_t buf_pa = buf_handle->io_address();
-    assert(NULL != buf);
+	// Allocate 8 pages memory buffer
+	auto buf_src_handle = fpga.allocBuffer(getpagesize() * 8);
+	auto *buf_src = reinterpret_cast<volatile uint64_t*>(buf_src_handle->c_type());
+	uint64_t buf_src_pa = buf_src_handle->io_address();
+	assert(NULL != buf_src);
 
-    printf("Result address is %p\n", buf);
-
-    // Set the low byte of the shared buffer to 0.  The FPGA will write
-    // a non-zero value to it.
-    //*buf = 1;
-    //*(buf+1) = 2;
-
-    // Tell the accelerator the address of the buffer using cache line
-    // addresses by writing to application CSR 0.  The CSR manager maps
-    // its registers to MMIO space.  The accelerator will respond by
-    // writing to the buffer.
-    //csrs.writeCSR(0, (uint64_t)buf / CL(1));
-    //csrs.writeCSR(1, 5);
-    //csrs.writeCSR(2, 10);
-    csrs.writeCSR(2, (uint64_t)buf);
+	printf("Buf src virtual address is %p\n", buf_src);
 
 
-    // Spin, waiting for the value in memory to change to something non-zero.
-    //while (0 == *buf)
-    while (1)
-    {
-        // A well-behaved program would use _mm_pause(), nanosleep() or
-        // equivalent to save power here.
-    };
+	for(int i = 0; i < DATA_LENGTH; i++){
+		*(buf_src+i) = i;
+	}
 
-    // Print the string written by the FPGA
-    //printf("%" PRIu64 "\n", *buf);
-    //cout << buf << endl;
 
-    // Ask the FPGA-side CSR manager the AFU's frequency
-    cout << endl
-         << "# AFU frequency: " << csrs.getAFUMHz() << " MHz"
-         << (fpga.hwIsSimulated() ? " [simulated]" : "")
-         << endl;
+	// Allocate 8 pages  memory buffer
+	auto buf_dest_handle = fpga.allocBuffer(getpagesize() * 8);
+	auto *buf_dest = reinterpret_cast<volatile uint64_t*>(buf_dest_handle->c_type());
+	uint64_t buf_dest_pa = buf_dest_handle->io_address();
+	assert(NULL != buf_dest);
+	*(buf_dest+DATA_LENGTH-1) = 0;
 
-    // All shared buffers are automatically released and the FPGA connection
-    // is closed when their destructors are invoked here.
-    return 0;
+	printf("Buf dest virtual address is %p\n", buf_dest);
+	
+
+
+	csrs.writeCSR(0, (uint64_t)buf_src); // Address of src
+	csrs.writeCSR(1, (uint64_t)buf_dest); // Address of dest
+	csrs.writeCSR(2, (uint64_t)(DATA_LENGTH/8)); // How many cache lines?
+	csrs.writeCSR(3, (uint64_t)1); // Run signal
+
+	// Spin, waiting for the value in memory to change to something non-zero.
+	while (0 == *(buf_dest+DATA_LENGTH-1))
+	{
+		// A well-behaved program would use _mm_pause(), nanosleep() or
+		// equivalent to save power here.
+	};
+
+	printf("Data received!\n");
+
+	for(int i = 0; i < DATA_LENGTH; i++){
+		if(*(buf_dest+i) != *(buf_src+i) * 2)
+			printf("Error on pos %d - 2 * %ld != %ld\n", i, *(buf_src+i), *(buf_dest+i));
+	}
+	
+	printf("Tests finished!\n");
+
+	// Ask the FPGA-side CSR manager the AFU's frequency
+	cout << endl
+		<< "# AFU frequency: " << csrs.getAFUMHz() << " MHz"
+		<< (fpga.hwIsSimulated() ? " [simulated]" : "")
+		<< endl;
+
+	// All shared buffers are automatically released and the FPGA connection
+	// is closed when their destructors are invoked here.
+	return 0;
+	
 }

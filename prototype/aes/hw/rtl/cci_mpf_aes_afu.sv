@@ -34,302 +34,315 @@
 
 
 module app_afu
-(
-	input  logic clk,
+		(
+		input  logic clk,
 
-	// Connection toward the host.  Reset comes in here.
-	cci_mpf_if.to_fiu fiu,
+		// Connection toward the host.  Reset comes in here.
+		cci_mpf_if.to_fiu fiu,
 
-	// CSR connections
-	app_csrs.app csrs,
+		// CSR connections
+		app_csrs.app csrs,
 
-	// MPF tracks outstanding requests.  These will be true as long as
-	// reads or unacknowledged writes are still in flight.
-	input  logic c0NotEmpty,
-	input  logic c1NotEmpty
-);
+		// MPF tracks outstanding requests.  These will be true as long as
+		// reads or unacknowledged writes are still in flight.
+		input  logic c0NotEmpty,
+		input  logic c1NotEmpty
+		);
 
-// Local reset to reduce fan-out
-logic reset = 1'b1;
-always @(posedge clk)
-begin
-	reset <= fiu.reset;
-end
-
-//
-// Convert between byte addresses and line addresses.  The conversion
-// is simple: adding or removing low zero bits.
-//
-
-localparam CL_BYTE_IDX_BITS = 6;
-typedef logic [$bits(t_cci_clAddr) + CL_BYTE_IDX_BITS - 1 : 0] t_byteAddr;
-
-function automatic t_cci_clAddr byteAddrToClAddr(t_byteAddr addr);
-	return addr[CL_BYTE_IDX_BITS +: $bits(t_cci_clAddr)];
-endfunction
-
-function automatic t_byteAddr clAddrToByteAddr(t_cci_clAddr addr);
-	return {addr, CL_BYTE_IDX_BITS'(0)};
-endfunction
-
-
-// ====================================================================
-//
-//  CSRs (simple connections to the external CSR management engine)
-//
-// ====================================================================
-
-always_comb
-begin
-	// The AFU ID is a unique ID for a given program.  Here we generated
-	// one with the "uuidgen" program and stored it in the AFU's JSON file.
-	// ASE and synthesis setup scripts automatically invoke afu_json_mgr
-	// to extract the UUID into afu_json_info.vh.
-	csrs.afu_id = `AFU_ACCEL_UUID;
-
-	// Default
-	for (int i = 0; i < NUM_APP_CSRS; i = i + 1)
+	// Local reset to reduce fan-out
+	logic reset = 1'b1;
+	always @(posedge clk)
 	begin
-		csrs.cpu_rd_csrs[i].data = 64'(0);
+		reset <= fiu.reset;
 	end
-end
+
+	//
+	// Convert between byte addresses and line addresses.  The conversion
+	// is simple: adding or removing low zero bits.
+	//
+
+	localparam CL_BYTE_IDX_BITS = 6;
+	typedef logic [$bits(t_cci_clAddr) + CL_BYTE_IDX_BITS - 1 : 0] t_byteAddr;
+
+	function automatic t_cci_clAddr byteAddrToClAddr(t_byteAddr addr);
+		return addr[CL_BYTE_IDX_BITS +: $bits(t_cci_clAddr)];
+	endfunction
+
+	function automatic t_byteAddr clAddrToByteAddr(t_cci_clAddr addr);
+		return {addr, CL_BYTE_IDX_BITS'(0)};
+	endfunction
 
 
-//
-// Consume configuration CSR writes
-//
+	// ====================================================================
+	//
+	//  CSRs (simple connections to the external CSR management engine)
+	//
+	// ====================================================================
 
-// We use CSR 0 to set the cipher address
-logic is_cipher_addr_csr_write;
-assign is_cipher_addr_csr_write = csrs.cpu_wr_csrs[0].en;
-// Memory address to which this AFU will write. (Cipher Text Address)
-t_byteAddr cipher_addr;
-t_cci_clAddr cipher_claddr;
-assign cipher_claddr = byteAddrToClAddr(cipher_addr);
-
-// MMIO address 2 to store Key lowest 64 bits
-logic is_key_low_csr_write;
-assign is_key_low_csr_write = csrs.cpu_wr_csrs[1].en;
-// Key Low
-logic [63:0] key_low;
-
-// MMIO address 4 to store Key highest 64 bits
-logic is_key_high_csr_write;
-assign is_key_high_csr_write = csrs.cpu_wr_csrs[2].en;
-// Key Low
-logic [63:0] key_high;
-
-// MMIO address 6 to store IV
-logic is_iv_csr_write;
-assign is_iv_csr_write = csrs.cpu_wr_csrs[3].en;
-// Initialization vector
-logic [63:0] iv;
-
-// MMIO address 8 to store text length
-logic is_text_length_csr_write;
-assign is_text_length_csr_write = csrs.cpu_wr_csrs[4].en;
-// Text length
-logic [63:0] text_length;
-
-// MMIO address 10 to store run command
-logic is_run_length_csr_write;
-assign is_run_length_csr_write = csrs.cpu_wr_csrs[5].en;
-// Text length
-logic [63:0] run_signal;
-
-always_ff @(posedge clk)
-begin
-	if (reset || afu_complete)
+	always_comb
 	begin
-		cipher_addr <= 64'h0000_0000_0000_0000;
-		plain_addr <= 64'h0000_0000_0000_0000;
-		key_addr <= 64'h0000_0000_0000_0000;
-		iv <= 64'h0000_0000_0000_0000;
-		text_length <= 64'h0000_0000_0000_0000;
-		run_signal <= 64'h0000_0000_0000_0000;
-	end
-	else if (is_cipher_addr_csr_write)
-	begin
-		cipher_addr <= csrs.cpu_wr_csrs[0].data;
-		$display("Received cipher address = %0h", csrs.cpu_wr_csrs[0].data);
-	end
-	else if (is_plain_addr_csr_write)
-	begin
-		key_low <= csrs.cpu_wr_csrs[1].data;
-		$display("Received key low: %0h", csrs.cpu_wr_csrs[1].data);
-	end
-	else if (is_key_addr_csr_write)
-	begin
-		key_high <= csrs.cpu_wr_csrs[2].data;
-		$display("Received key high: %0h", csrs.cpu_wr_csrs[2].data);
-	end
-	else if (is_iv_csr_write)
-	begin
-		iv <= csrs.cpu_wr_csrs[3].data;
-		$display("Received IV = %0h", csrs.cpu_wr_csrs[3].data);
-	end
-	else if (is_text_length_csr_write)
-	begin
-		text_length <= csrs.cpu_wr_csrs[4].data;
-		$display("Received text length = %0d", csrs.cpu_wr_csrs[4].data);
-	end
-	else if (is_run_length_csr_write)
-	begin
-		run_signal <= csrs.cpu_wr_csrs[5].data;
-		$display("Received run signal");
-	end
-end
+		// The AFU ID is a unique ID for a given program.  Here we generated
+		// one with the "uuidgen" program and stored it in the AFU's JSON file.
+		// ASE and synthesis setup scripts automatically invoke afu_json_mgr
+		// to extract the UUID into afu_json_info.vh.
+		csrs.afu_id = `AFU_ACCEL_UUID;
 
-
-//
-// AES core Wires
-//
-
-// Key for AES
-logic [127:0] key_in;
-assign key_in = { key_high[63:0] , key_low[63:0] };
-// State -> 64bit IV + 64bit Counter
-logic [127:0] state_in;
-// Output of AES core -> to XOR with plaintext
-logic [127:0] aes_out;
-// Run counter?
-logic counter_on;
-
-
-//
-// State input generation
-//
-
-// IV + Counter
-logic [63:0] count;
-assign state_in[127:64] = iv[63:0];
-assign state_in[63:0]   = count[63:0];
-
-counter_64bit counter_64bit_inst(
-	.clk( clk ), // done
-	.reset( reset ), // done
-	.on( counter_on ), 
-	.count( count[63:0] ) // done
-);
-
-//
-// AES-128 core
-//
-
-aes_128 aes_128_inst(
-	.clk( clk ), // done
-	.state( state_in ), // done
-	.key( key_in ), // done
- 	.out( aes_out ) 
-);
-
-
-//
-// States in our simple example.
-//
-typedef enum logic [0:0]
-{
-	STATE_IDLE,
-	STATE_RUN
-}
-t_state;
-
-t_state state;
-
-//
-
-logic afu_complete;
-//assign afu_complete =  ((state == STATE_RUN) && ! fiu.c1TxAlmFull);
-// Qualquer coisa deste genero -- A VER!!
-assign afu_complete = (count = text_length + 21)? 1'b1 : 1'b0 ;
-
-
-
-
-// =========================================================================
-//
-//   Main AFU logic
-//
-// =========================================================================
-
-//
-// State machine
-//
-always_ff @(posedge clk)
-begin
-	if (reset)
-	begin
-		state <= STATE_IDLE;
-	end
-	else
-	begin
-		// Trigger the AFU when mem_addr is set above.  (When the CPU
-		// tells us the address to which the FPGA should write a message.)
-		if ((state == STATE_IDLE) && cipher_addr)
+		// Default
+		for (int i = 0; i < NUM_APP_CSRS; i = i + 1)
 		begin
-			state <= STATE_RUN;
-			$display("AFU running...");
+			csrs.cpu_rd_csrs[i].data = 64'(0);
 		end
+	end
 
-		// The AFU completes its task by writing a single line.  When
-		// the line is written return to idle.  The write will happen
-		// as long as the request channel is not full.
-		if (afu_complete)
+
+	//
+	// Consume configuration CSR writes
+	//
+
+	// MMIO address 0 to store source address
+	logic is_src_addr_csr_write;
+	assign is_src_addr_csr_write = csrs.cpu_wr_csrs[0].en;
+	t_byteAddr src_addr;
+	t_cci_clAddr src_clAddr;
+	assign src_clAddr = byteAddrToClAddr(src_addr);
+
+	// MMIO address 2 to store destination address
+	logic is_dest_addr_csr_write;
+	assign is_dest_addr_csr_write = csrs.cpu_wr_csrs[1].en;
+	t_byteAddr dest_addr;
+	t_cci_clAddr dest_clAddr;
+	assign dest_clAddr = byteAddrToClAddr(dest_addr);
+
+	// MMIO address 4 to store data length 
+	logic is_data_length_addr_csr_write;
+	assign is_data_length_addr_csr_write = csrs.cpu_wr_csrs[2].en;
+	logic [63:0] data_length;
+
+	// MMIO address 6 receive run order
+	logic is_run_csr_write;
+	assign is_run_csr_write = csrs.cpu_wr_csrs[3].en;
+	// Initialization vector
+	logic [63:0] run;
+	
+	
+	//
+	// States in our simple example.
+	//
+	typedef enum logic [0:0]
+		{
+		STATE_IDLE,
+		STATE_RUN
+	}
+	t_state;
+
+	t_state state;
+
+	// CHANGE THIS
+	logic afu_complete;
+	assign afu_complete =  ((state == STATE_RUN) && ! fiu.c1TxAlmFull);
+
+	always_ff @(posedge clk)
+	begin
+		if (reset) begin
+			src_addr <= 64'h0000_0000_0000_0000;
+			dest_addr <= 64'h0000_0000_0000_0000;
+			data_length <= 64'h0000_0000_0000_0000;
+			run <= 64'h0000_0000_0000_0000;
+		end
+		else begin
+			if (run) begin
+				run <= 64'h0000_0000_0000_0000;
+			end
+			else begin
+				if (is_src_addr_csr_write) begin
+					src_addr <= csrs.cpu_wr_csrs[0].data;
+					$display("Received source address: %0h", csrs.cpu_wr_csrs[0].data);
+				end
+				else if (is_dest_addr_csr_write) begin
+					dest_addr <= csrs.cpu_wr_csrs[1].data;
+					$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
+				end
+				else if (is_data_length_addr_csr_write) begin
+					data_length <= csrs.cpu_wr_csrs[2].data;
+					$display("Received data length: %0d", csrs.cpu_wr_csrs[2].data);
+				end
+				else if (is_run_csr_write) begin
+					run <= csrs.cpu_wr_csrs[3].data;
+					$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
+				end
+			end
+		end
+	end
+
+
+	// =========================================================================
+	//
+	//   Main AFU logic
+	//
+	// =========================================================================
+
+	//
+	// State machine
+	//
+	always_ff @(posedge clk)
+	begin
+		if (reset)
 		begin
 			state <= STATE_IDLE;
-			$display("AFU done...");
+		end
+		else
+		begin
+			// Trigger the AFU when mem_addr is set above.  (When the CPU
+			// tells us the address to which the FPGA should write a message.)
+			if ((state == STATE_IDLE) && run)
+			begin
+				//state <= STATE_RUN;
+				state <= STATE_IDLE;
+				$display("AFU running...");
+			end
+
+			// The AFU completes its task by writing a single line.  When
+			// the line is written return to idle.  The write will happen
+			// as long as the request channel is not full.
+			if (afu_complete)
+			begin
+				state <= STATE_IDLE;
+				$display("AFU done...");
+			end
 		end
 	end
-end
+	
+	
+	//----------------------------------------
+		
+	//
+	// Read buffer
+	//
+	
+	logic [511:0] read_buffer_data_in;
+	logic read_buffer_wr_enable;
+	logic [63:0] read_buffer_data_out;
+	logic read_buffer_rd_enable;
+	logic read_buffer_empty;
+	logic read_buffer_full_n;
+	
+	logic [63:0] write_buffer_data_in;
+	logic write_buffer_wr_enable;
+	logic [511:0] write_buffer_data_out;
+	logic write_buffer_rd_enable;
+	logic write_buffer_empty;
+	logic write_buffer_full_n;
+	
+	assign read_buffer_data_in[511:0] = fiu.c0Rx.data[511:0];
+	
+	// Read from read buffer as long as there is something to read and there is space for it to be written on the write buffer
+	assign read_buffer_rd_enable = (! write_buffer_full_n && ! read_buffer_empty)? 1 : 0;
+	
+	buffer_512_to_64 buffer_512_to_64_inst(
+			.clk			(clk					), 
+			.rst			(!reset					), 
+			.clr			(reset					),
+		
+			.data_in		(read_buffer_data_in	),
+			.wr_enable		(read_buffer_wr_enable	),
 
+			.data_out		(read_buffer_data_out	),
+			.rd_enable		(read_buffer_rd_enable	),
+		
+			.full			(						),
+			.empty			(read_buffer_empty		),
+			.full_n			(read_buffer_full_n 	)
+		);
 
+	logic mpf_to_buffer_run;
+	// TODO: check done signal
+	logic mpf_to_buffer_done;
 
+	//assign fiu.c1Tx.data[63:0] = read_buffer_data_out[63:0];
+	
+	assign mpf_to_buffer_run = run[0:0];
+	
+	mpf_to_buffer_SM mpf_to_buffer_SM_inst (
+			.clk               (clk              		), 
+			.reset             (!reset           		),
+			
+			.run               (mpf_to_buffer_run		), 
+			.data_length       (data_length      		), 
+			.done              (mpf_to_buffer_done		), 
+			.first_clAddr      (src_clAddr       		),
+			
+			.c0TxAlmFull	   (fiu.c0TxAlmFull		),
+			.c0TxValid	   (fiu.c0Tx.valid		),
+			.reqMemHdr	   (fiu.c0Tx.hdr		),
 
-//
-// Write "Hello world!" to memory when in STATE_RUN.
-//
+			.c0Rx		   (fiu.c0Rx			),
 
-// Construct a memory write request header.  For this AFU it is always
-// the same, since we write to only one address.
-t_cci_mpf_c1_ReqMemHdr wr_hdr;
-assign wr_hdr = cci_mpf_c1_genReqHdr(eREQ_WRLINE_I,
-	plain_addr,
-	t_cci_mdata'(0),
-cci_mpf_defaultReqHdrParams());
+			.buffer_wr_enable  (read_buffer_wr_enable 	), 
+			.full_n            (read_buffer_full_n 		)
+		);
+	
+	//
+	// Write buffer
+	//
 
-// Data to write to memory: little-endian ASCII encoding of "Hello world!"
-//assign fiu.c1Tx.data = t_ccip_clData'('h0021646c726f77206f6c6c6548);	
-logic [63:0] sum;
-assign sum[63:0] = 0;
+	assign write_buffer_data_in[63:0] = read_buffer_data_out[63:0] * 2;
 
-// Control logic for memory writes
-always_ff @(posedge clk)
-begin
-	if (reset)
-	begin
-		fiu.c1Tx.valid <= 1'b0;
-		fiu.c1Tx.data <= t_ccip_clData'(64'h0000_0000_0000_0000);
-	end
-	else if (afu_complete)
-	begin
-		// Request the write as long as the channel isn't full.
-		fiu.c1Tx.valid <= 1'b1;
-		fiu.c1Tx.data <= t_ccip_clData'(sum[63:0]);
-		$display("Write requested! sum = %d", sum);
-		$display("Destination address = %p", plain_addr);
-	end
-	else
-	begin
-		fiu.c1Tx.valid <= 1'b0;
-	end
-	fiu.c1Tx.hdr <= wr_hdr;
-end
+	// Enable write 1 clock cycle after read enable 
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			write_buffer_wr_enable <= 1'b0;
+		end
+		else begin
+			write_buffer_wr_enable <= read_buffer_rd_enable;
+		end
+	end	
+	
+	buffer_64_to_512 buffer_64_to_512_inst (
+			.clk        (clk       				), 
+			.rst        (!reset    				), 
+			.clr        (reset     				), 
+		
+			.data_in    (write_buffer_data_in 	), 
+			.wr_enable  (write_buffer_wr_enable	), 
+		
+			.data_out   (write_buffer_data_out	), 
+			.rd_enable  (write_buffer_rd_enable	), 
+		
+			.full       (	      				), 
+			.empty      (write_buffer_empty		), 
+			.full_n     (write_buffer_full_n	)
+		);
+	
+	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
 
+	logic buffer_to_mpf_run;
+	logic buffer_to_mpf_done;
+	
+	assign buffer_to_mpf_run = run[0:0];
+	
+	buffer_to_mpf_SM buffer_to_mpf_SM_inst (
+			.clk               	(clk              		), 
+			.reset             	(!reset           		),
+			
+			.run               	(buffer_to_mpf_run   	), 
+			.data_length       	(data_length      		), 
+			.done              	(buffer_to_mpf_done  	), 
+			.first_clAddr      	(dest_clAddr     		),
+			
+			.c1TxAlmFull	   	(fiu.c1TxAlmFull		),
+			.c1TxValid			(fiu.c1Tx.valid			),
+			.reqMemHdr	   		(fiu.c1Tx.hdr			),
 
-//
-// This AFU never makes a read request or handles MMIO reads.
-//
-//assign fiu.c0Tx.valid = 1'b0;
-assign fiu.c2Tx.mmioRdValid = 1'b0;
+			.c1Rx		   		(fiu.c1Rx				),
+			
+			.buffer_rd_enable  (write_buffer_rd_enable 	), 
+			.buffer_empty      (write_buffer_empty 		)
+		);
+
+	//
+	// This AFU never handles MMIO reads.
+	//
+	assign fiu.c2Tx.mmioRdValid = 1'b0;
+
 
 endmodule // app_afu
