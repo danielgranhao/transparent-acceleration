@@ -88,7 +88,7 @@ module app_afu
 		csrs.afu_id = `AFU_ACCEL_UUID;
 
 		// Default
-		for (int i = 0; i < NUM_APP_CSRS; i = i + 1)
+		for (int i = 1; i < NUM_APP_CSRS; i = i + 1)
 		begin
 			csrs.cpu_rd_csrs[i].data = 64'(0);
 		end
@@ -124,22 +124,45 @@ module app_afu
 	// Initialization vector
 	logic [63:0] run;
 	
+	// MMIO address 8 to store initialization vector
+	logic is_iv_0_csr_write;
+	assign is_iv_0_csr_write = csrs.cpu_wr_csrs[4].en;
+	// Initialization vector
+	logic [63:0] iv_0;
 	
-	//
-	// States in our simple example.
-	//
-	typedef enum logic [0:0]
-		{
-		STATE_IDLE,
-		STATE_RUN
-	}
-	t_state;
-
-	t_state state;
-
-	// CHANGE THIS
-	logic afu_complete;
-	assign afu_complete =  ((state == STATE_RUN) && ! fiu.c1TxAlmFull);
+	// MMIO address 10 to store initialization vector
+	logic is_iv_1_csr_write;
+	assign is_iv_1_csr_write = csrs.cpu_wr_csrs[5].en;
+	// Initialization vector
+	logic [63:0] iv_1;
+	
+	// MMIO address 12 receive key 0
+	logic is_key_0_csr_write;
+	assign is_key_0_csr_write = csrs.cpu_wr_csrs[6].en;
+	// Initialization vector
+	logic [63:0] key_0;
+	
+	// MMIO address 14 receive key 1
+	logic is_key_1_csr_write;
+	assign is_key_1_csr_write = csrs.cpu_wr_csrs[7].en;
+	// Initialization vector
+	logic [63:0] key_1;
+	
+	// MMIO address 16 receive key 2
+	logic is_key_2_csr_write;
+	assign is_key_2_csr_write = csrs.cpu_wr_csrs[8].en;
+	// Initialization vector
+	logic [63:0] key_2;
+	
+	// MMIO address 18 receive key 3
+	logic is_key_3_csr_write;
+	assign is_key_3_csr_write = csrs.cpu_wr_csrs[9].en;
+	// Initialization vector
+	logic [63:0] key_3;
+	
+	// Build key
+	logic [255:0] key;
+	assign key = { key_3 , key_2 , key_1 , key_0 };
 
 	always_ff @(posedge clk)
 	begin
@@ -148,6 +171,12 @@ module app_afu
 			dest_addr <= 64'h0000_0000_0000_0000;
 			data_length <= 64'h0000_0000_0000_0000;
 			run <= 64'h0000_0000_0000_0000;
+			iv_0 <= 64'h0000_0000_0000_0000;
+			iv_1 <= 64'h0000_0000_0000_0000;
+			key_0 <= 64'h0000_0000_0000_0000;
+			key_1 <= 64'h0000_0000_0000_0000;
+			key_2 <= 64'h0000_0000_0000_0000;
+			key_3 <= 64'h0000_0000_0000_0000;
 		end
 		else begin
 			if (run) begin
@@ -170,10 +199,33 @@ module app_afu
 					run <= csrs.cpu_wr_csrs[3].data;
 					$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
 				end
+				else if (is_iv_0_csr_write) begin
+					iv_0 <= csrs.cpu_wr_csrs[4].data;
+					$display("Received iv_0: %0h", csrs.cpu_wr_csrs[4].data);
+				end
+				else if (is_iv_1_csr_write) begin
+					iv_1 <= csrs.cpu_wr_csrs[5].data;
+					$display("Received iv_1: %0h", csrs.cpu_wr_csrs[5].data);
+				end
+				else if (is_key_0_csr_write) begin
+					key_0 <= csrs.cpu_wr_csrs[6].data;
+					$display("Received key_0: %0h", csrs.cpu_wr_csrs[6].data);
+				end
+				else if (is_key_1_csr_write) begin
+					key_1 <= csrs.cpu_wr_csrs[7].data;
+					$display("Received key_1: %0h", csrs.cpu_wr_csrs[7].data);
+				end
+				else if (is_key_2_csr_write) begin
+					key_2 <= csrs.cpu_wr_csrs[8].data;
+					$display("Received key_2: %0h", csrs.cpu_wr_csrs[8].data);
+				end
+				else if (is_key_3_csr_write) begin
+					key_3 <= csrs.cpu_wr_csrs[9].data;
+					$display("Received key_3: %0h", csrs.cpu_wr_csrs[9].data);
+				end
 			end
 		end
 	end
-
 
 	// =========================================================================
 	//
@@ -181,6 +233,20 @@ module app_afu
 	//
 	// =========================================================================
 
+	//
+	// States in our simple example.
+	//
+	typedef enum logic [0:0]
+		{
+		STATE_IDLE,
+		STATE_RUN
+	}
+	t_state;
+
+	t_state state;
+	
+	logic afu_complete;
+	
 	//
 	// State machine
 	//
@@ -192,18 +258,12 @@ module app_afu
 		end
 		else
 		begin
-			// Trigger the AFU when mem_addr is set above.  (When the CPU
-			// tells us the address to which the FPGA should write a message.)
 			if ((state == STATE_IDLE) && run)
 			begin
-				//state <= STATE_RUN;
-				state <= STATE_IDLE;
+				state <= STATE_RUN;
 				$display("AFU running...");
 			end
-
-			// The AFU completes its task by writing a single line.  When
-			// the line is written return to idle.  The write will happen
-			// as long as the request channel is not full.
+		
 			if (afu_complete)
 			begin
 				state <= STATE_IDLE;
@@ -212,6 +272,7 @@ module app_afu
 		end
 	end
 	
+	assign csrs.cpu_rd_csrs[0].data = (state == STATE_IDLE)? 64'd1 : 64'd0;
 	
 	//----------------------------------------
 		
@@ -221,12 +282,12 @@ module app_afu
 	
 	logic [511:0] read_buffer_data_in;
 	logic read_buffer_wr_enable;
-	logic [63:0] read_buffer_data_out;
+	logic [127:0] read_buffer_data_out;
 	logic read_buffer_rd_enable;
 	logic read_buffer_empty;
 	logic read_buffer_full_n;
 	
-	logic [63:0] write_buffer_data_in;
+	logic [127:0] write_buffer_data_in;
 	logic write_buffer_wr_enable;
 	logic [511:0] write_buffer_data_out;
 	logic write_buffer_rd_enable;
@@ -238,7 +299,7 @@ module app_afu
 	// Read from read buffer as long as there is something to read and there is space for it to be written on the write buffer
 	assign read_buffer_rd_enable = (! write_buffer_full_n && ! read_buffer_empty)? 1 : 0;
 	
-	buffer_512_to_64 buffer_512_to_64_inst(
+	buffer_512_to_128 buffer_512_to_128_inst(
 			.clk			(clk					), 
 			.rst			(!reset					), 
 			.clr			(reset					),
@@ -255,10 +316,7 @@ module app_afu
 		);
 
 	logic mpf_to_buffer_run;
-	// TODO: check done signal
 	logic mpf_to_buffer_done;
-
-	//assign fiu.c1Tx.data[63:0] = read_buffer_data_out[63:0];
 	
 	assign mpf_to_buffer_run = run[0:0];
 	
@@ -282,22 +340,66 @@ module app_afu
 		);
 	
 	//
-	// Write buffer
+	// AES Kernel
 	//
-
-	assign write_buffer_data_in[63:0] = read_buffer_data_out[63:0] * 2;
-
-	// Enable write 1 clock cycle after read enable 
+	
+	logic aes_valid_input;
+	logic [127:0] aes_state;
+	logic [127:0] out;
+	
 	always_ff @(posedge clk) begin
 		if (reset)  begin
-			write_buffer_wr_enable <= 1'b0;
+			aes_state <= 128'd0;
+			aes_valid_input <= 1'b0;
 		end
 		else begin
-			write_buffer_wr_enable <= read_buffer_rd_enable;
+			if ( run ) begin
+				aes_state[127:64] <= iv_1[63:0];
+				aes_state[63:0] <= iv_0[63:0];
+			end
+			else begin
+				if(aes_valid_input) begin
+					aes_state <= aes_state + 1'b1;				
+				end
+			end
+			aes_valid_input <= read_buffer_rd_enable;
 		end
-	end	
+	end
+		
+	// out is valid 29 clk cycles after state and key are valid
+	aes_256 aes_256 (
+			.clk    (clk   ), 
+			.state  (aes_state ), 
+			.key    (key   ), 
+			.out    (out   )
+		);
 	
-	buffer_64_to_512 buffer_64_to_512_inst (
+	// Shift register to delay data before it is Xor'ed
+	logic [127:0] data_shift_reg[0:29];
+	logic valid_shift_reg[0:29];
+	
+	//assign data_shift_reg[127:0][0] = read_buffer_data_out[127:0];
+	assign data_shift_reg[0] = read_buffer_data_out[127:0];
+	assign valid_shift_reg[0]		= aes_valid_input;
+	
+	always_ff @(posedge clk) begin
+		for(int i = 1; i<=29; i++) begin
+			//data_shift_reg[127:0][i] 	<= data_shift_reg[127:0][i-1];
+			data_shift_reg[i] 	<= data_shift_reg[i-1];
+			valid_shift_reg[i]			<= valid_shift_reg[i-1];
+		end
+	end
+
+	assign write_buffer_wr_enable 		= valid_shift_reg[29];
+	// XOR output of AES kernel with data
+	//assign write_buffer_data_in[127:0]	= data_shift_reg[127:0][29] ^ out[127:0];
+	assign write_buffer_data_in[127:0]	= data_shift_reg[29] ^ out[127:0];
+	
+	//
+	// Write buffer
+	//
+	
+	buffer_128_to_512 buffer_128_to_512_inst (
 			.clk        (clk       				), 
 			.rst        (!reset    				), 
 			.clr        (reset     				), 
@@ -338,6 +440,8 @@ module app_afu
 			.buffer_rd_enable  (write_buffer_rd_enable 	), 
 			.buffer_empty      (write_buffer_empty 		)
 		);
+	
+	assign afu_complete =  ((state == STATE_RUN) && mpf_to_buffer_done && buffer_to_mpf_done);
 
 	//
 	// This AFU never handles MMIO reads.

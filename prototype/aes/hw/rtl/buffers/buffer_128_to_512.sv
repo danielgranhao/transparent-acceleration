@@ -1,16 +1,16 @@
 /****************************************************************************
- * buffer_512_to_64.sv
+ * buffer_128_to_512.sv
  ****************************************************************************/
 
 /**
- * Module: buffer_64_to_512
+ * Module: buffer_128_to_512
  * 
  * TODO: Add module documentation
  */
-module buffer_64_to_512(
+module buffer_128_to_512(
 		input clk, rst, clr,
 		
-		input [63:0] data_in,
+		input [127:0] data_in,
 		input wr_enable,
 
 		output [511:0] data_out,
@@ -21,24 +21,24 @@ module buffer_64_to_512(
 		output full_n
 		);
 	
-	logic [2:0] select_shifted;
+	logic [1:0] select_shifted;
 	
 	genvar i;
 	generate
-		for(i = 0; i<8; i=i+1) begin : genfifos
+		for(i = 0; i<4; i=i+1) begin : genfifos
 
-			logic [63:0] dout;
+			logic [127:0] dout;
 			logic we;
 			logic full;
 			logic empty;
 			logic full_n;
 			
-			assign we = (select_shifted[2:0] == i && wr_enable)? 1 : 0;
+			assign we = (select_shifted[1:0] == i && wr_enable)? 1 : 0;
 			
-			assign data_out[i*64+63 : i*64] = dout[63:0];
+			assign data_out[i*128+127 : i*128] = dout[127:0];
 			
 			generic_fifo_sc_a #(
-					.dw(64),
+					.dw(128),
 					.aw(9),
 					.n(256)) 
 				generic_fifo_sc_a_inst  (
@@ -64,25 +64,22 @@ module buffer_64_to_512(
 	always @(posedge clk)
 	begin
 		if (!rst || clr) begin
-			select_shifted[2:0] <= 3'b000;
+			select_shifted[1:0] <= 2'b00;
 		end
 		else begin
-			if (wr_enable && select_shifted[2:0] == 3'b111) begin // start up
-				select_shifted[2:0] <= 3'b000;
+			if (wr_enable && select_shifted[1:0] == 2'b11) begin // start up
+				select_shifted[1:0] <= 2'b00;
 			end
-			else if (wr_enable && select_shifted[2:0] < 3'd7) begin
-				select_shifted[2:0] <= select_shifted[2:0] + 1'b1;
-			end
-			else if (wr_enable && select_shifted[2:0] == 3'd7) begin
-				select_shifted[2:0] <= 3'b000;
+			else if (wr_enable && select_shifted[1:0] < 2'b11) begin
+				select_shifted[1:0] <= select_shifted[1:0] + 1'b1;
 			end
 		end
 	end
 	
 	
-	assign full = genfifos[7].full;
-	assign empty = genfifos[7].empty;
-	assign full_n = genfifos[7].full_n;
+	assign full = genfifos[3].full;
+	assign empty = genfifos[3].empty;
+	assign full_n = genfifos[3].full_n;
 
 endmodule
 

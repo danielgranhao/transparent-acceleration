@@ -12,13 +12,21 @@ generic_fifos/rtl/verilog/generic_fifo_sc_a.v
 
 # Read and write buffers
 +incdir+./buffers
-buffers/buffer_512_to_64.sv
-buffers/buffer_64_to_512.sv
+buffers/buffer_512_to_128.sv
+buffers/buffer_128_to_512.sv
 
 # State machines to control data flow
 +incdir+./state_machines
 state_machines/mpf_to_buffer_SM.sv
 state_machines/buffer_to_mpf_SM.sv
+
+# AES Kernels
++incdir+./tiny_aes
+tiny_aes/rtl/aes_128.v
+tiny_aes/rtl/round.v
+tiny_aes/rtl/aes_256.v
+tiny_aes/rtl/aes_192.v
+tiny_aes/rtl/table.v
 
 +incdir+.
 cci_mpf_aes_afu.sv

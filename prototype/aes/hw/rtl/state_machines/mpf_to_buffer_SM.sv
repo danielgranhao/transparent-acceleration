@@ -84,24 +84,23 @@ module mpf_to_buffer_SM(
 	logic requests_done;
 	assign requests_done = ( (next_clAddr - first_clAddr) >= data_length)? 1 : 0;
 	
-	
 	//
 	//	Counter so that read requests are made only at the consumption rate
 	//
-	logic [2:0] read_counter;
+	logic [1:0] read_counter;
 	logic rd_req_trigger;
-	assign rd_req_trigger = (read_counter[2:0] == 3'd1)? 1 : 0;
+	assign rd_req_trigger = (read_counter[1:0] == 2'd1)? 1 : 0;
 	
 	always_ff @(posedge clk) begin
 		if(!reset) begin
-			read_counter <= 3'd0;
+			read_counter <= 2'd0;
 		end
 		else begin
-			if( read_counter[2:0] < 3'd7 ) begin
-				read_counter[2:0] <= read_counter[2:0] + 1'b1;
+			if( read_counter[1:0] < 2'b11 ) begin
+				read_counter[1:0] <= read_counter[1:0] + 1'b1;
 			end
 			else begin
-				read_counter[2:0] <= 3'd0;
+				read_counter[1:0] <= 2'b00;
 			end
 		end
 	end
@@ -132,7 +131,7 @@ module mpf_to_buffer_SM(
 	
 	// When to effectively request a read? This will drive fiu.c0Tx.valid
 	logic read_valid;
-	assign read_valid = (//rd_req_trigger && 
+	assign read_valid = (rd_req_trigger && 
 			! c0TxAlmFull && 
 			! full_n && 
 			! requests_done && 

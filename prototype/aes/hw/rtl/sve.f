@@ -19,10 +19,8 @@ ${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/cci_mpf_if.vh
 ./generic_fifos/rtl/verilog/generic_fifo_sc_b.v
 ./generic_fifos/rtl/verilog/generic_fifo_sc_a.v
 ./generic_fifos/rtl/verilog/generic_dpram.v
-./buffers/buffer_512_to_64.sv
-./buffers/buffer_512_to_64_tb.sv
-./buffers/buffer_64_to_512.sv
-./buffers/buffer_64_to_512_tb.sv
+./buffers/buffer_512_to_128.sv
+./buffers/buffer_128_to_512.sv
 ./state_machines/buffer_to_mpf_SM.sv
 ./state_machines/mpf_to_buffer_SM.sv
 ./cci_mpf_aes_afu.sv

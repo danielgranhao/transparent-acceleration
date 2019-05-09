@@ -5,11 +5,11 @@ TEST = cci_mpf_aes
 
 # Build directory
 OBJDIR = obj
-CFLAGS += -I./$(OBJDIR)
+CFLAGS += -I./$(OBJDIR) 
 CPPFLAGS += -I./$(OBJDIR)
 
 # Files and folders
-SRCS = $(TEST).cpp $(BASE_FILE_SRC)
+SRCS = $(TEST).cpp $(BASE_FILE_SRC) ../tiny-AES-c/aes.o  
 OBJS = $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(SRCS)))
 
 # Targets
@@ -22,13 +22,13 @@ $(AFU_JSON_INFO): ../hw/rtl/$(TEST).json | objdir
 $(OBJS): $(AFU_JSON_INFO)
 
 $(TEST): $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(FPGA_LIBS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(FPGA_LIBS)    
 
 $(TEST)_ase: $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(ASE_LIBS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(ASE_LIBS)  
 
 $(OBJDIR)/%.o: %.cpp | objdir
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	rm -rf $(TEST) $(TEST)_ase $(OBJDIR)
