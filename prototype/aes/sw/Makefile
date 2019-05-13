@@ -1,39 +1,23 @@
-include ../../base/sw/base_include.mk
+CC      = gcc
+CFLAGS  = -ggdb
+RM      = rm -f
 
-# Primary test name
-TEST = cci_mpf_aes
 
-# Build directory
-OBJDIR = obj
-CFLAGS += -I./$(OBJDIR) 
-CPPFLAGS += -I./$(OBJDIR)
+default: all
 
-# Files and folders
-SRCS = $(TEST).cpp $(BASE_FILE_SRC) ../tiny-AES-c/aes.o  
-OBJS = $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(SRCS)))
+all: inject_test manager aes_ctr_software 
 
-# Targets
-all: $(TEST) $(TEST)_ase
+inject_test: inject_test.c
+	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o inject_test inject_test.c -ldl -linjector -laes_ctr_acc
 
-# AFU info from JSON file, including AFU UUID
-AFU_JSON_INFO = $(OBJDIR)/afu_json_info.h
-$(AFU_JSON_INFO): ../hw/rtl/$(TEST).json | objdir
-	afu_json_mgr json-info --afu-json=$^ --c-hdr=$@
-$(OBJS): $(AFU_JSON_INFO)
+#manager: manager.c
+#	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o manager manager.c -linjector -laes_ctr_acc
 
-$(TEST): $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(FPGA_LIBS)    
+manager: manager.c
+	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o manager manager.c -linjector -laes_ctr_acc_ase
+       	
+aes_ctr_software: aes_ctr_software.cpp 
+	$(CXX) $(CFLAGS) -o aes_ctr_software aes_ctr_software.cpp tiny-AES-c/aes.o
 
-$(TEST)_ase: $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(ASE_LIBS)  
-
-$(OBJDIR)/%.o: %.cpp | objdir
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
-
-clean:
-	rm -rf $(TEST) $(TEST)_ase $(OBJDIR)
-
-objdir:
-	@mkdir -p $(OBJDIR)
-
-.PHONY: all clean
+clean veryclean:
+	$(RM) inject_test manager aes_ctr_software
