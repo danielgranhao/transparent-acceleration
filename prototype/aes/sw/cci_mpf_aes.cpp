@@ -38,6 +38,7 @@
 
 #include <iostream>
 #include <string>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
@@ -49,8 +50,29 @@ using namespace std;
 
 #include "aes.hpp"
 
+#include "time.h"
 
-#define DATA_LENGTH 4096
+
+#define DATA_LENGTH 4096//1048576 //4096
+
+timespec diff(timespec start, timespec end)
+{
+    timespec temp;
+    if ((end.tv_nsec-start.tv_nsec)<0) {
+        temp.tv_sec = end.tv_sec-start.tv_sec-1;
+        temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+    } else {
+        temp.tv_sec = end.tv_sec-start.tv_sec;
+        temp.tv_nsec = end.tv_nsec-start.tv_nsec;
+    }
+    return temp;
+}
+
+void aes_ctr_soft(uint8_t key[], uint8_t iv[], uint8_t data[], uint32_t length){
+	struct AES_ctx ctx;
+	AES_init_ctx_iv(&ctx, key, iv);
+	AES_CTR_xcrypt_buffer(&ctx, data, length);
+}
 
 int main(int argc, char *argv[])
 {
@@ -70,28 +92,22 @@ int main(int argc, char *argv[])
 	  */
 
 	uint8_t key[32] = {0};
-	uint8_t in[64] = {0};
+	uint8_t in[(DATA_LENGTH)] = {0};
 	uint8_t iv[16] = {0};
 
-	struct AES_ctx ctx;
+	timespec start_s, end_s, start_h, end_h;
 
-	AES_init_ctx_iv(&ctx, key, iv);
-	AES_CTR_xcrypt_buffer(&ctx, in, 64);
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start_s);
+	aes_ctr_soft(key, iv, in, (DATA_LENGTH));
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_s);
 
-	//printf("CTR %s: ", xcrypt);
-	/*
-	   if (0 == memcmp((char *) out, (char *) in, 64)) {
-	   printf("SUCCESS!\n");
-	   return(0);
-	   } else {
-	   printf("FAILURE!\n");
-	   return(1);
-	   }*/
+	cout<<"SW: "<<diff(start_s,end_s).tv_sec<<":"<<diff(start_s,end_s).tv_nsec<<endl;
 
 
 
+	uint8_t volatile in_acc[(DATA_LENGTH)] __attribute__((aligned (64))) = {0};
 
-	uint8_t in_acc[64] = {0};
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start_h);
 
 	// Find and connect to the accelerator
 	OPAE_SVC_WRAPPER fpga(AFU_ACCEL_UUID);
@@ -100,29 +116,31 @@ int main(int argc, char *argv[])
 	// Connect the CSR manager
 	CSR_MGR csrs(fpga);
 
-	printf("Page size is %d\n", getpagesize());
+	//printf("Page size is %d\n", getpagesize());
 
+	/*
 	// Allocate 8 pages memory buffer
-	auto buf_src_handle = fpga.allocBuffer(getpagesize() * 8);
-	auto *buf_src = reinterpret_cast<volatile uint64_t*>(buf_src_handle->c_type());
+	auto buf_src_handle = fpga.allocBuffer(getpagesize() * ((DATA_LENGTH)/4096));
+	auto *buf_src = reinterpret_cast<volatile uint8_t*>(buf_src_handle->c_type());
 	uint64_t buf_src_pa = buf_src_handle->io_address();
 	assert(NULL != buf_src);
 
 	printf("Buf src virtual address is %p\n", buf_src);
 
 	// Allocate 8 pages  memory buffer
-	auto buf_dest_handle = fpga.allocBuffer(getpagesize() * 8);
-	auto *buf_dest = reinterpret_cast<volatile uint64_t*>(buf_dest_handle->c_type());
+	auto buf_dest_handle = fpga.allocBuffer(getpagesize() * ((DATA_LENGTH)/4096));
+	auto *buf_dest = reinterpret_cast<volatile uint8_t*>(buf_dest_handle->c_type());
 	uint64_t buf_dest_pa = buf_dest_handle->io_address();
 	assert(NULL != buf_dest);
-	*(buf_dest+DATA_LENGTH-1) = 0;
+	*(buf_dest+(DATA_LENGTH)-1) = 0;
 
 	printf("Buf dest virtual address is %p\n", buf_dest);
+	*/
 
-	csrs.writeCSR(0, (uint64_t)buf_src); // Address of src
-	csrs.writeCSR(1, (uint64_t)buf_dest); // Address of dest
-	//csrs.writeCSR(2, (uint64_t)(DATA_LENGTH/8)); // How many cache lines?
-	csrs.writeCSR(2, (uint64_t)1); // How many cache lines?
+	csrs.writeCSR(0, (uint64_t)in_acc); // Address of src
+	csrs.writeCSR(1, (uint64_t)in_acc); // Address of dest
+	csrs.writeCSR(2, (uint64_t)((DATA_LENGTH)/64)); // How many cache lines?
+	//csrs.writeCSR(2, (uint64_t)1); // How many cache lines?
 	// Need to check how to converto from uint8_t array to uint64_t
 	csrs.writeCSR(4, (uint64_t)*(uint64_t*)iv); // IV 0
 	csrs.writeCSR(5, (uint64_t)*(uint64_t*)(iv+8)); // IV 1
@@ -139,14 +157,22 @@ int main(int argc, char *argv[])
 		// equivalent to save power here.
 	};
 
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_h);
+	cout<<"HW: "<<diff(start_h,end_h).tv_sec<<":"<<diff(start_h,end_h).tv_nsec<<endl;
+
+
 	printf("Data received!\n");
 
-	if (0 == memcmp((char *) buf_dest, (char *) in, 64)) {
+	if (0 == memcmp((char *) in_acc, (char *) in, (DATA_LENGTH))) {
 		printf("SUCCESS!\n");
 	} else {
 		printf("FAILURE!\n");
 	}
 
+ 	for(int i = 0; i < DATA_LENGTH; i++){
+                if(*(in_acc+i) != *(in+i))
+                        printf("Error on pos %d - %d != %d\n", i, *(in+i), *(in_acc+i));
+        }
 
 	printf("Tests finished!\n");
 

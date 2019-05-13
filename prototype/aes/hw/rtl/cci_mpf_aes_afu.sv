@@ -415,7 +415,28 @@ module app_afu
 			.full_n     (write_buffer_full_n	)
 		);
 	
-	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
+	//assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
+	genvar i;
+	for(i = 0; i < 4; i++) begin
+		assign fiu.c1Tx.data[127+i*128:0+i*128] = { 
+			write_buffer_data_out[7+i*128:0+i*128],
+			write_buffer_data_out[15+i*128:8+i*128],
+			write_buffer_data_out[23+i*128:16+i*128],
+			write_buffer_data_out[31+i*128:24+i*128],
+			write_buffer_data_out[39+i*128:32+i*128],
+			write_buffer_data_out[47+i*128:40+i*128],
+			write_buffer_data_out[55+i*128:48+i*128],
+			write_buffer_data_out[63+i*128:56+i*128],
+			write_buffer_data_out[71+i*128:64+i*128],
+			write_buffer_data_out[79+i*128:72+i*128],
+			write_buffer_data_out[87+i*128:80+i*128],
+			write_buffer_data_out[95+i*128:88+i*128],
+			write_buffer_data_out[103+i*128:96+i*128],
+			write_buffer_data_out[111+i*128:104+i*128],
+			write_buffer_data_out[119+i*128:112+i*128],
+			write_buffer_data_out[127+i*128:120+i*128]
+			};
+	end
 
 	logic buffer_to_mpf_run;
 	logic buffer_to_mpf_done;
