@@ -22,7 +22,7 @@
 
 #include "to_inject/aes_ctr_acc.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 // function to be called
 #define FUNC aes_ctr_acc
@@ -31,7 +31,7 @@
 #define REL32_SZ 5
 
 // callq dummy_mult addr
-#define BREAKADDR 0x400bac
+#define BREAKADDR 0x400d76
 
 static const char *text_area = " r-xp ";
 static const char *lib_string = "/libaes_ctr_acc";
@@ -148,20 +148,20 @@ int main(int argc, char *argv[]){
     			return -1;
   		}
 		//printf("RAX = %d\n", regs.rax);
-		regs.rip += 5;
+		regs.rip += 4;
 		if (ptrace(PTRACE_SETREGS, child, NULL, &regs)) {
     			perror("PTRACE_SETREGS");
     			return -1;
   		}
 
-		
+			
 		// continue the program, and wait for the trap
   		if(DEBUG) printf("DEBUG: continuing execution\n");
  		ptrace(PTRACE_CONT, child, NULL, NULL);
   		if (do_wait("PTRACE_CONT")) {
   			perror("Error cont");
   		}
-		/*
+	/*		
 		// detach the process
   		if(DEBUG) printf("detaching\n");
   		if (ptrace(PTRACE_DETACH, child, NULL, NULL)) {
@@ -169,12 +169,15 @@ int main(int argc, char *argv[]){
   		  	return -1;
   		}	
 
+		while(1);		
+
 		break;*/
 
 	}	
 
-	printf("Saiu do while\n");
-	waitpid(child, NULL, 0);
+	if(DEBUG) printf("Saiu do while\n");
+	//waitpid(child, NULL, 0);
+	wait(NULL);
     }
 }
 

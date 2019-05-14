@@ -10,7 +10,7 @@
 
 using namespace std;
 
-#define DATA_LENGTH 4096//1048576 //4096
+#define DATA_LENGTH 10*1048576 //4096
 
 timespec diff(timespec start, timespec end)
 {
@@ -34,6 +34,8 @@ void aes_ctr_soft(uint8_t key[], uint8_t iv[], uint8_t data[], uint32_t length){
 int main(int argc, char *argv[])
 {
 
+	long x = 0;
+        while(x< 1000000000) x++;
 
 	/*uint8_t key[32] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
 	  0x1f, 0x35, 0x2c, 0x07, 0x3b, 0x61, 0x08, 0xd7, 0x2d, 0x98, 0x10, 0xa3, 0x09, 0x14, 0xdf, 0xf4 };
@@ -51,8 +53,11 @@ int main(int argc, char *argv[])
 	uint8_t key[32] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	  		    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	uint8_t iv[16]  = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-	uint8_t in_control[(DATA_LENGTH)] = {0};
-	uint8_t in[(DATA_LENGTH)] __attribute__((aligned (64))) = {0};
+	//uint8_t in_control[(DATA_LENGTH)] = {0};
+	//uint8_t in[(DATA_LENGTH)] __attribute__((aligned (64))) = {0};
+	uint8_t* in_control = new uint8_t[(DATA_LENGTH)];
+	uint8_t* in = (uint8_t*)aligned_alloc(64, (DATA_LENGTH));
+	memset(in, 0, (DATA_LENGTH));
 
 	// in_control is the standard
 	aes_ctr_soft(key, iv, in_control, (DATA_LENGTH));
@@ -63,9 +68,12 @@ int main(int argc, char *argv[])
 	printf("Press enter to start!\n");
 	scanf("\n");
 
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
+	//clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
+	clock_gettime(CLOCK_MONOTONIC, &start);
 	aes_ctr_soft(key, iv, in, (DATA_LENGTH));
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
+	//clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
+	clock_gettime(CLOCK_MONOTONIC, &end);
+
 
 	if (0 == memcmp((char *) in_control, (char *) in, (DATA_LENGTH))) {
                 printf("SUCCESS!\n");
