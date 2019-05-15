@@ -92,7 +92,7 @@ extern "C" void aes_ctr_acc (uint8_t key[], uint8_t iv[], uint8_t volatile data[
 	csrs.writeCSR(3, (uint64_t)1); // Run signal
 
 	// Spin, waiting for the value in memory to change to something non-zero.
-	while (0 == csrs.readCSR(0));
+	while (0 == csrs.readCSR(0))_mm_pause();
 
 	//printf("Data received!\n");
 
