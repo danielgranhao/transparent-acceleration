@@ -10,7 +10,7 @@
 
 using namespace std;
 
-#define DATA_LENGTH 10*1048576 //4096
+#define DATA_LENGTH 32*4096//1048576 //4096
 
 timespec diff(timespec start, timespec end)
 {
@@ -53,10 +53,15 @@ int main(int argc, char *argv[])
 	uint8_t key[32] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	  		    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	uint8_t iv[16]  = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+	//
+	// Allocation in the heap does not work below 32*4096 bytes..
+	//
 	//uint8_t in_control[(DATA_LENGTH)] = {0};
 	//uint8_t in[(DATA_LENGTH)] __attribute__((aligned (64))) = {0};
 	uint8_t* in_control = new uint8_t[(DATA_LENGTH)];
 	uint8_t* in = (uint8_t*)aligned_alloc(64, (DATA_LENGTH));
+	// All bytes equal so that problems related to byte order don't show up
+	memset(in_control, 0, (DATA_LENGTH));
 	memset(in, 0, (DATA_LENGTH));
 
 	// in_control is the standard
