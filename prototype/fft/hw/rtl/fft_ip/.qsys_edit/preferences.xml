@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <library expandedCategories="Project,Library" />
+ <window width="1673" height="948" x="0" y="28" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="31" />
+  </columns>
+ </systemtable>
+ <generation path="" greybox="0" simulation="VERILOG" />
+ <hdlexample language="VERILOG" />
+</preferences>

@@ -1,0 +1,126 @@
+Info: Starting: Create simulation model
+Info: qsys-generate /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys --simulation=VERILOG --allow-mixed-language-simulation --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading fft_ip/fft_ip.qsys
+Progress: Reading input file
+Progress: Adding fft_ii_0 [altera_fft_ii 16.0]
+Progress: Parameterizing module fft_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: fft_ip: "Transforming system: fft_ip"
+Info: fft_ip: Running transform generation_view_transform
+Info: fft_ip: Running transform generation_view_transform took 0.000s
+Info: fft_ii_0: Running transform generation_view_transform
+Info: fft_ii_0: Running transform generation_view_transform took 0.000s
+Info: fft_ip: Running transform merlin_avalon_transform
+Info: fft_ip: Running transform merlin_avalon_transform took 0.025s
+Info: fft_ip: "Naming system components in system: fft_ip"
+Info: fft_ip: "Processing generation queue"
+Info: fft_ip: "Generating: fft_ip"
+Info: fft_ip: "Generating: fft_ip_altera_fft_ii_160_jdm63cq"
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex
+Info: fft_ip: Done "fft_ip" with 2 modules, 290 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/fft_ip.spd --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/fft_ip.spd --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Skipping VCS script generation since VHDL file $QUARTUS_INSTALL_DIR/eda/sim_lib/altera_syn_attributes.vhd is required for simulation
+Info: Generating the following file(s) for VCSMX simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	1 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/sim/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys --block-symbol-file --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading fft_ip/fft_ip.qsys
+Progress: Reading input file
+Progress: Adding fft_ii_0 [altera_fft_ii 16.0]
+Progress: Parameterizing module fft_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys --synthesis=VERILOG --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading fft_ip/fft_ip.qsys
+Progress: Reading input file
+Progress: Adding fft_ii_0 [altera_fft_ii 16.0]
+Progress: Parameterizing module fft_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: fft_ip: "Transforming system: fft_ip"
+Info: fft_ip: Running transform generation_view_transform
+Info: fft_ip: Running transform generation_view_transform took 0.000s
+Info: fft_ii_0: Running transform generation_view_transform
+Info: fft_ii_0: Running transform generation_view_transform took 0.000s
+Info: fft_ip: Running transform merlin_avalon_transform
+Info: fft_ip: Running transform merlin_avalon_transform took 0.008s
+Info: fft_ip: "Naming system components in system: fft_ip"
+Info: fft_ip: "Processing generation queue"
+Info: fft_ip: "Generating: fft_ip"
+Info: fft_ip: "Generating: fft_ip_altera_fft_ii_160_jdm63cq"
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex
+Info: fft_ip: Done "fft_ip" with 2 modules, 84 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

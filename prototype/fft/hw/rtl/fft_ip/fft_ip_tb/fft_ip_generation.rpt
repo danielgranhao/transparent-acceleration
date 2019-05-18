@@ -1,0 +1,375 @@
+Info: Starting: Create testbench Qsys system
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip.ipx
+Info: qsys-generate /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys --testbench=STANDARD --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading fft_ip/fft_ip.qsys
+Progress: Reading input file
+Progress: Adding fft_ii_0 [altera_fft_ii 16.0]
+Progress: Parameterizing module fft_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Loading IP catalog for testbench.
+Progress: 
+Progress: 
+Progress: 
+Progress: (0) searching /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/root_components.ipx (ipx file)
+Info: Reading index /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/root_components.ipx
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/root_components.ipx: Loading now from components.ipx
+Info: Reading index /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/ip_component_categories.ipx
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/ip_component_categories.ipx described 0 plugins, 0 paths, in 0.00 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/ip_component_categories.ipx matched 1 files in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/ip/**/* matched 0 files in 0.00 seconds
+Info: Reading index /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip.ipx
+Progress: Loading fft_ip/fft_ip.qsys
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/* matched 6 files in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/ip/**/* matched 0 files in 0.00 seconds
+Info: Reading index /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip.ipx
+Warning: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*/* repeats /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*
+Warning: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*/* repeats /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/ip/**/*
+Warning: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*/* repeats /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*/*
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip.ipx described 0 plugins, 3 paths, in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/*/* matched 28 files in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip.ipx described 0 plugins, 3 paths, in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/* matched 4 files in 0.00 seconds
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/*/* matched 0 files in 0.00 seconds
+Info: Reading index /home/daniel/.altera.quartus/ip/16.0/ip_search_path/user_components.ipx
+Progress: Loading kernel_1_acc/kernel_1_acc_internal_hw.tcl
+Info: /home/daniel/Desktop/transparent-acceleration/prototype/kernel_1/hw/rtl/hls_outputs/components/kernel_1_acc/**/* matched 9 files in 0.05 seconds
+Info: /home/daniel/.altera.quartus/ip/16.0/ip_search_path/user_components.ipx described 0 plugins, 1 paths, in 0.05 seconds
+Info: /home/daniel/.altera.quartus/ip/16.0/**/* matched 2 files in 0.05 seconds
+Info: Reading index /home/daniel/altera_pro/16.0/ip/altera/altera_components.ipx
+Info: /home/daniel/altera_pro/16.0/ip/altera/altera_components.ipx described 1838 plugins, 0 paths, in 0.13 seconds
+Info: /home/daniel/altera_pro/16.0/ip/**/* matched 137 files in 0.13 seconds
+Info: /home/daniel/altera_pro/ip/**/* matched 0 files in 0.00 seconds
+Info: Reading index /home/daniel/altera_pro/16.0/quartus/sopc_builder/builtin.ipx
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/builtin.ipx described 80 plugins, 0 paths, in 0.01 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/**/* matched 9 files in 0.01 seconds
+Info: Reading index /home/daniel/altera_pro/16.0/quartus/common/librarian/factories/index.ipx
+Info: /home/daniel/altera_pro/16.0/quartus/common/librarian/factories/index.ipx described 151 plugins, 0 paths, in 0.01 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/common/librarian/factories/**/* matched 4 files in 0.01 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/$IP_IPX_PATH matched 1 files in 0.00 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/root_components.ipx described 0 plugins, 10 paths, in 0.20 seconds
+Info: /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/root_components.ipx matched 1 files in 0.20 seconds
+Progress: 
+Progress: 
+Progress: 
+Info: Running script /home/daniel/altera_pro/16.0/quartus/sopc_builder/bin/tbgen.tcl
+Info: send_message Info TB_Gen: QSYS Testbench Generator Rev: $Revision: #1 $
+Info: TB_Gen: QSYS Testbench Generator Rev: $Revision: #1 $
+Info: get_module_property NAME
+Info: send_message Info TB_Gen: System design is: fft_ip
+Info: TB_Gen: System design is: fft_ip
+Info: get_interfaces 
+Info: get_connections 
+Info: get_interface_property clk EXPORT_OF
+Info: get_instance_property fft_ii_0 CLASS_NAME
+Info: get_instance_assignment fft_ii_0 testbench.partner.map.clk
+Info: get_interface_property rst EXPORT_OF
+Info: get_instance_property fft_ii_0 CLASS_NAME
+Info: get_instance_assignment fft_ii_0 testbench.partner.map.rst
+Info: get_interface_property sink EXPORT_OF
+Info: get_instance_property fft_ii_0 CLASS_NAME
+Info: get_instance_assignment fft_ii_0 testbench.partner.map.sink
+Info: get_interface_property source EXPORT_OF
+Info: get_instance_property fft_ii_0 CLASS_NAME
+Info: get_instance_assignment fft_ii_0 testbench.partner.map.source
+Info: send_message Info TB_Gen: Creating testbench system : fft_ip_tb with all standard BFMs
+Info: TB_Gen: Creating testbench system : fft_ip_tb with all standard BFMs
+Info: create_system fft_ip_tb
+Info: add_instance fft_ip_inst fft_ip 
+Info: set_use_testbench_naming_pattern true fft_ip
+Info: get_instance_interfaces fft_ip_inst
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst sink CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst source CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: send_message Info TB_Gen: clock_sink found: clk
+Info: TB_Gen: clock_sink found: clk
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: add_instance fft_ip_inst_clk_bfm altera_avalon_clock_source 
+Info: get_instance_property fft_ip_inst_clk_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst clk clockRate
+Info: send_message Warning TB_Gen: clockRate is less than 1Hz; setting to 50MHz
+Warning: TB_Gen: clockRate is less than 1Hz; setting to 50MHz
+Info: set_instance_parameter_value fft_ip_inst_clk_bfm CLOCK_RATE 50000000
+Info: set_instance_parameter_value fft_ip_inst_clk_bfm CLOCK_UNIT 1
+Info: get_instance_property fft_ip_inst_clk_bfm CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_clk_bfm
+Info: get_instance_interface_property fft_ip_inst_clk_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_clk_bfm.clk fft_ip_inst.clk
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: send_message Info TB_Gen: reset_sink found: rst
+Info: TB_Gen: reset_sink found: rst
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: add_instance fft_ip_inst_rst_bfm altera_avalon_reset_source 
+Info: get_instance_property fft_ip_inst_rst_bfm CLASS_NAME
+Info: get_instance_interface_ports fft_ip_inst rst
+Info: get_instance_interface_port_property fft_ip_inst rst reset_n ROLE
+Info: get_instance_interface_port_property fft_ip_inst rst reset_n ROLE
+Info: set_instance_parameter_value fft_ip_inst_rst_bfm ASSERT_HIGH_RESET 0
+Info: set_instance_parameter_value fft_ip_inst_rst_bfm INITIAL_RESET_CYCLES 50
+Info: get_instance_property fft_ip_inst_rst_bfm CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_rst_bfm
+Info: get_instance_interface_property fft_ip_inst_rst_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_rst_bfm clk CLASS_NAME
+Info: get_instance_property fft_ip_inst_rst_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst rst associatedClock
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_clk_bfm
+Info: get_instance_interface_property fft_ip_inst_clk_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_clk_bfm.clk fft_ip_inst_rst_bfm.clk
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_rst_bfm
+Info: get_instance_interface_property fft_ip_inst_rst_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_rst_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_rst_bfm.reset fft_ip_inst.rst
+Info: get_instance_interface_property fft_ip_inst sink CLASS_NAME
+Info: send_message Info TB_Gen: conduit_end found: sink
+Info: TB_Gen: conduit_end found: sink
+Info: get_instance_interface_property fft_ip_inst sink CLASS_NAME
+Info: add_instance fft_ip_inst_sink_bfm altera_conduit_bfm 
+Info: get_instance_property fft_ip_inst_sink_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst sink associatedClock
+Info: get_instance_interface_parameter_value fft_ip_inst sink associatedReset
+Info: get_instance_interface_ports fft_ip_inst sink
+Info: get_instance_interface_port_property fft_ip_inst sink sink_valid ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_valid WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_valid DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_ready ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_ready WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_ready DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_error ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_error WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_error DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_sop ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_sop WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_sop DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_eop ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_eop WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_eop DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_real ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_real WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_real DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink sink_imag ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink sink_imag WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink sink_imag DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink fftpts_in ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink fftpts_in WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink fftpts_in DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst sink inverse ROLE
+Info: get_instance_interface_port_property fft_ip_inst sink inverse WIDTH
+Info: get_instance_interface_port_property fft_ip_inst sink inverse DIRECTION
+Info: set_instance_parameter_value fft_ip_inst_sink_bfm CLOCKED_SIGNAL 1
+Info: set_instance_parameter_value fft_ip_inst_sink_bfm ENABLE_RESET 1
+Info: set_instance_parameter_value fft_ip_inst_sink_bfm SIGNAL_ROLES sink_valid sink_ready sink_error sink_sop sink_eop sink_real sink_imag fftpts_in inverse
+Info: set_instance_parameter_value fft_ip_inst_sink_bfm SIGNAL_WIDTHS 1 1 2 1 1 32 32 19 1
+Info: set_instance_parameter_value fft_ip_inst_sink_bfm SIGNAL_DIRECTIONS output input output output output output output output output
+Info: get_instance_property fft_ip_inst_sink_bfm CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_sink_bfm
+Info: get_instance_interface_property fft_ip_inst_sink_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm conduit CLASS_NAME
+Info: get_instance_property fft_ip_inst_sink_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst sink associatedClock
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_clk_bfm
+Info: get_instance_interface_property fft_ip_inst_clk_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_clk_bfm.clk fft_ip_inst_sink_bfm.clk
+Info: get_instance_interfaces fft_ip_inst_sink_bfm
+Info: get_instance_interface_property fft_ip_inst_sink_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm conduit CLASS_NAME
+Info: get_instance_property fft_ip_inst_sink_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst sink associatedReset
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_rst_bfm
+Info: get_instance_interface_property fft_ip_inst_rst_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_rst_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_rst_bfm.reset fft_ip_inst_sink_bfm.reset
+Info: get_instance_interface_property fft_ip_inst sink CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_sink_bfm
+Info: get_instance_interface_property fft_ip_inst_sink_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_sink_bfm conduit CLASS_NAME
+Info: add_connection fft_ip_inst_sink_bfm.conduit fft_ip_inst.sink
+Info: get_instance_interface_property fft_ip_inst source CLASS_NAME
+Info: send_message Info TB_Gen: conduit_end found: source
+Info: TB_Gen: conduit_end found: source
+Info: get_instance_interface_property fft_ip_inst source CLASS_NAME
+Info: add_instance fft_ip_inst_source_bfm altera_conduit_bfm 
+Info: get_instance_property fft_ip_inst_source_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst source associatedClock
+Info: get_instance_interface_parameter_value fft_ip_inst source associatedReset
+Info: get_instance_interface_ports fft_ip_inst source
+Info: get_instance_interface_port_property fft_ip_inst source source_valid ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_valid WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_valid DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_ready ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_ready WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_ready DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_error ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_error WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_error DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_sop ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_sop WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_sop DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_eop ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_eop WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_eop DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_real ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_real WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_real DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source source_imag ROLE
+Info: get_instance_interface_port_property fft_ip_inst source source_imag WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source source_imag DIRECTION
+Info: get_instance_interface_port_property fft_ip_inst source fftpts_out ROLE
+Info: get_instance_interface_port_property fft_ip_inst source fftpts_out WIDTH
+Info: get_instance_interface_port_property fft_ip_inst source fftpts_out DIRECTION
+Info: set_instance_parameter_value fft_ip_inst_source_bfm CLOCKED_SIGNAL 1
+Info: set_instance_parameter_value fft_ip_inst_source_bfm ENABLE_RESET 1
+Info: set_instance_parameter_value fft_ip_inst_source_bfm SIGNAL_ROLES source_valid source_ready source_error source_sop source_eop source_real source_imag fftpts_out
+Info: set_instance_parameter_value fft_ip_inst_source_bfm SIGNAL_WIDTHS 1 1 2 1 1 32 32 19
+Info: set_instance_parameter_value fft_ip_inst_source_bfm SIGNAL_DIRECTIONS input output input input input input input input
+Info: get_instance_property fft_ip_inst_source_bfm CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_source_bfm
+Info: get_instance_interface_property fft_ip_inst_source_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm conduit CLASS_NAME
+Info: get_instance_property fft_ip_inst_source_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst source associatedClock
+Info: get_instance_interface_property fft_ip_inst clk CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_clk_bfm
+Info: get_instance_interface_property fft_ip_inst_clk_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_clk_bfm.clk fft_ip_inst_source_bfm.clk
+Info: get_instance_interfaces fft_ip_inst_source_bfm
+Info: get_instance_interface_property fft_ip_inst_source_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm conduit CLASS_NAME
+Info: get_instance_property fft_ip_inst_source_bfm CLASS_NAME
+Info: get_instance_interface_parameter_value fft_ip_inst source associatedReset
+Info: get_instance_interface_property fft_ip_inst rst CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_rst_bfm
+Info: get_instance_interface_property fft_ip_inst_rst_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_rst_bfm clk CLASS_NAME
+Info: add_connection fft_ip_inst_rst_bfm.reset fft_ip_inst_source_bfm.reset
+Info: get_instance_interface_property fft_ip_inst source CLASS_NAME
+Info: get_instance_interfaces fft_ip_inst_source_bfm
+Info: get_instance_interface_property fft_ip_inst_source_bfm clk CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm reset CLASS_NAME
+Info: get_instance_interface_property fft_ip_inst_source_bfm conduit CLASS_NAME
+Info: add_connection fft_ip_inst_source_bfm.conduit fft_ip_inst.source
+Info: send_message Info TB_Gen: Saving testbench system: fft_ip_tb.qsys
+Info: TB_Gen: Saving testbench system: fft_ip_tb.qsys
+Info: save_system fft_ip_tb.qsys
+Info: send_message Info TB_Gen: TBGEN SUCCESSFUL
+Info: TB_Gen: TBGEN SUCCESSFUL
+Info: Testbench system: /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb.qsys
+Info: Done
+Info: qsys-generate /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys --simulation=VERILOG --allow-mixed-language-simulation --testbench=STANDARD --testbench-simulation=VERILOG --allow-mixed-language-testbench-simulation --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading fft_ip_tb/fft_ip_tb.qsys
+Progress: Reading input file
+Progress: Adding fft_ip_inst [fft_ip 1.0]
+Progress: Reading input file
+Progress: Adding fft_ii_0 [altera_fft_ii 16.0]
+Progress: Parameterizing module fft_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Progress: Parameterizing module fft_ip_inst
+Progress: Adding fft_ip_inst_clk_bfm [altera_avalon_clock_source 16.0]
+Info: altera_avalon_clock_source: Preferred Simulation Language is set to None.
+Progress: Parameterizing module fft_ip_inst_clk_bfm
+Progress: Adding fft_ip_inst_rst_bfm [altera_avalon_reset_source 16.0]
+Info: altera_avalon_reset_source: Preferred Simulation Language is set to None.
+Progress: Parameterizing module fft_ip_inst_rst_bfm
+Progress: Adding fft_ip_inst_sink_bfm [altera_conduit_bfm 16.0]
+Info: altera_conduit_bfm: Preferred Simulation Language is set to None.
+Progress: Parameterizing module fft_ip_inst_sink_bfm
+Progress: Adding fft_ip_inst_source_bfm [altera_conduit_bfm 16.0]
+Progress: Parameterizing module fft_ip_inst_source_bfm
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: fft_ip_tb.fft_ip_inst_clk_bfm: Elaborate: altera_clock_source
+Info: fft_ip_tb.fft_ip_inst_clk_bfm:            $Revision: #2 $
+Info: fft_ip_tb.fft_ip_inst_clk_bfm:            $Date: 2016/02/19 $
+Info: fft_ip_tb.fft_ip_inst_rst_bfm: Elaborate: altera_reset_source
+Info: fft_ip_tb.fft_ip_inst_rst_bfm:            $Revision: #2 $
+Info: fft_ip_tb.fft_ip_inst_rst_bfm:            $Date: 2016/02/19 $
+Info: fft_ip_tb.fft_ip_inst_rst_bfm: Reset is negatively asserted.
+Info: fft_ip_tb: "Transforming system: fft_ip_tb"
+Info: fft_ip_tb: Running transform generation_view_transform
+Info: fft_ip_tb: Running transform generation_view_transform took 0.000s
+Info: fft_ip_inst: Running transform generation_view_transform
+Info: fft_ip_inst: Running transform generation_view_transform took 0.000s
+Info: fft_ip_inst_clk_bfm: Running transform generation_view_transform
+Info: fft_ip_inst_clk_bfm: Running transform generation_view_transform took 0.000s
+Info: fft_ip_inst_rst_bfm: Running transform generation_view_transform
+Info: fft_ip_inst_rst_bfm: Running transform generation_view_transform took 0.000s
+Info: fft_ip_inst_sink_bfm: Running transform generation_view_transform
+Info: fft_ip_inst_sink_bfm: Running transform generation_view_transform took 0.000s
+Info: fft_ip_inst_source_bfm: Running transform generation_view_transform
+Info: fft_ip_inst_source_bfm: Running transform generation_view_transform took 0.000s
+Info: fft_ii_0: Running transform generation_view_transform
+Info: fft_ii_0: Running transform generation_view_transform took 0.000s
+Info: fft_ip_tb: Running transform merlin_avalon_transform
+Info: fft_ip_tb: Running transform merlin_avalon_transform took 0.009s
+Info: fft_ip_inst: Running transform merlin_avalon_transform
+Info: fft_ip_inst: Running transform merlin_avalon_transform took 0.007s
+Info: fft_ip_tb: "Naming system components in system: fft_ip_tb"
+Info: fft_ip_tb: "Processing generation queue"
+Info: fft_ip_tb: "Generating: fft_ip_tb"
+Info: fft_ip_tb: "Generating: fft_ip"
+Info: fft_ip_tb: "Generating: altera_avalon_clock_source"
+Info: fft_ip_tb: "Generating: altera_avalon_reset_source"
+Info: fft_ip_tb: "Generating: altera_conduit_bfm_160_oln7wka"
+Info: fft_ip_tb: "Generating: altera_conduit_bfm_160_3fqkqha"
+Info: fft_ip_tb: "Generating: fft_ip_altera_fft_ii_160_jdm63cq"
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex
+Info: fft_ii_0: --- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex
+Info: fft_ip_tb: Done "fft_ip_tb" with 7 modules, 299 files
+Info: qsys-generate succeeded.
+Info: sim-script-gen --spd=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb.spd --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb.spd --output-directory=/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Skipping VCS script generation since VHDL file $QUARTUS_INSTALL_DIR/eda/sim_lib/altera_syn_attributes.vhd is required for simulation
+Info: Generating the following file(s) for VCSMX simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	6 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in /home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip_tb/fft_ip_tb/sim/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: Finished: Create testbench Qsys system

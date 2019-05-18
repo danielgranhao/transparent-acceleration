@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2019.05.17.09:16:58"
+ outputDirectory="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Arria 10"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="10AX115U3F45E2SGE3"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="2"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="rst" kind="reset" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="reset_n" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="sink" kind="conduit" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="rst" />
+   <port name="sink_valid" direction="input" role="sink_valid" width="1" />
+   <port name="sink_ready" direction="output" role="sink_ready" width="1" />
+   <port name="sink_error" direction="input" role="sink_error" width="2" />
+   <port name="sink_sop" direction="input" role="sink_sop" width="1" />
+   <port name="sink_eop" direction="input" role="sink_eop" width="1" />
+   <port name="sink_real" direction="input" role="sink_real" width="32" />
+   <port name="sink_imag" direction="input" role="sink_imag" width="32" />
+   <port name="fftpts_in" direction="input" role="fftpts_in" width="19" />
+   <port name="inverse" direction="input" role="inverse" width="1" />
+  </interface>
+  <interface name="source" kind="conduit" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="rst" />
+   <port name="source_valid" direction="output" role="source_valid" width="1" />
+   <port name="source_ready" direction="input" role="source_ready" width="1" />
+   <port name="source_error" direction="output" role="source_error" width="2" />
+   <port name="source_sop" direction="output" role="source_sop" width="1" />
+   <port name="source_eop" direction="output" role="source_eop" width="1" />
+   <port name="source_real" direction="output" role="source_real" width="32" />
+   <port name="source_imag" direction="output" role="source_imag" width="32" />
+   <port name="fftpts_out" direction="output" role="fftpts_out" width="19" />
+  </interface>
+ </perimeter>
+ <entity kind="fft_ip" version="1.0" name="fft_ip">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="1558081018" />
+  <parameter name="AUTO_DEVICE" value="10AS016C3U19E2LG" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
+  <generatedFiles>
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/synth/fft_ip.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/synth/fft_ip.v"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/home/daniel/altera_pro/16.0/ip/altera/dsp/altera_fft_ii/altera_fft_ii_hw.tcl" />
+   <file
+       path="/home/daniel/altera_pro/16.0/ip/altera/dsp/altera_fft_ii/fft_helper.jar" />
+   <file
+       path="/home/daniel/altera_pro/16.0/quartus/sopc_builder/model/lib/com.altera.entityinterfaces.jar" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="fft_ip">"Generating: fft_ip"</message>
+   <message level="Info" culprit="fft_ip">"Generating: fft_ip_altera_fft_ii_160_jdm63cq"</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex</message>
+  </messages>
+ </entity>
+ <entity
+   kind="altera_fft_ii"
+   version="16.0"
+   name="fft_ip_altera_fft_ii_160_jdm63cq">
+  <parameter name="THROUGHPUT_LATENCY" value="524288" />
+  <parameter name="in_width_derived" value="32" />
+  <parameter name="in_order" value="Natural" />
+  <parameter name="hyper_opt" value="false" />
+  <parameter name="num_engines_derived" value="1" />
+  <parameter name="twid_width_derived" value="32" />
+  <parameter name="length" value="262144" />
+  <parameter name="out_order" value="Digit Reverse" />
+  <parameter name="selected_device_family" value="Arria 10" />
+  <parameter name="dsp_resource_opt" value="false" />
+  <parameter name="CALC_LATENCY" value="262144" />
+  <parameter name="design_env" value="NATIVE" />
+  <parameter name="data_rep" value="Single Floating Point" />
+  <parameter name="in_width" value="18" />
+  <parameter name="engine_arch" value="Quad Output" />
+  <parameter name="data_flow" value="Variable Streaming" />
+  <parameter name="out_width" value="29" />
+  <parameter name="num_engines" value="1" />
+  <parameter name="out_width_derived" value="32" />
+  <parameter name="hard_fp" value="true" />
+  <parameter name="twid_width" value="18" />
+  <parameter name="direction" value="Bi-directional" />
+  <generatedFiles>
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_text_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_math_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_lib_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_sink.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_source.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_roundsat.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_sink_fftfprvs.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_fft_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_dual_port_rom.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_mult_add.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_single_port_rom.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_dual_port_ram.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/hyper_pipeline_interface.v"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/counter_module.sv"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_fft4_hdfp.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_dft4_hdfp.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_twiddle_opt.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_ram.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_firststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_del.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rsft32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_snorm.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_fft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_twiddle.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_cntsgn32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_fft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_mul_2727.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_shift.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_snorm_mul.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_sgnpstn.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_twiddle_opt.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_cntusgn32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_dft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_mul.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_add.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_lsft32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rvs.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_unorm.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_sub.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_usgnpos.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rvsctl.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_firststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_cmplxmult.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq.sv"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_text_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_math_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_lib_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_sink.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_source.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_roundsat.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_dspip_avalon_streaming_block_sink_fftfprvs.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_top.ocp"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/auk_fft_pkg.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_dual_port_rom.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_mult_add.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_single_port_rom.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/altera_fft_dual_port_ram.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/hyper_pipeline_interface.v"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/counter_module.sv"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_fft4_hdfp.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_dft4_hdfp.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_twiddle_opt.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_ram.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_firststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_del.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rsft32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_snorm.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_fft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_core.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_twiddle.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_cntsgn32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_fft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_mul_2727.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_shift.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_snorm_mul.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_sgnpstn.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_twiddle_opt.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_stage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_cntusgn32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_dft4.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_mul.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_add.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_lsft32.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfprvs_laststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rvs.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_top.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_unorm.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_sub.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_hcc_usgnpos.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_rvsctl.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfpbdr_firststage.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/apn_fftfp_cmplxmult.vhd"
+       attributes="" />
+   <file
+       path="/home/daniel/Desktop/transparent-acceleration/prototype/fft/fft_ip/fft_ip/altera_fft_ii_160/synth/fft_ip_altera_fft_ii_160_jdm63cq.sv"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/daniel/altera_pro/16.0/ip/altera/dsp/altera_fft_ii/altera_fft_ii_hw.tcl" />
+   <file
+       path="/home/daniel/altera_pro/16.0/ip/altera/dsp/altera_fft_ii/fft_helper.jar" />
+   <file
+       path="/home/daniel/altera_pro/16.0/quartus/sopc_builder/model/lib/com.altera.entityinterfaces.jar" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="fft_ip" as="fft_ii_0" />
+  <messages>
+   <message level="Info" culprit="fft_ip">"Generating: fft_ip_altera_fft_ii_160_jdm63cq"</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp6.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp6.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twifp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp7.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twrfp8.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp1.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp2.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp3.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp4.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp5.hex</message>
+   <message level="Info" culprit="fft_ii_0">--- add file: fft_ip_altera_fft_ii_160_jdm63cq_twqfp6.hex</message>
+  </messages>
+ </entity>
+</deploy>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <library expandedCategories="Project,Library" />
+ <window width="1738" height="944" x="0" y="28" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="79" />
+   <name preferredWidth="228" />
+  </columns>
+ </systemtable>
+</preferences>
