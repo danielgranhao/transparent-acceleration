@@ -1,0 +1,29 @@
+cci_mpf_matrix_mult.json
+
+C:../../../base/hw/rtl/base_sources.txt
+
+# Generic DPRAM
++incdir+./generic_fifos
+generic_fifos/rtl/verilog/generic_dpram.v
+
+# Generic FIFO
+generic_fifos/rtl/verilog/timescale.v
+generic_fifos/rtl/verilog/generic_fifo_sc_a.v
+
+# Read and write buffers
++incdir+./buffers
+buffers/buffer_512_to_64.sv
+buffers/buffer_64_to_512.sv
+
+# State machines to control data flow
++incdir+./state_machines
+state_machines/mpf_to_buffer_SM.sv
+state_machines/buffer_to_mpf_SM.sv
+
+# Floating point multiplication
++incdir+./fp_mult
+fp_mult/fp_mult.qsys
+
++incdir+.
+cci_mpf_matrix_mult_afu.sv
+

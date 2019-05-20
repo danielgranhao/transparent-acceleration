@@ -1,6 +1,6 @@
 +incdir+./generic_fifos/rtl/verilog
-+incdir+${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/
 
++incdir+${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/
 ${FPGA_BBB_CCI_SRC}/BBB_cci_mpf/hw/rtl/cci-mpf-if/cci_mpf_if.vh
 // to avoid error
 +incdir+/home/daniel/Desktop/transparent-acceleration/OPAE_Development/OPAE_Test/build_sim/rtl/

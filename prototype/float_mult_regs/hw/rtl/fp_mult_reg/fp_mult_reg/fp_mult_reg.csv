@@ -1,0 +1,18 @@
+# system info fp_mult_reg on 2019.05.20.17:40:30
+system_info:
+name,value
+DEVICE,10AS016C3U19E2LG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,1558370430
+#
+#
+# Files generated for fp_mult_reg on 2019.05.20.17:40:30
+files:
+filepath,kind,attributes,module,is_top
+sim/fp_mult_reg.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,fp_mult_reg,true
+altera_fpdsp_block_160/sim/fp_mult_reg_altera_fpdsp_block_160_e4wbm5a.sv,SYSTEM_VERILOG,TOP_LEVEL_FILE,fp_mult_reg_altera_fpdsp_block_160_e4wbm5a,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+fp_mult_reg.fpdsp_block_0,fp_mult_reg_altera_fpdsp_block_160_e4wbm5a

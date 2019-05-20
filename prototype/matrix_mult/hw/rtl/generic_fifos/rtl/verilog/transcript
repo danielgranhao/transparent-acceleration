@@ -1,0 +1,1311 @@
+# //  Questa Sim
+# //  Version 10.4c_5 linux Nov 14 2015
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+project open /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/generic_processing
+# Loading project generic_processing
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv failed with 1 errors.
+# 4 compiles, 1 failed with 1 error.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 12:26:56 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb_sv_unit
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb_sv_unit
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'generic_fifo_sc_a' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst File: /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_fifo_sc_a.v
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'generic_dpram' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst/u0 File: /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v
+# Error loading design
+# End time: 12:26:56 on May 04,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 1
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful with warnings.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 12:27:55 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb_sv_unit
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb_sv_unit
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'generic_dpram' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst/u0 File: /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v
+# Error loading design
+# End time: 12:27:56 on May 04,2019, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 12:28:27 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# ** Error: (vsim-3043) /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(85): Unresolved reference to 'exec_write'.
+#    Time: 0 ns  Iteration: 0  Instance: /buffer_512_to_64_tb File: /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv
+# Error loading design
+# End time: 12:28:27 on May 04,2019, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 1
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 12:28:52 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Load canceled
+add wave -position end  sim:/buffer_512_to_64_tb/data_in
+add wave -position end  sim:/buffer_512_to_64_tb/clk
+add wave -position end  sim:/buffer_512_to_64_tb/rst
+add wave -position end  sim:/buffer_512_to_64_tb/clr
+add wave -position end  sim:/buffer_512_to_64_tb/data_in
+add wave -position end  sim:/buffer_512_to_64_tb/wr_enable
+add wave -position end  sim:/buffer_512_to_64_tb/rd_enable
+add wave -position end  sim:/buffer_512_to_64_tb/data_out
+add wave -position end  sim:/buffer_512_to_64_tb/full
+add wave -position end  sim:/buffer_512_to_64_tb/empty
+add wave -position end  sim:/buffer_512_to_64_tb/full_n
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(88)
+#    Time: 525 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 88
+quit -sim
+# End time: 12:39:45 on May 04,2019, Elapsed time: 0:10:53
+# Errors: 1, Warnings: 1
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 12:39:57 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+add wave -position end  sim:/buffer_512_to_64_tb/clk
+add wave -position end  sim:/buffer_512_to_64_tb/rst
+add wave -position end  sim:/buffer_512_to_64_tb/data_in
+add wave -position end  sim:/buffer_512_to_64_tb/wr_enable
+add wave -position end  sim:/buffer_512_to_64_tb/rd_enable
+add wave -position end  sim:/buffer_512_to_64_tb/data_out
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Break in Module generic_dpram at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v line 320
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 250 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[1]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[2]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[2]/generic_fifo_sc_a_inst/din
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[3]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[4]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[5]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[6]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[7]/generic_fifo_sc_a_inst/din
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/select
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv failed with 8 errors.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 1 failed with 8 errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst/re
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[0]/generic_fifo_sc_a_inst/dout
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Causality operation skipped due to absence of debug database file
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv failed with 1 errors.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 165)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 185)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 205)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 245)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 265)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 285)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 305)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 325)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 345)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 365)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 385)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 405)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 425)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 445)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 465)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 485)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 505)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 525)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 545)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 565)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 605)
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 625)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# buffer_512_to_64_tb.buffer_512_to_64.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 225)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Simulation stop requested.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+step -current
+# ** Note: (vsim-12048) Current thread #IMPLICIT-WIRE(1)#192 is Done.
+# 
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+add wave -position 8  sim:/buffer_512_to_64_tb/buffer_512_to_64/select_shifted
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv failed with 1 errors.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Break in Module generic_dpram at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v line 315
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+# Warning in wave window restart: (vish-4014) No objects found matching '/buffer_512_to_64_tb/buffer_512_to_64/select_shifted'. 
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[7]/generic_fifo_sc_a_inst/re
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(92)
+#    Time: 730 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/wave_buffer_512_to_64_tb.do
+quit -sim
+# End time: 17:42:45 on May 04,2019, Elapsed time: 5:02:48
+# Errors: 2, Warnings: 33
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv failed with 1 errors.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 1 failed with 1 error.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 17:44:08 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+
+
+ls
+# generic_processing.cr.mti
+# generic_processing.mpf
+# vsim.wlf
+# wave_buffer_512_to_64_tb.do
+# work
+do wave_buffer_512_to_64_tb.do
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+quit -sim
+# End time: 17:45:08 on May 04,2019, Elapsed time: 0:01:00
+# Errors: 0, Warnings: 1
+vsim -novopt work.buffer_64_to_512_tb
+# vsim -novopt work.buffer_64_to_512_tb 
+# Start time: 17:45:12 on May 04,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading sv_std.std
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+add wave -position end  sim:/buffer_64_to_512_tb/clk
+add wave -position end  sim:/buffer_64_to_512_tb/rst
+add wave -position end  sim:/buffer_64_to_512_tb/data_in
+add wave -position end  sim:/buffer_64_to_512_tb/wr_enable
+add wave -position end  sim:/buffer_64_to_512_tb/rd_enable
+add wave -position end  sim:/buffer_64_to_512_tb/data_out
+add wave -position end  sim:/buffer_64_to_512_tb/buffer_64_to_512/select_shifted
+add wave -position end  sim:/buffer_64_to_512_tb/buffer_64_to_512/genfifos[0]/generic_fifo_sc_a_inst/we
+add wave -position 7  sim:/buffer_64_to_512_tb/buffer_64_to_512/genfifos[0]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_64_to_512_tb/buffer_64_to_512/genfifos[1]/generic_fifo_sc_a_inst/din
+add wave -position end  sim:/buffer_64_to_512_tb/buffer_64_to_512/genfifos[1]/generic_fifo_sc_a_inst/we
+run -all
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+# Can't move the Now cursor.
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Break in Module generic_dpram at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/generic_fifos/rtl/verilog/generic_dpram.v line 315
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[0].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[1].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[2].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[3].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[4].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[5].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[6].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# buffer_64_to_512_tb.buffer_64_to_512.genfifos[7].generic_fifo_sc_a_inst WARNING: Reading while fifo is EMPTY (                 585)
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/wave_buffer_64_to_512_tb.do
+quit -sim
+# End time: 18:04:19 on May 04,2019, Elapsed time: 0:19:07
+# Errors: 1, Warnings: 5
+vsim -novopt work.buffer_512_to_64_tb
+# vsim -novopt work.buffer_512_to_64_tb 
+# Start time: 14:02:12 on May 06,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading sv_std.std
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+do wave_buffer_512_to_64_tb.do
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position end  sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[6]/generic_fifo_sc_a_inst/full_n
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position end sim:/buffer_512_to_64_tb/buffer_512_to_64/*
+add wave -position end {sim:/buffer_512_to_64_tb/buffer_512_to_64/genfifos[7]/*}
+add wave -position 4  sim:/buffer_512_to_64_tb/buffer_512_to_64/empty
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+step -current
+# ** Note: (vsim-12048) Current thread #IMPLICIT-WIRE(1)#192 is Done.
+# 
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+add wave -position 9  sim:/buffer_512_to_64_tb/buffer_512_to_64/select_shifted
+# Compile of generic_dpram.v was successful.
+# Compile of generic_fifo_sc_a.v was successful.
+# Compile of buffer_512_to_64.sv was successful.
+# Compile of buffer_512_to_64_tb.sv was successful.
+# Compile of buffer_64_to_512.sv was successful.
+# Compile of buffer_64_to_512_tb.sv was successful.
+# 6 compiles, 0 failed with no errors.
+restart -f
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64_tb
+# Loading work.buffer_512_to_64_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_512_to_64
+# Loading work.buffer_512_to_64
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_fifo_sc_a
+# Loading work.generic_fifo_sc_a
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.generic_dpram
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv(93)
+#    Time: 500 ns  Iteration: 0  Instance: /buffer_512_to_64_tb
+# Break in Module buffer_512_to_64_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_512_to_64_tb.sv line 93
+quit -sim
+# End time: 17:28:56 on May 06,2019, Elapsed time: 3:26:44
+# Errors: 1, Warnings: 4
+vsim -novopt work.buffer_64_to_512_tb
+# vsim -novopt work.buffer_64_to_512_tb 
+# Start time: 17:28:58 on May 06,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512_tb
+# Loading sv_std.std
+# Loading work.buffer_64_to_512_tb
+# Refreshing /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/sim/work.buffer_64_to_512
+# Loading work.buffer_64_to_512
+# Loading work.generic_fifo_sc_a
+# Loading work.generic_dpram
+run -all
+# ** Note: $stop    : /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv(92)
+#    Time: 710 ns  Iteration: 0  Instance: /buffer_64_to_512_tb
+# Break in Module buffer_64_to_512_tb at /home/daniel/Desktop/transparent-acceleration/prototype/generic_processing/hw/rtl/buffers/buffer_64_to_512_tb.sv line 92
+run -all
+# Break key hit
+# Simulation stop requested.
+# End time: 17:29:26 on May 06,2019, Elapsed time: 0:00:28
+# Errors: 0, Warnings: 1

@@ -321,19 +321,19 @@ module app_afu
 	assign buffer_to_mpf_run = run[0:0];
 	
 	buffer_to_mpf_SM buffer_to_mpf_SM_inst (
-			.clk               (clk              		), 
-			.reset             (!reset           		),
+			.clk               	(clk              		), 
+			.reset             	(!reset           		),
 			
-			.run               (buffer_to_mpf_run   	), 
-			.data_length       (data_length      		), 
-			.done              (buffer_to_mpf_done  	), 
-			.first_clAddr      (dest_clAddr     		),
+			.run               	(buffer_to_mpf_run   	), 
+			.data_length       	(data_length      		), 
+			.done              	(buffer_to_mpf_done  	), 
+			.first_clAddr      	(dest_clAddr     		),
 			
-			.c1TxAlmFull	   (fiu.c1TxAlmFull		),
-			.c1TxValid	   (fiu.c1Tx.valid		),
-			.reqMemHdr	   (fiu.c1Tx.hdr		),
+			.c1TxAlmFull	   	(fiu.c1TxAlmFull		),
+			.c1TxValid			(fiu.c1Tx.valid			),
+			.reqMemHdr	   		(fiu.c1Tx.hdr			),
 
-			.c1Rx		   (fiu.c1Rx			),
+			.c1Rx		   		(fiu.c1Rx				),
 			
 			.buffer_rd_enable  (write_buffer_rd_enable 	), 
 			.buffer_empty      (write_buffer_empty 		)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_fpdsp_block_160/sim/fp_mult_reg_altera_fpdsp_block_160_e4wbm5a.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_fpdsp_block_160" />
+ <file path="sim/fp_mult_reg.v" type="VERILOG" hasInlineConfiguration="true" />
+ <topLevel name="fp_mult_reg" />
+ <deviceFamily name="arria10" />
+</simPackage>

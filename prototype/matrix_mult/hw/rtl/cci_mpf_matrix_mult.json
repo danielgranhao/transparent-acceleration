@@ -1,0 +1,28 @@
+{
+   "version": 1,
+   "afu-image": {
+      "power": 0,
+      "afu-top-interface":
+         {
+            "name": "ccip_std_afu",
+            "module-ports" :
+               [
+                  {
+                     "class": "cci-p",
+                     "params":
+                        {
+                           "clock": "pClkDiv2"
+                        }
+                  }
+               ]
+         },
+      "accelerator-clusters":
+         [
+            {
+               "name": "cci_mpf_aes",
+               "total-contexts": 1,
+               "accelerator-type-uuid": "6e192d1a-84ca-462d-a77a-0c668f57b75f"
+            }
+         ]
+   }
+}
