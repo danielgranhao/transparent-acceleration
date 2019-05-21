@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_fpdsp_block_160/sim/fp_mult_accumulate_altera_fpdsp_block_160_pjjncdi.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_fpdsp_block_160" />
+ <file
+   path="sim/fp_mult_accumulate.v"
+   type="VERILOG"
+   hasInlineConfiguration="true" />
+ <topLevel name="fp_mult_accumulate" />
+ <deviceFamily name="arria10" />
+</simPackage>

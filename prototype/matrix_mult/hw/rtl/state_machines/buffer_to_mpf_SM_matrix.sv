@@ -10,11 +10,13 @@
  
 `include "cci_mpf_if.vh"
  
-module buffer_to_mpf_SM(
+module buffer_to_mpf_SM_matrix(
 		input clk, reset, // Reset is active low
 		
 		input run,						// Assert high 1 clock cycle to start writing data to memory
-		input [63:0] data_length,		// How many cache lines? Must be maintained during operation
+		input [31:0] M,					// lines of A
+		input [31:0] N,					// cols of B (lines when transposed)
+		input [31:0] K,					// cols of A and lins of B (cols of B also when transposed)
 		output done,					// Goes high when all data has been written to memory
 		
 		input t_cci_clAddr first_clAddr,	// First virtual address to write to - Must be maintained during operation
@@ -30,6 +32,8 @@ module buffer_to_mpf_SM(
 		input  buffer_empty				// Indicates if the buffer is empty
 		);
 	
+	logic [63:0] data_length;
+	assign data_length = (M * N) >> 4;
 	
 	//
 	// States

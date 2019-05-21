@@ -124,23 +124,6 @@ module app_afu
 	// Initialization vector
 	logic [63:0] run;
 	
-	
-	//
-	// States in our simple example.
-	//
-	typedef enum logic [0:0]
-		{
-		STATE_IDLE,
-		STATE_RUN
-	}
-	t_state;
-
-	t_state state;
-
-	// CHANGE THIS
-	logic afu_complete;
-	assign afu_complete =  ((state == STATE_RUN) && ! fiu.c1TxAlmFull);
-
 	always_ff @(posedge clk)
 	begin
 		if (reset) begin
@@ -182,6 +165,21 @@ module app_afu
 	// =========================================================================
 
 	//
+	// States in our simple example.
+	//
+	typedef enum logic [0:0]
+		{
+		STATE_IDLE,
+		STATE_RUN
+	}
+	t_state;
+
+	t_state state;
+
+	// CHANGE THIS
+	logic afu_complete;
+
+	//
 	// State machine
 	//
 	always_ff @(posedge clk)
@@ -192,18 +190,12 @@ module app_afu
 		end
 		else
 		begin
-			// Trigger the AFU when mem_addr is set above.  (When the CPU
-			// tells us the address to which the FPGA should write a message.)
 			if ((state == STATE_IDLE) && run)
 			begin
-				//state <= STATE_RUN;
-				state <= STATE_IDLE;
+				state <= STATE_RUN;
 				$display("AFU running...");
 			end
 
-			// The AFU completes its task by writing a single line.  When
-			// the line is written return to idle.  The write will happen
-			// as long as the request channel is not full.
 			if (afu_complete)
 			begin
 				state <= STATE_IDLE;
@@ -370,6 +362,8 @@ module app_afu
 			.buffer_rd_enable  (write_buffer_rd_enable 	), 
 			.buffer_empty      (write_buffer_empty 		)
 		);
+
+	assign afu_complete =  ((state == STATE_RUN) && mpf_to_buffer_done && buffer_to_mpf_done);
 
 	//
 	// This AFU never handles MMIO reads.

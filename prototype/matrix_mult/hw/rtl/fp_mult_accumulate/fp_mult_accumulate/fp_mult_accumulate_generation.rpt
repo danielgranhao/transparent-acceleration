@@ -1,0 +1,81 @@
+Info: Starting: Create simulation model
+Info: qsys-generate /home/daniel/altera_pro/16.0/fp_mult_accumulate.qsys --simulation=VERILOG --allow-mixed-language-simulation --output-directory=/home/daniel/altera_pro/16.0/fp_mult_accumulate --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading 16.0/fp_mult_accumulate.qsys
+Progress: Reading input file
+Progress: Adding fpdsp_block_0 [altera_fpdsp_block 16.0]
+Progress: Parameterizing module fpdsp_block_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: fp_mult_accumulate: "Transforming system: fp_mult_accumulate"
+Info: fp_mult_accumulate: Running transform generation_view_transform
+Info: fp_mult_accumulate: Running transform generation_view_transform took 0.001s
+Info: fpdsp_block_0: Running transform generation_view_transform
+Info: fpdsp_block_0: Running transform generation_view_transform took 0.000s
+Info: fp_mult_accumulate: Running transform merlin_avalon_transform
+Info: fp_mult_accumulate: Running transform merlin_avalon_transform took 0.176s
+Info: fp_mult_accumulate: "Naming system components in system: fp_mult_accumulate"
+Info: fp_mult_accumulate: "Processing generation queue"
+Info: fp_mult_accumulate: "Generating: fp_mult_accumulate"
+Info: fp_mult_accumulate: "Generating: fp_mult_accumulate_altera_fpdsp_block_160_pjjncdi"
+Info: fp_mult_accumulate: Done "fp_mult_accumulate" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd=/home/daniel/altera_pro/16.0/fp_mult_accumulate/fp_mult_accumulate.spd --output-directory=/home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=/home/daniel/altera_pro/16.0/fp_mult_accumulate/fp_mult_accumulate.spd --output-directory=/home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in /home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Generating the following file(s) for VCS simulator in /home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ directory:
+Info: 	synopsys/vcs/vcs_setup.sh
+Info: Generating the following file(s) for VCSMX simulator in /home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in /home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	1 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in /home/daniel/altera_pro/16.0/fp_mult_accumulate/sim/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/daniel/altera_pro/16.0/fp_mult_accumulate.qsys --block-symbol-file --output-directory=/home/daniel/altera_pro/16.0/fp_mult_accumulate --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading 16.0/fp_mult_accumulate.qsys
+Progress: Reading input file
+Progress: Adding fpdsp_block_0 [altera_fpdsp_block 16.0]
+Progress: Parameterizing module fpdsp_block_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/daniel/altera_pro/16.0/fp_mult_accumulate.qsys --synthesis=VERILOG --greybox --output-directory=/home/daniel/altera_pro/16.0/fp_mult_accumulate --family="Arria 10" --part=10AS016C3U19E2LG
+Progress: Loading 16.0/fp_mult_accumulate.qsys
+Progress: Reading input file
+Progress: Adding fpdsp_block_0 [altera_fpdsp_block 16.0]
+Progress: Parameterizing module fpdsp_block_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: fp_mult_accumulate: "Transforming system: fp_mult_accumulate"
+Info: fp_mult_accumulate: Running transform generation_view_transform
+Info: fp_mult_accumulate: Running transform generation_view_transform took 0.000s
+Info: fpdsp_block_0: Running transform generation_view_transform
+Info: fpdsp_block_0: Running transform generation_view_transform took 0.000s
+Info: fp_mult_accumulate: Running transform merlin_avalon_transform
+Info: fp_mult_accumulate: Running transform merlin_avalon_transform took 0.008s
+Info: fp_mult_accumulate: "Naming system components in system: fp_mult_accumulate"
+Info: fp_mult_accumulate: "Processing generation queue"
+Info: fp_mult_accumulate: "Generating: fp_mult_accumulate"
+Info: fp_mult_accumulate: "Generating: fp_mult_accumulate_altera_fpdsp_block_160_pjjncdi"
+Info: fp_mult_accumulate: Done "fp_mult_accumulate" with 2 modules, 2 files
+Info: Generating third-party timing and resource estimation model ...
+Info: Done generating third-party timing and resource estimation model.
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

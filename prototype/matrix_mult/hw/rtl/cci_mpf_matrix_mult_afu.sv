@@ -35,7 +35,8 @@
 
 module app_afu
 		(
-		input  logic clk,
+		input  logic pClk,
+		input  logic clk, // pClk/2
 
 		// Connection toward the host.  Reset comes in here.
 		cci_mpf_if.to_fiu fiu,
@@ -99,24 +100,26 @@ module app_afu
 	// Consume configuration CSR writes
 	//
 
-	// MMIO address 0 to store source address
-	logic is_src_addr_csr_write;
-	assign is_src_addr_csr_write = csrs.cpu_wr_csrs[0].en;
-	t_byteAddr src_addr;
-	t_cci_clAddr src_clAddr;
-	assign src_clAddr = byteAddrToClAddr(src_addr);
+	// MMIO address 0 to store source address A
+	logic is_src_addr_A_csr_write;
+	assign is_src_addr_A_csr_write = csrs.cpu_wr_csrs[0].en;
+	t_byteAddr src_addr_A;
+	t_cci_clAddr src_clAddr_A;
+	assign src_clAddr_A = byteAddrToClAddr(src_addr_A);
+	
+	// MMIO address 2 to store source address B
+	logic is_src_addr_B_csr_write;
+	assign is_src_addr_B_csr_write = csrs.cpu_wr_csrs[1].en;
+	t_byteAddr src_addr_B;
+	t_cci_clAddr src_clAddr_B;
+	assign src_clAddr_B = byteAddrToClAddr(src_addr_B);
 
-	// MMIO address 2 to store destination address
+	// MMIO address 4 to store destination address
 	logic is_dest_addr_csr_write;
-	assign is_dest_addr_csr_write = csrs.cpu_wr_csrs[1].en;
+	assign is_dest_addr_csr_write = csrs.cpu_wr_csrs[2].en;
 	t_byteAddr dest_addr;
 	t_cci_clAddr dest_clAddr;
 	assign dest_clAddr = byteAddrToClAddr(dest_addr);
-
-	// MMIO address 4 to store data length 
-	logic is_data_length_addr_csr_write;
-	assign is_data_length_addr_csr_write = csrs.cpu_wr_csrs[2].en;
-	logic [63:0] data_length;
 
 	// MMIO address 6 receive run order
 	logic is_run_csr_write;
@@ -124,34 +127,64 @@ module app_afu
 	// Initialization vector
 	logic [63:0] run;
 	
+	// MMIO address 8 to store M  // lines of A
+	logic is_M_csr_write;
+	assign is_M_csr_write = csrs.cpu_wr_csrs[4].en;
+	logic [63:0] M;
+	
+	// MMIO address 10 to store N // cols of B (lines when transposed)
+	logic is_N_csr_write;
+	assign is_N_csr_write = csrs.cpu_wr_csrs[5].en;
+	logic [63:0] N;
+	
+	// MMIO address 12 to store K // cols of A and lins of B (cols of B also when transposed)
+	logic is_K_csr_write;
+	assign is_K_csr_write = csrs.cpu_wr_csrs[6].en;
+	logic [63:0] K;
+	
 	always_ff @(posedge clk)
 	begin
 		if (reset) begin
-			src_addr <= 64'h0000_0000_0000_0000;
+			src_addr_A <= 64'h0000_0000_0000_0000;
+			src_addr_B <= 64'h0000_0000_0000_0000;
 			dest_addr <= 64'h0000_0000_0000_0000;
-			data_length <= 64'h0000_0000_0000_0000;
 			run <= 64'h0000_0000_0000_0000;
+			M <= 64'h0000_0000_0000_0000;
+			N <= 64'h0000_0000_0000_0000;
+			K <= 64'h0000_0000_0000_0000;
 		end
 		else begin
 			if (run) begin
 				run <= 64'h0000_0000_0000_0000;
 			end
 			else begin
-				if (is_src_addr_csr_write) begin
-					src_addr <= csrs.cpu_wr_csrs[0].data;
-					$display("Received source address: %0h", csrs.cpu_wr_csrs[0].data);
+				if (is_src_addr_A_csr_write) begin
+					src_addr_A <= csrs.cpu_wr_csrs[0].data;
+					$display("Received source A address: %0h", csrs.cpu_wr_csrs[0].data);
+				end
+				if (is_src_addr_B_csr_write) begin
+					src_addr_B <= csrs.cpu_wr_csrs[1].data;
+					$display("Received source B address: %0h", csrs.cpu_wr_csrs[0].data);
 				end
 				else if (is_dest_addr_csr_write) begin
-					dest_addr <= csrs.cpu_wr_csrs[1].data;
+					dest_addr <= csrs.cpu_wr_csrs[2].data;
 					$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
-				end
-				else if (is_data_length_addr_csr_write) begin
-					data_length <= csrs.cpu_wr_csrs[2].data;
-					$display("Received data length: %0d", csrs.cpu_wr_csrs[2].data);
 				end
 				else if (is_run_csr_write) begin
 					run <= csrs.cpu_wr_csrs[3].data;
 					$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
+				end
+				else if (is_M_csr_write) begin
+					M <= csrs.cpu_wr_csrs[4].data;
+					$display("Received M: %0d", csrs.cpu_wr_csrs[4].data);
+				end
+				else if (is_N_csr_write) begin
+					N <= csrs.cpu_wr_csrs[5].data;
+					$display("Received N: %0d", csrs.cpu_wr_csrs[5].data);
+				end
+				else if (is_K_csr_write) begin
+					K <= csrs.cpu_wr_csrs[6].data;
+					$display("Received K: %0d", csrs.cpu_wr_csrs[6].data);
 				end
 			end
 		end
@@ -210,39 +243,75 @@ module app_afu
 	// Read buffer
 	//
 	
-	logic [511:0] read_buffer_data_in;
-	logic read_buffer_wr_enable;
-	logic [63:0] read_buffer_data_out;
-	logic read_buffer_rd_enable;
-	logic read_buffer_empty;
-	logic read_buffer_full_n;
+	logic [511:0] read_buffer_data_in_A;
+	logic read_buffer_wr_enable_A;
+	logic [511:0] read_buffer_data_out_A;
+	logic read_buffer_rd_enable_A;
+	logic read_buffer_empty_A;
+	logic read_buffer_full_n_A;
 	
-	logic [63:0] write_buffer_data_in;
+	logic [511:0] read_buffer_data_in_B;
+	logic read_buffer_wr_enable_B;
+	logic [511:0] read_buffer_data_out_B;
+	logic read_buffer_rd_enable_B;
+	logic read_buffer_empty_B;
+	logic read_buffer_full_n_B;
+
+	
+	logic [511:0] write_buffer_data_in;
 	logic write_buffer_wr_enable;
 	logic [511:0] write_buffer_data_out;
 	logic write_buffer_rd_enable;
 	logic write_buffer_empty;
 	logic write_buffer_full_n;
 	
-	assign read_buffer_data_in[511:0] = fiu.c0Rx.data[511:0];
+	assign read_buffer_data_in_A[511:0] = fiu.c0Rx.data[511:0];
+	assign read_buffer_data_in_B[511:0] = fiu.c0Rx.data[511:0];
 	
-	// Read from read buffer as long as there is something to read and there is space for it to be written on the write buffer
-	assign read_buffer_rd_enable = (! write_buffer_full_n && ! read_buffer_empty)? 1 : 0;
+	generic_fifo_sc_a #(
+			.dw(512),
+			.aw(8),
+			.n(128)) 
+		generic_fifo_sc_a_read_A  (
+			.clk        (clk       					), 
+			.rst        (!reset       				), 
+			.clr        (reset       				), 
+			.din        (read_buffer_data_in_A 		), 
+			.we         (read_buffer_wr_enable_A 	), 
+			.dout       (read_buffer_data_out_A     ), 
+			.re         (read_buffer_rd_enable_A    ), 
+			.full       (      						), 
+			.empty      (read_buffer_empty_A     	), 
+			.full_r     ( 							), 
+			.empty_r    ( 							), 
+			.full_n     (read_buffer_full_n_A 		), 
+			.empty_n    ( 							), 
+			.full_n_r   ( 							), 
+			.empty_n_r  ( 							), 
+			.level      ( 							)
+		);
 	
-	buffer_512_to_64 buffer_512_to_64_inst(
-			.clk			(clk					), 
-			.rst			(!reset					), 
-			.clr			(reset					),
-		
-			.data_in		(read_buffer_data_in	),
-			.wr_enable		(read_buffer_wr_enable	),
-
-			.data_out		(read_buffer_data_out	),
-			.rd_enable		(read_buffer_rd_enable	),
-		
-			.full			(						),
-			.empty			(read_buffer_empty		),
-			.full_n			(read_buffer_full_n 	)
+	generic_fifo_sc_a #(
+			.dw(512),
+			.aw(8),
+			.n(128)) 
+		generic_fifo_sc_a_read_B  (
+			.clk        (clk       					), 
+			.rst        (!reset       				), 
+			.clr        (reset       				), 
+			.din        (read_buffer_data_in_B 		), 
+			.we         (read_buffer_wr_enable_B 	), 
+			.dout       (read_buffer_data_out_B     ), 
+			.re         (read_buffer_rd_enable_B    ), 
+			.full       (      						), 
+			.empty      (read_buffer_empty_B     	), 
+			.full_r     ( 							), 
+			.empty_r    ( 							), 
+			.full_n     (read_buffer_full_n_B 		), 
+			.empty_n    ( 							), 
+			.full_n_r   ( 							), 
+			.empty_n_r  ( 							), 
+			.level      ( 							)
 		);
 
 	logic mpf_to_buffer_run;
@@ -250,24 +319,33 @@ module app_afu
 	
 	assign mpf_to_buffer_run = run[0:0];
 	
-	mpf_to_buffer_SM mpf_to_buffer_SM_inst (
-			.clk               (clk              		), 
-			.reset             (!reset           		),
+	mpf_to_buffer_SM_matrix mpf_to_buffer_SM_matrix_inst (
+			.clk                 (clk                	), 
+			.reset               (!reset             	),
 			
-			.run               (mpf_to_buffer_run		), 
-			.data_length       (data_length      		), 
-			.done              (mpf_to_buffer_done		), 
-			.first_clAddr      (src_clAddr       		),
+			.run                 (mpf_to_buffer_run  	), 
+			.M                   (M[31:0]            	), 
+			.N                   (N[31:0]            	),  
+			.K                   (K[31:0]            	),  
+			.done                (mpf_to_buffer_done 	), 
+			.first_clAddr_A      (src_clAddr_A		 	), 
+			.first_clAddr_B      (src_clAddr_B   	 	),
 			
-			.c0TxAlmFull	   (fiu.c0TxAlmFull		),
-			.c0TxValid	   (fiu.c0Tx.valid		),
-			.reqMemHdr	   (fiu.c0Tx.hdr		),
-
-			.c0Rx		   (fiu.c0Rx			),
-
-			.buffer_wr_enable  (read_buffer_wr_enable 	), 
-			.full_n            (read_buffer_full_n 		)
+			.c0TxAlmFull         (fiu.c0TxAlmFull    	), 
+			.c0TxValid           (fiu.c0Tx.valid     	), 
+			.reqMemHdr           (fiu.c0Tx.hdr       	), 
+			
+			.c0Rx                (fiu.c0Rx           	),
+			
+			.buffer_wr_enable_A  (read_buffer_wr_enable_A	), 
+			.full_n_A            (read_buffer_full_n_A		), 
+			.buffer_wr_enable_B  (read_buffer_wr_enable_B 	), 
+			.full_n_B            (read_buffer_full_n_B		)
 		);
+	
+	// Read from read buffers as long as there is something to read and there is space for it to be written on the write buffer
+	assign read_buffer_rd_enable_A = (! write_buffer_full_n && ! read_buffer_empty_A && ! read_buffer_empty_B)? 1 : 0;
+	assign read_buffer_rd_enable_B = (! write_buffer_full_n && ! read_buffer_empty_A && ! read_buffer_empty_B)? 1 : 0;
 	
 	//
 	// FFT Kernel
@@ -320,76 +398,256 @@ module app_afu
 		end
 	end*/
 	
-	logic [31:0] source_real;
-	logic [63:32] source_imag;
-
-	fp_mult u0 (
-                .aclr   (),   //   aclr.aclr
-                .ay     (read_buffer_data_out[31:0]),     //     ay.ay
-                .az     (read_buffer_data_out[63:32]),     //     az.az
-                .result (source_real)  // result.result
+	//
+	// Multiply add 512 bits of data (floats)
+	//
+	
+	logic mults_input_valid;
+	always_ff @(posedge clk) begin
+		mults_input_valid <= read_buffer_rd_enable_A;
+	end
+	
+	// How many cols_cl?
+	logic [27:0] K_cl;
+	assign K_cl = K >> 4; 
+	
+	// Which col_cl is being computed?
+	logic [31:0] current_col_cl;
+	
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			current_col_cl <= 'd0;
+		end
+		else begin
+			if( run ) begin
+				current_col_cl <= 'd0;
+			end
+			else begin
+				if( mults_input_valid ) begin
+					if( current_col_cl == K_cl - 1'd1) begin
+						current_col_cl <= 'd0;
+					end
+					else begin
+						current_col_cl <= current_col_cl + 1'd1;
+					end
+				end
+			end
+		end
+	end
+	
+	logic start_line;
+	assign start_line = (current_col_cl == 'd0);
+	
+	logic end_line;
+	assign end_line = (current_col_cl == K_cl - 1'd1);
+	
+	// Shift register to delay valid signal
+	logic signal_shift_reg[0:16];
+	assign signal_shift_reg[0]	= (end_line && mults_input_valid); // At the end of this cycle the last 512 bits of data of the line enters the mults
+	
+	always_ff @(posedge clk) begin
+		for(int i = 1; i<=16; i++) begin
+			signal_shift_reg[i]	<= signal_shift_reg[i-1];
+		end
+	end
+	
+	// Mults
+	genvar i;
+	generate
+		for(i = 0; i<16; i=i+1) begin : genmults
+			
+			logic accumulate;
+			logic [31:0] fp_mult_result;
+			
+			assign accumulate = (!start_line);
+			
+			fp_mult_accumulate fp_mult_accumulate_inst (
+					.clk		(clk										),
+					.aclr   	(reset										),   	//   aclr.aclr
+					.ena		(1'b1										),
+					.accumulate	(accumulate									),		// accumulate or not
+					.ay     	(read_buffer_data_out_A[ 31 + i*32 : i*32 ]	),     	//     ay.ay
+					.az     	(read_buffer_data_out_B[ 31 + i*32 : i*32 ]	),     	//     az.az
+					.result 	(fp_mult_result								)  		// result.result
+				);
+			
+		end
+	endgenerate
+	
+	generate
+		for(i = 0; i<8; i=i+1) begin : genadds1
+			
+			logic [31:0] fp_add_result;
+			
+			fp_add fp_add_inst (
+					.clk    (clk								),    	//    clk.clk
+					.aclr   (reset								),   	//   aclr.aclr
+					.ena    (1'b1								),    	//    ena.ena
+					.ax     (genmults[i*2].fp_mult_result			),     	//     ax.ax
+					.ay     (genmults[i*2+1].fp_mult_result		),     	//     ay.ay
+					.result (fp_add_result						)  		// result.result
+				);
+			
+		end
+	endgenerate
+	
+	generate
+		for(i = 0; i<4; i=i+1) begin : genadds2
+			
+			logic [31:0] fp_add_result;
+			
+			fp_add fp_add_inst (
+					.clk    (clk								),    	//    clk.clk
+					.aclr   (reset								),   	//   aclr.aclr
+					.ena    (1'b1								),    	//    ena.ena
+					.ax     (genadds1[i*2].fp_add_result		),     	//     ax.ax
+					.ay     (genadds1[i*2+1].fp_add_result		),     	//     ay.ay
+					.result (fp_add_result						)  		// result.result
+				);
+			
+		end
+	endgenerate
+	
+	generate
+		for(i = 0; i<2; i=i+1) begin : genadds3
+			
+			logic [31:0] fp_add_result;
+			
+			fp_add fp_add_inst (
+					.clk    (clk								),    	//    clk.clk
+					.aclr   (reset								),   	//   aclr.aclr
+					.ena    (1'b1								),    	//    ena.ena
+					.ax     (genadds2[i*2].fp_add_result		),     	//     ax.ax
+					.ay     (genadds2[i*2+1].fp_add_result		),     	//     ay.ay
+					.result (fp_add_result						)  		// result.result
+				);
+			
+		end
+	endgenerate
+	
+	fp_add fp_add_inst (
+			.clk    (clk								),    	//    clk.clk
+			.aclr   (reset								),   	//   aclr.aclr
+			.ena    (1'b1								),    	//    ena.ena
+			.ax     (genadds3[0].fp_add_result			),     	//     ax.ax
+			.ay     (genadds3[1].fp_add_result			),     	//     ay.ay
+			.result (fp_add_result						)  		// result.result
 		);
+	
+	logic fp_add_result_valid;
+	assign fp_add_result_valid = signal_shift_reg[16];
+	
+	logic [3:0] write_position;
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			write_position <= 'd0;
+		end
+		else begin
+			if( run ) begin
+				write_position <= 'd0;
+			end
+			else begin
+				if(fp_add_result_valid) begin
+					if( write_position == 4'b1111 ) begin
+						write_position <= 'd0;
+					end
+					else begin
+						write_position <= write_position + 1'd1;
+					end
+				end
+			end
+		end
+	end
+	
+	logic [511:0] cl_buffer;
+	
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			cl_buffer <= 'd0;
+		end
+		else begin
+			if(fp_add_result_valid) begin
+				case (write_position)
+					4'd0 : cl_buffer[31:0] <= fp_add_result;
+					4'd1 : cl_buffer[63:32] <= fp_add_result;
+					4'd2 : cl_buffer[95:64] <= fp_add_result;
+					4'd3 : cl_buffer[127:96] <= fp_add_result;
+					4'd4 : cl_buffer[159:128] <= fp_add_result;
+					4'd5 : cl_buffer[192:160] <= fp_add_result;
+					4'd6 : cl_buffer[223:192] <= fp_add_result;
+					4'd7 : cl_buffer[255:224] <= fp_add_result;
+					4'd8 : cl_buffer[287:256] <= fp_add_result;
+					4'd9 : cl_buffer[319:288] <= fp_add_result;
+					4'd10 : cl_buffer[351:320] <= fp_add_result;
+					4'd11 : cl_buffer[383:352] <= fp_add_result;
+					4'd12 : cl_buffer[415:384] <= fp_add_result;
+					4'd13 : cl_buffer[447:416] <= fp_add_result;
+					4'd14 : cl_buffer[479:448] <= fp_add_result;
+					4'd15 : cl_buffer[511:480] <= fp_add_result;
+				endcase
+			end
+		end
+	end
+	
+	logic cl_ready;
+	
+	always_ff @(posedge clk) begin
+		if (reset)  begin
+			cl_ready <= 1'b0;
+		end
+		else begin
+			cl_ready <= (write_position == 4'd15 && fp_add_result_valid);
+		end
+	end
 		
-	
-	//assign write_buffer_wr_enable 		= valid_shift_reg[29];
-	
-	assign write_buffer_data_in[63:0] = {source_real, source_real};
+	assign write_buffer_wr_enable 		= cl_ready;
+	assign write_buffer_data_in[511:0] 	= cl_buffer[511:0];
 	
 	//
 	// Write buffer
 	//
 	
-	buffer_64_to_512 buffer_64_to_512_inst (
-			.clk        (clk       				), 
-			.rst        (!reset    				), 
-			.clr        (reset     				), 
-		
-			.data_in    (write_buffer_data_in 	), 
-			.wr_enable  (write_buffer_wr_enable	), 
-		
-			.data_out   (write_buffer_data_out	), 
-			.rd_enable  (write_buffer_rd_enable	), 
-		
-			.full       (	      				), 
-			.empty      (write_buffer_empty		), 
-			.full_n     (write_buffer_full_n	)
+	generic_fifo_sc_a #(
+			.dw(512),
+			.aw(8),
+			.n(128)) 
+		generic_fifo_sc_a_write  (
+			.clk        (clk       					), 
+			.rst        (!reset       				), 
+			.clr        (reset       				), 
+			.din        (write_buffer_data_in 		), 
+			.we         (write_buffer_wr_enable 	), 
+			.dout       (write_buffer_data_out      ), 
+			.re         (write_buffer_rd_enable     ), 
+			.full       (      						), 
+			.empty      (write_buffer_empty     	), 
+			.full_r     ( 							), 
+			.empty_r    ( 							), 
+			.full_n     (write_buffer_full_n 		), 
+			.empty_n    ( 							), 
+			.full_n_r   ( 							), 
+			.empty_n_r  ( 							), 
+			.level      ( 							)
 		);
 	
 	assign fiu.c1Tx.data[511:0] = write_buffer_data_out[511:0];
-	/*genvar i;
-	for(i = 0; i < 4; i++) begin
-		assign fiu.c1Tx.data[127+i*128:0+i*128] = { 
-				write_buffer_data_out[7+i*128:0+i*128],
-				write_buffer_data_out[15+i*128:8+i*128],
-				write_buffer_data_out[23+i*128:16+i*128],
-				write_buffer_data_out[31+i*128:24+i*128],
-				write_buffer_data_out[39+i*128:32+i*128],
-				write_buffer_data_out[47+i*128:40+i*128],
-				write_buffer_data_out[55+i*128:48+i*128],
-				write_buffer_data_out[63+i*128:56+i*128],
-				write_buffer_data_out[71+i*128:64+i*128],
-				write_buffer_data_out[79+i*128:72+i*128],
-				write_buffer_data_out[87+i*128:80+i*128],
-				write_buffer_data_out[95+i*128:88+i*128],
-				write_buffer_data_out[103+i*128:96+i*128],
-				write_buffer_data_out[111+i*128:104+i*128],
-				write_buffer_data_out[119+i*128:112+i*128],
-				write_buffer_data_out[127+i*128:120+i*128]
-			};
-	end*/
+	
 
 	logic buffer_to_mpf_run;
 	logic buffer_to_mpf_done;
 	
 	assign buffer_to_mpf_run = run[0:0];
 	
-	buffer_to_mpf_SM buffer_to_mpf_SM_inst (
+	buffer_to_mpf_SM_matrix buffer_to_mpf_SM_matrix_inst (
 			.clk               	(clk              		), 
 			.reset             	(!reset           		),
 			
 			.run               	(buffer_to_mpf_run   	), 
-			.data_length       	(data_length      		), 
-			.done              	(buffer_to_mpf_done  	), 
+			.M					(M[31:0]				),
+			.N					(N[31:0]				),
+			.K					(K[31:0]				),
+			.done              	(buffer_to_mpf_done  	),
+			
 			.first_clAddr      	(dest_clAddr     		),
 			
 			.c1TxAlmFull	   	(fiu.c1TxAlmFull		),

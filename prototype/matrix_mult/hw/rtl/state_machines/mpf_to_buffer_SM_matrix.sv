@@ -3,22 +3,24 @@
  ****************************************************************************/
 
 /**
- * Module: mpf_to_buffer_SM
+ * Module: mpf_to_buffer_SM_matrix
  * 
  * TODO: Add module documentation
  */
  
 `include "cci_mpf_if.vh"
  
-module mpf_to_buffer_SM(
+module mpf_to_buffer_SM_matrix(
 		input clk, reset, // Reset is active low
 		
 		input run,						// Assert high 1 clock cycle to start reading data from memory
-		input [31:0] ncols_cl,		// How many columns in cache lines? Must be maintained during operation
-		input [31:0] nlins,		// How many lines? Must be maintained during operation
+		input [31:0] M,					// lines of A
+		input [31:0] N,					// cols of B (lines when transposed)
+		input [31:0] K,					// cols of A and lins of B (cols of B also when transposed)
 		output done,					// Goes high when all data has been written to buffer
 		
-		input t_cci_clAddr first_clAddr,	// First virtual address - Must be maintained during operation
+		input t_cci_clAddr first_clAddr_A,	// First virtual address matrix A- Must be maintained during operation
+		input t_cci_clAddr first_clAddr_B,	// First virtual address matrix B- Must be maintained during operation
 		
 		// Connection toward the host.
 		input 				c0TxAlmFull,
@@ -27,8 +29,11 @@ module mpf_to_buffer_SM(
 
 		input t_if_ccip_c0_Rx c0Rx,
 		
-		output buffer_wr_enable,		// Control signal for buffer
-		input  full_n					// Indicates the buffer as space for N entries (at the moment is set to 40)
+		output buffer_wr_enable_A,		// Control signal for buffer A
+		input  full_n_A,					// Indicates the buffer A as space for N entries (at the moment is set to 40)
+		
+		output buffer_wr_enable_B,		// Control signal for buffer B
+		input  full_n_B					// Indicates the buffer B as space for N entries (at the moment is set to 40)
 		);
 	
 	
@@ -66,62 +71,93 @@ module mpf_to_buffer_SM(
 	//	Next addr to read from
 	//
 	t_cci_clAddr next_clAddr;
-	logic [31:0] current_line;
 	
-	// É PRECISO VERIFICAR ISTO TUDO!!
+	logic [31:0] current_col;
+	logic [31:0] current_line_A;
+	logic [31:0] current_line_B;
+	
+	// Number of reads per line
+	logic [27:0] K_cl;
+	assign K_cl[27:0] = K >> 4;
+	
+	
+	typedef enum logic [0:0]{
+		MATRIX_A,
+		MATRIX_B
+	}
+	t_next_matrix;
+	
+	t_next_matrix next_matrix;
+	
+	// Alternated between requests for blocks of matrix A and B
 	always_ff @(posedge clk) begin
 		if (!reset)  begin
-			next_clAddr <= 'd0;
-			current_line <= 'd0;
+			next_matrix <= MATRIX_A;
 		end
 		else begin
 			if( run ) begin
-				next_clAddr <= first_clAddr;
+				next_matrix <= MATRIX_A;
 			end
-			else if (c0TxValid) begin
-				if(current_line[31:0] + 1'd1 == nlins[31:0]) begin
-					if(next_clAddr == first_clAddr + ncols_cl) begin
-						current_line[31:0] 	<= current_line[31:0] + 1'b1;
-						next_clAddr 		<= first_clAddr + current_line[31:0] * ncols_cl[31:0];
+			else begin
+				if (c0TxValid) begin
+					if(next_matrix == MATRIX_A) begin
+						next_matrix <= MATRIX_B;
 					end
 					else begin
-						next_clAddr <= next_clAddr + 1'd1;
-					end
-				end
-				else begin
-					if(next_clAddr == first_clAddr + ncols_cl) begin
-						current_line[31:0] 	<= current_line[31:0] + 1'b1;
-						next_clAddr 		<= first_clAddr + current_line[31:0] * ncols_cl[31:0];
-					end
-					else begin
-						next_clAddr <= next_clAddr + 1'd1;
+						next_matrix <= MATRIX_A;
 					end
 				end
 			end
 		end
 	end
 	
-	// Done sending requests condition
-	logic requests_done;
-	assign requests_done = ( (next_clAddr - first_clAddr) >= data_length)? 1 : 0;
-	
-	//
-	//	Counter so that read requests are made only at the consumption rate
-	//
-	logic [1:0] read_counter;
-	logic rd_req_trigger;
-	assign rd_req_trigger = (read_counter[1:0] == 2'd1)? 1 : 0;
-	
-	always_ff @(posedge clk) begin
-		if(!reset) begin
-			read_counter <= 2'd0;
+	always_comb begin
+		if(next_matrix == MATRIX_A) begin
+			next_clAddr = first_clAddr_A + (K_cl[27:0] * current_line_A[31:0]) + current_col[31:0];
 		end
 		else begin
-			if( read_counter[1:0] < 2'b11 ) begin
-				read_counter[1:0] <= read_counter[1:0] + 1'b1;
+			next_clAddr = first_clAddr_B + (K_cl[27:0] * current_line_B[31:0]) + current_col[31:0];
+		end
+	end
+	
+	// Done sending requests condition
+	logic requests_done;
+
+	always_ff @(posedge clk) begin
+		if (!reset)  begin
+			requests_done   <= 'd0;
+			current_col 	<= 'd0;
+			current_line_A 	<= 'd0;
+			current_line_B 	<= 'd0;
+		end
+		else begin
+			if( run ) begin
+				requests_done   <= 'd0;
+				current_col 	<= 'd0;
+				current_line_A	<= 'd0;
+				current_line_B 	<= 'd0;
 			end
-			else begin
-				read_counter[1:0] <= 2'b00;
+			else if (c0TxValid && next_matrix == MATRIX_B) begin
+				
+				if( current_col == K_cl - 1'd1 ) begin // Go through columns in 512 bit blocks
+					if(current_line_B == N - 1'd1 ) begin // Go through lines (columns) of B
+						if(current_line_A == M - 1'd1 ) begin // Go through lines of A
+							requests_done <= 1'b1;
+						end
+						else begin
+							current_line_A <= current_line_A + 1'd1;
+						end
+						current_line_B <= 'd0;
+					end
+					else begin
+						current_line_B <= current_line_B + 1'd1; 
+					end
+					current_col <= 'd0;
+				end
+				else begin
+					current_col <= current_col + 1'd1;
+				end
+				
 			end
 		end
 	end
@@ -144,17 +180,26 @@ module mpf_to_buffer_SM(
 		rd_hdr_params.cl_len = eCL_LEN_1;
 
 		// Generate the header
-		rd_hdr = cci_mpf_c0_genReqHdr(eREQ_RDLINE_I,
-				next_clAddr,
-				t_cci_mdata'(0),
-				rd_hdr_params);
+		if( next_matrix == MATRIX_A ) begin
+			rd_hdr = cci_mpf_c0_genReqHdr(eREQ_RDLINE_S,
+					next_clAddr,
+					t_cci_mdata'('d0),
+					rd_hdr_params);
+		end
+		else begin
+			rd_hdr = cci_mpf_c0_genReqHdr(eREQ_RDLINE_S,
+					next_clAddr,
+					t_cci_mdata'('d1),
+					rd_hdr_params);
+		end
 	end
 	
 	// When to effectively request a read? This will drive fiu.c0Tx.valid
 	logic read_valid;
-	assign read_valid = (rd_req_trigger && 
+	assign read_valid = (/*rd_req_trigger && */
 			! c0TxAlmFull && 
-			! full_n && 
+			! full_n_A &&
+			! full_n_B &&
 			! requests_done && 
 			state == STATE_RUN)? 1 : 0;
 	
@@ -168,46 +213,65 @@ module mpf_to_buffer_SM(
 		else
 		begin
 			// Generate a read request when needed and the FIU isn't full
-			//fiu.c0Tx <= cci_mpf_genC0TxReadReq(rd_hdr,
-			//		read_valid);
-
 			{ reqMemHdr , c0TxValid } <= cci_mpf_genC0TxReadReq(rd_hdr,
 					read_valid);
 
 			if (read_valid)
 			begin
-				$display("Sent read request number %d for VA 0x%x", next_clAddr-first_clAddr+1 ,clAddrToByteAddr(next_clAddr));
+				if(next_matrix == MATRIX_A) begin
+					$display("MATRIX A: Sent read request number %d for VA 0x%x", next_clAddr-first_clAddr_A+1 ,clAddrToByteAddr(next_clAddr));
+				end
+				else begin
+					$display("MATRIX B: Sent read request number %d for VA 0x%x", next_clAddr-first_clAddr_B+1 ,clAddrToByteAddr(next_clAddr));
+				end
 			end
 		end
 	end
 	
+	// Count number of read reqs
+	logic [31:0] nread_rq;
+	
+	always_ff @(posedge clk) begin
+		if (!reset)  begin
+			nread_rq <= 'd0;
+		end
+		else begin
+			if ( run ) begin
+				nread_rq <= 'd0;
+			end
+			else if( c0TxValid ) begin
+				nread_rq <= nread_rq + 1'd1;
+			end
+		end
+	end
 	
 	
 	//
 	// READ RESPONSE HANDLING
 	//
 	
-	assign buffer_wr_enable = cci_c0Rx_isReadRsp(c0Rx);
+	assign buffer_wr_enable_A = cci_c0Rx_isReadRsp(c0Rx) && (c0Rx.hdr.mdata == 'd0);
+	assign buffer_wr_enable_B = cci_c0Rx_isReadRsp(c0Rx) && (c0Rx.hdr.mdata == 'd1);
 	
 	// Check when all data has been received so that done condition can be detected
-	t_cci_clAddr addr_to_be_received;
+	logic [31:0] nread_resp;
 	
 	always_ff @(posedge clk) begin
 		if (!reset)  begin
-			addr_to_be_received <= 'd0;
+			nread_resp <= 'd0;
 		end
 		else begin
 			if (run) begin
-				addr_to_be_received <= first_clAddr;
+				nread_resp <= 'd0;
 			end
 			else if (cci_c0Rx_isReadRsp(c0Rx)) begin
-				addr_to_be_received <= addr_to_be_received + 1'b1;
-				$display("Received a response for read request number %d", addr_to_be_received - first_clAddr + 1);
+				nread_resp <= nread_resp + 1'b1;
+				$display("Received a response for read request number %d", nread_resp + 1);
 			end
 		end
 	end
 	
-	assign done_condition = ( (addr_to_be_received - first_clAddr) >= data_length )? 1 : 0;
+	assign done_condition = ( nread_resp == nread_rq && requests_done );
 	
 	
 endmodule
