@@ -36,7 +36,7 @@
 module app_afu
 		(
 		input  logic pClk,
-		input  logic clk, // pClk/2
+		input  logic clk, // pClkDiv2
 
 		// Connection toward the host.  Reset comes in here.
 		cci_mpf_if.to_fiu fiu,
@@ -164,11 +164,11 @@ module app_afu
 				end
 				if (is_src_addr_B_csr_write) begin
 					src_addr_B <= csrs.cpu_wr_csrs[1].data;
-					$display("Received source B address: %0h", csrs.cpu_wr_csrs[0].data);
+					$display("Received source B address: %0h", csrs.cpu_wr_csrs[1].data);
 				end
 				else if (is_dest_addr_csr_write) begin
 					dest_addr <= csrs.cpu_wr_csrs[2].data;
-					$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
+					$display("Received destination address: %0h", csrs.cpu_wr_csrs[2].data);
 				end
 				else if (is_run_csr_write) begin
 					run <= csrs.cpu_wr_csrs[3].data;
@@ -462,9 +462,9 @@ module app_afu
 			assign accumulate = (!start_line);
 			
 			fp_mult_accumulate fp_mult_accumulate_inst (
-					.clk		(clk										),
+					.clk		(clk										),		//    clk.clk
 					.aclr   	(reset										),   	//   aclr.aclr
-					.ena		(1'b1										),
+					.ena		(mults_input_valid							),		//    ena.ena
 					.accumulate	(accumulate									),		// accumulate or not
 					.ay     	(read_buffer_data_out_A[ 31 + i*32 : i*32 ]	),     	//     ay.ay
 					.az     	(read_buffer_data_out_B[ 31 + i*32 : i*32 ]	),     	//     az.az
@@ -482,8 +482,8 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (1'b1								),    	//    ena.ena
-					.ax     (genmults[i*2].fp_mult_result			),     	//     ax.ax
+					.ena    (signal_shift_reg[4]				),    	//    ena.ena
+					.ax     (genmults[i*2].fp_mult_result		),     	//     ax.ax
 					.ay     (genmults[i*2+1].fp_mult_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
 				);
@@ -499,7 +499,7 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (1'b1								),    	//    ena.ena
+					.ena    (signal_shift_reg[7]				),    	//    ena.ena
 					.ax     (genadds1[i*2].fp_add_result		),     	//     ax.ax
 					.ay     (genadds1[i*2+1].fp_add_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
@@ -516,7 +516,7 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (1'b1								),    	//    ena.ena
+					.ena    (signal_shift_reg[10]				),    	//    ena.ena
 					.ax     (genadds2[i*2].fp_add_result		),     	//     ax.ax
 					.ay     (genadds2[i*2+1].fp_add_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
@@ -525,10 +525,12 @@ module app_afu
 		end
 	endgenerate
 	
+	logic [31:0] fp_add_result;
+	
 	fp_add fp_add_inst (
 			.clk    (clk								),    	//    clk.clk
 			.aclr   (reset								),   	//   aclr.aclr
-			.ena    (1'b1								),    	//    ena.ena
+			.ena    (signal_shift_reg[13]				),    	//    ena.ena
 			.ax     (genadds3[0].fp_add_result			),     	//     ax.ax
 			.ay     (genadds3[1].fp_add_result			),     	//     ay.ay
 			.result (fp_add_result						)  		// result.result
@@ -643,9 +645,9 @@ module app_afu
 			.reset             	(!reset           		),
 			
 			.run               	(buffer_to_mpf_run   	), 
-			.M					(M[31:0]				),
-			.N					(N[31:0]				),
-			.K					(K[31:0]				),
+			.M					(M[15:0]				),
+			.N					(N[15:0]				),
+			.K					(K[15:0]				),
 			.done              	(buffer_to_mpf_done  	),
 			
 			.first_clAddr      	(dest_clAddr     		),

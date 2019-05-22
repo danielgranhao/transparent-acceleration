@@ -19,21 +19,21 @@
 
 #include "injector/injector.h"
 
-#include "to_inject/aes_ctr_acc.h"
+#include "to_inject/mult.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 // function to be called
-#define FUNC aes_ctr_acc
+#define FUNC mult
 
 // number of bytes in a JMP/CALL rel32 instruction
 #define REL32_SZ 5
 
 // callq dummy_mult addr
-#define BREAKADDR 0x400cbe
+#define BREAKADDR 0x40067d
 
 static const char *text_area = " r-xp ";
-static const char *lib_string = "/libaes_ctr_acc";
+static const char *lib_string = "/libmult";
 
 void inject_shared_lib(pid_t traced_process, char *lib);
 void *find_library(pid_t pid, const char *libname); 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     child = fork();
     if(child == 0) { // Child
 	extern char** environ;
-        execve("aes_ctr_software", NULL, environ);
+        execve("dummy_mult", NULL, environ);
 	printf("ERROR ON EXECVE!\n"); // execve doesn't return unless it fails
     }
     else { // Parent
@@ -141,7 +141,7 @@ int main(int argc, char *argv[]){
     			return -1;
   		}
 		//printf("RAX = %d\n", regs.rax);
-		regs.rip += 4;
+		regs.rip += 5;
 		if (ptrace(PTRACE_SETREGS, child, NULL, &regs)) {
     			perror("PTRACE_SETREGS");
     			return -1;
@@ -452,10 +452,8 @@ int func_process(pid_t pid) {
   // set up our registers with the args to fprintf
   //memmove(&newregs, &oldregs, sizeof(newregs));
   //newregs.rax = 0;                          // no vector registers are used 
-  newregs.rdi = oldregs.rdi; // key
-  newregs.rsi = oldregs.rsi; // iv
-  newregs.rdx = oldregs.rdx; // data
-  newregs.rcx = oldregs.rcx; // length
+  newregs.rdi = oldregs.rdi; // Operand a
+  newregs.rsi = oldregs.rsi; // Operand b
 
   //if(DEBUG) printf("rsp = %p\n", newregs.rsp);
 

@@ -75,6 +75,8 @@ module mpf_to_buffer_SM_matrix(
 	logic [31:0] current_col;
 	logic [31:0] current_line_A;
 	logic [31:0] current_line_B;
+	logic [63:0] current_line_A_offset;
+	logic [63:0] current_line_B_offset;
 	
 	// Number of reads per line
 	logic [27:0] K_cl;
@@ -89,6 +91,8 @@ module mpf_to_buffer_SM_matrix(
 	
 	t_next_matrix next_matrix;
 	
+	logic read_valid;
+	
 	// Alternated between requests for blocks of matrix A and B
 	always_ff @(posedge clk) begin
 		if (!reset)  begin
@@ -99,7 +103,7 @@ module mpf_to_buffer_SM_matrix(
 				next_matrix <= MATRIX_A;
 			end
 			else begin
-				if (c0TxValid) begin
+				if (read_valid) begin
 					if(next_matrix == MATRIX_A) begin
 						next_matrix <= MATRIX_B;
 					end
@@ -113,10 +117,10 @@ module mpf_to_buffer_SM_matrix(
 	
 	always_comb begin
 		if(next_matrix == MATRIX_A) begin
-			next_clAddr = first_clAddr_A + (K_cl[27:0] * current_line_A[31:0]) + current_col[31:0];
+			next_clAddr = first_clAddr_A + current_line_A_offset[63:0] + current_col[31:0];
 		end
 		else begin
-			next_clAddr = first_clAddr_B + (K_cl[27:0] * current_line_B[31:0]) + current_col[31:0];
+			next_clAddr = first_clAddr_B + current_line_B_offset[63:0] + current_col[31:0];
 		end
 	end
 	
@@ -125,19 +129,23 @@ module mpf_to_buffer_SM_matrix(
 
 	always_ff @(posedge clk) begin
 		if (!reset)  begin
-			requests_done   <= 'd0;
-			current_col 	<= 'd0;
-			current_line_A 	<= 'd0;
-			current_line_B 	<= 'd0;
+			requests_done   		<= 'd0;
+			current_col 			<= 'd0;
+			current_line_A 			<= 'd0;
+			current_line_B 			<= 'd0;
+			current_line_A_offset 	<= 'd0;
+			current_line_B_offset 	<= 'd0;
 		end
 		else begin
 			if( run ) begin
-				requests_done   <= 'd0;
-				current_col 	<= 'd0;
-				current_line_A	<= 'd0;
-				current_line_B 	<= 'd0;
+				requests_done   		<= 'd0;
+				current_col 			<= 'd0;
+				current_line_A 			<= 'd0;
+				current_line_B 			<= 'd0;
+				current_line_A_offset 	<= 'd0;
+				current_line_B_offset 	<= 'd0;
 			end
-			else if (c0TxValid && next_matrix == MATRIX_B) begin
+			else if (read_valid && next_matrix == MATRIX_B) begin
 				
 				if( current_col == K_cl - 1'd1 ) begin // Go through columns in 512 bit blocks
 					if(current_line_B == N - 1'd1 ) begin // Go through lines (columns) of B
@@ -146,11 +154,14 @@ module mpf_to_buffer_SM_matrix(
 						end
 						else begin
 							current_line_A <= current_line_A + 1'd1;
+							current_line_A_offset <= current_line_A_offset + K_cl[27:0];
 						end
 						current_line_B <= 'd0;
+						current_line_B_offset <= 'd0;
 					end
 					else begin
 						current_line_B <= current_line_B + 1'd1; 
+						current_line_B_offset <= current_line_B_offset + K_cl[27:0]; 
 					end
 					current_col <= 'd0;
 				end
@@ -195,7 +206,6 @@ module mpf_to_buffer_SM_matrix(
 	end
 	
 	// When to effectively request a read? This will drive fiu.c0Tx.valid
-	logic read_valid;
 	assign read_valid = (/*rd_req_trigger && */
 			! c0TxAlmFull && 
 			! full_n_A &&
@@ -250,8 +260,11 @@ module mpf_to_buffer_SM_matrix(
 	// READ RESPONSE HANDLING
 	//
 	
-	assign buffer_wr_enable_A = cci_c0Rx_isReadRsp(c0Rx) && (c0Rx.hdr.mdata == 'd0);
-	assign buffer_wr_enable_B = cci_c0Rx_isReadRsp(c0Rx) && (c0Rx.hdr.mdata == 'd1);
+	logic readRspAvailable;
+	assign readRspAvailable = cci_c0Rx_isReadRsp(c0Rx);
+	
+	assign buffer_wr_enable_A = readRspAvailable && (c0Rx.hdr.mdata == 'd0);
+	assign buffer_wr_enable_B = readRspAvailable && (c0Rx.hdr.mdata == 'd1);
 	
 	// Check when all data has been received so that done condition can be detected
 	logic [31:0] nread_resp;
@@ -264,7 +277,7 @@ module mpf_to_buffer_SM_matrix(
 			if (run) begin
 				nread_resp <= 'd0;
 			end
-			else if (cci_c0Rx_isReadRsp(c0Rx)) begin
+			else if (readRspAvailable) begin
 				nread_resp <= nread_resp + 1'b1;
 				$display("Received a response for read request number %d", nread_resp + 1);
 			end

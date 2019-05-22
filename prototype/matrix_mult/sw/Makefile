@@ -1,23 +1,39 @@
-CC      = gcc
-CFLAGS  = -ggdb
-RM      = rm -f
-CFLAGS_SOFT = $(CFLAGS) -O2 #-O3 -march=native -ftree-vectorize #-march=native
+include ../../base/sw/base_include.mk
 
-default: all
+# Primary test name
+TEST = cci_mpf_matrix_mult
 
-all: inject_test manager aes_ctr_software 
+# Build directory
+OBJDIR = obj
+CFLAGS += -I./$(OBJDIR) -fPIC
+CPPFLAGS += -I./$(OBJDIR)
 
-inject_test: inject_test.c
-	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o inject_test inject_test.c -ldl -linjector -laes_ctr_acc
+# Files and folders
+SRCS = $(TEST).cpp $(BASE_FILE_SRC)
+OBJS = $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(SRCS)))
 
-#manager: manager.c
-#	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o manager manager.c -linjector -laes_ctr_acc
+# Targets
+all: $(TEST) $(TEST)_ase
 
-manager: manager.c
-	$(CC) -I. -Linjector -Lto_inject -fPIC $(CFLAGS) -o manager manager.c -linjector -laes_ctr_acc_ase
-       	
-aes_ctr_software: aes_ctr_software.cpp 
-	$(CXX) $(CFLAGS_SOFT) -o aes_ctr_software aes_ctr_software.cpp tiny-AES-c/aes.o
+# AFU info from JSON file, including AFU UUID
+AFU_JSON_INFO = $(OBJDIR)/afu_json_info.h
+$(AFU_JSON_INFO): ../hw/rtl/$(TEST).json | objdir
+	afu_json_mgr json-info --afu-json=$^ --c-hdr=$@
+$(OBJS): $(AFU_JSON_INFO)
 
-clean veryclean:
-	$(RM) inject_test manager aes_ctr_software
+$(TEST): $(OBJS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(FPGA_LIBS) cblas/cblas_LINUX.a -lblas 
+
+$(TEST)_ase: $(OBJS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(ASE_LIBS) cblas/cblas_LINUX.a -lblas
+
+$(OBJDIR)/%.o: %.cpp | objdir
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(TEST) $(TEST)_ase $(OBJDIR)
+
+objdir:
+	@mkdir -p $(OBJDIR)
+
+.PHONY: all clean

@@ -14,9 +14,9 @@ module buffer_to_mpf_SM_matrix(
 		input clk, reset, // Reset is active low
 		
 		input run,						// Assert high 1 clock cycle to start writing data to memory
-		input [31:0] M,					// lines of A
-		input [31:0] N,					// cols of B (lines when transposed)
-		input [31:0] K,					// cols of A and lins of B (cols of B also when transposed)
+		input [15:0] M,					// lines of A
+		input [15:0] N,					// cols of B (lines when transposed)
+		input [15:0] K,					// cols of A and lins of B (cols of B also when transposed)
 		output done,					// Goes high when all data has been written to memory
 		
 		input t_cci_clAddr first_clAddr,	// First virtual address to write to - Must be maintained during operation
@@ -33,7 +33,17 @@ module buffer_to_mpf_SM_matrix(
 		);
 	
 	logic [63:0] data_length;
-	assign data_length = (M * N) >> 4;
+	
+	always_ff @(posedge clk) begin
+		if (!reset)  begin
+			data_length <= 'd0;
+		end
+		else begin
+			if ( run ) begin
+				data_length <= (M * N) >> 4;
+			end
+		end
+	end
 	
 	//
 	// States
@@ -104,7 +114,7 @@ module buffer_to_mpf_SM_matrix(
 			!buffer_empty && 
 			state == STATE_RUN &&
 			!c1TxValid // Avoid write after write hazard - don't know why it happens
-			)? 1 : 0;
+		)? 1 : 0;
 	
 	// Send write requests to the FIU
 	always_ff @(posedge clk)

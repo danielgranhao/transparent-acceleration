@@ -72,7 +72,7 @@ CPPFLAGS += -Ibase/sw
 LDFLAGS += -lMPF-cxx -lMPF -lopae-cxx-core -shared
 
 # Primary test name
-TEST = aes_ctr_acc
+TEST = mult
 
 # Build directory
 OBJDIR = obj

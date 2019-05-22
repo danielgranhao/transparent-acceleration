@@ -20,21 +20,21 @@
 
 #include "injector/injector.h"
 
-#include "to_inject/mult.h"
+#include "to_inject/aes_ctr_acc.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 // function to be called
-#define FUNC mult
+#define FUNC aes_ctr_acc
 
 // number of bytes in a JMP/CALL rel32 instruction
 #define REL32_SZ 5
 
 // callq dummy_mult addr
-#define BREAKADDR 0x40067d
+#define BREAKADDR 0x400cbe
 
 static const char *text_area = " r-xp ";
-static const char *lib_string = "/libmult";
+static const char *lib_string = "/libaes_ctr_acc";
 
 void* __libc_dlopen_mode(const char*, int);
 void* __libc_dlsym(void*, const char*);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
     child = fork();
     if(child == 0) { // Child
 	extern char** environ;
-        execve("dummy_mult", NULL, environ);
+        execve("aes_ctr_software", NULL, environ);
 	printf("ERROR ON EXECVE!\n"); // execve doesn't return unless it fails
 	printf("errno = %s\n", strerror(errno));
     }
@@ -148,20 +148,20 @@ int main(int argc, char *argv[]){
     			return -1;
   		}
 		//printf("RAX = %d\n", regs.rax);
-		regs.rip += 5;
+		regs.rip += 4;
 		if (ptrace(PTRACE_SETREGS, child, NULL, &regs)) {
     			perror("PTRACE_SETREGS");
     			return -1;
   		}
 
-		
+			
 		// continue the program, and wait for the trap
   		if(DEBUG) printf("DEBUG: continuing execution\n");
  		ptrace(PTRACE_CONT, child, NULL, NULL);
   		if (do_wait("PTRACE_CONT")) {
   			perror("Error cont");
   		}
-		/*
+	/*		
 		// detach the process
   		if(DEBUG) printf("detaching\n");
   		if (ptrace(PTRACE_DETACH, child, NULL, NULL)) {
@@ -169,12 +169,15 @@ int main(int argc, char *argv[]){
   		  	return -1;
   		}	
 
+		while(1);		
+
 		break;*/
 
 	}	
 
-	printf("Saiu do while\n");
-	waitpid(child, NULL, 0);
+	if(DEBUG) printf("Saiu do while\n");
+	//waitpid(child, NULL, 0);
+	wait(NULL);
     }
 }
 
@@ -444,8 +447,10 @@ int func_process(pid_t pid) {
   // set up our registers with the args to fprintf
   //memmove(&newregs, &oldregs, sizeof(newregs));
   //newregs.rax = 0;                          // no vector registers are used 
-  newregs.rdi = oldregs.rdi; // Operand a
-  newregs.rsi = oldregs.rsi; // Operand b
+  newregs.rdi = oldregs.rdi; // key      
+  newregs.rsi = oldregs.rsi; // iv       
+  newregs.rdx = oldregs.rdx; // data     
+  newregs.rcx = oldregs.rcx; // length   
 
   //if(DEBUG) printf("rsp = %p\n", newregs.rsp);
 
