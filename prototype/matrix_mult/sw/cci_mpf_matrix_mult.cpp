@@ -32,6 +32,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <assert.h>
+#include <time.h>
 
 #include <inttypes.h>
 #include <uuid/uuid.h>
@@ -53,11 +54,24 @@ using namespace std;
 #define DATA_LENGTH 	1024
 
 // SIZE(A) = SIZE(B) = 32 * 32
-#define M_CL 		2
-#define N_CL		2
-#define K_CL		2
+#define M_CL 		1
+#define N_CL		1
+#define K_CL		3
 
 #define FLOAT_PER_CL	16
+
+timespec diff(timespec start, timespec end)
+{
+    timespec temp;
+    if ((end.tv_nsec-start.tv_nsec)<0) {
+        temp.tv_sec = end.tv_sec-start.tv_sec-1;
+        temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+    } else {
+        temp.tv_sec = end.tv_sec-start.tv_sec;
+        temp.tv_nsec = end.tv_nsec-start.tv_nsec;
+    }
+    return temp;
+}
 
 int main(int argc, char *argv[])
 {
@@ -67,6 +81,9 @@ int main(int argc, char *argv[])
 	volatile float *A, *B, *C;
 	float *A_t, *B_t, *C_t;
 	int m, n, k, i, j;
+
+	// To measure execution time
+	timespec start, end, start_f, end_f;
 
 	m = M_CL*FLOAT_PER_CL;
 	n = N_CL*FLOAT_PER_CL;
@@ -82,13 +99,13 @@ int main(int argc, char *argv[])
    	enum CBLAS_TRANSPOSE transa;
 	enum CBLAS_TRANSPOSE transb;
 
-	order = CblasColMajor;
+	order = CblasRowMajor;
 	transa = CblasNoTrans;
 	transb = CblasTrans;
 	
 	float alpha = 1.0;
 	int lda = k;
-	int ldb = n;
+	int ldb = k;
 	float beta = 0.0;
 	int ldc = n;
 
@@ -105,22 +122,49 @@ int main(int argc, char *argv[])
 
 	printf (" Intializing test matrix data \n\n");
 	for (i = 0; i < (m*k); i++) {
-		A_t[i] = (float)(i+1);
+		A_t[i] = (float)(i+1.0);
 	}
 
 	for (i = 0; i < (k*n); i++) {
-		B_t[i] = (float)(-i-1);
+		B_t[i] = (float)(-i-1.0);
 	}
 
 	for (i = 0; i < (m*n); i++) {
 		C_t[i] = 0.0;
 	}
 
+	clock_gettime(CLOCK_MONOTONIC, &start);
 	cblas_sgemm(order, transa,
                  transb, m, n,
                  k, alpha, A_t,
                  lda, B_t, ldb,
                  beta, C_t, ldc);
+	clock_gettime(CLOCK_MONOTONIC, &end);
+
+	printf (" Top left corner of matrix A: \n");
+	for (i=0; i<min(m,6); i++) {
+		for (j=0; j<min(k,6); j++) {
+			printf ("%12.0f", A_t[j+i*k]);
+		}
+		printf ("\n");
+	}
+
+	printf ("\n Top left corner of matrix B: \n");
+	for (i=0; i<min(k,6); i++) {
+		for (j=0; j<min(n,6); j++) {
+			printf ("%12.0f", B_t[j+i*n]);
+		}
+	printf ("\n");
+	}
+    
+	printf ("\n Top left corner of matrix C: \n");
+	for (i=0; i<min(m,6); i++) {
+		for (j=0; j<min(n,6); j++) {
+			printf ("%12.5G", C_t[j+i*n]);
+		}
+	printf ("\n");
+    }
+
 	
 	printf (" Test multiplication done! \n\n");
 
@@ -131,17 +175,17 @@ int main(int argc, char *argv[])
 	// Connect the CSR manager
 	CSR_MGR csrs(fpga);
 
-	auto A_handle = fpga.allocBuffer(getpagesize() * 1);
+	auto A_handle = fpga.allocBuffer(getpagesize() * ( (m*k*sizeof( float ) / getpagesize())+1 ) );
 	A = reinterpret_cast<volatile float*>(A_handle->c_type());
 	uint64_t A_pa = A_handle->io_address();
 	assert(NULL != A);
 	
-	auto B_handle = fpga.allocBuffer(getpagesize() * 1);
+	auto B_handle = fpga.allocBuffer(getpagesize() * ( (k*n*sizeof( float ) / getpagesize())+1 ) );
 	B = reinterpret_cast<volatile float*>(B_handle->c_type());
 	uint64_t B_pa = B_handle->io_address();
 	assert(NULL != B);
 
-	auto C_handle = fpga.allocBuffer(getpagesize() * 1);
+	auto C_handle = fpga.allocBuffer(getpagesize() * ( (m*n*sizeof( float ) / getpagesize())+1 ) );
 	C = reinterpret_cast<volatile float*>(C_handle->c_type());
 	uint64_t C_pa = C_handle->io_address();
 	assert(NULL != C);
@@ -149,15 +193,15 @@ int main(int argc, char *argv[])
 
 	printf (" Intializing matrix data \n\n");
 	for (i = 0; i < (m*k); i++) {
-		A[i] = (float)(i+1);
+		A[i] = A_t[i];
 	}
 
 	for (i = 0; i < (k*n); i++) {
-		B[i] = (float)(-i-1);
+		B[i] = B_t[i];
 	}
 
 	for (i = 0; i < (m*n); i++) {
-		C[i] = 0.0;
+		C[i] = C_t[i];
 	}
 
 	
@@ -187,7 +231,7 @@ int main(int argc, char *argv[])
 
 	printf("Matrix C (dest) virtual address is %p\n", C);
 
-
+	clock_gettime(CLOCK_MONOTONIC, &start_f);
 
 	csrs.writeCSR(0, (uint64_t)A); // Address of A
 	csrs.writeCSR(1, (uint64_t)B); // Address of B
@@ -204,20 +248,31 @@ int main(int argc, char *argv[])
 
 	// Spin, waiting for the value in memory to change to something non-zero.
 	while (0 == csrs.readCSR(0))_mm_pause();
+	
+	clock_gettime(CLOCK_MONOTONIC, &end_f);
 
 	printf("Data received!\n");
 
 	printf("Testing...\n");
 
+	float max = 0.0;
 	for (i = 0; i < (m*n); i++) {
-		C_t[i] = 0.0;
 		if(C_t[i] != C[i])
 			printf("ERROR on pos %d || Should be %f and is %f\n", i+1, C_t[i], C[i]);
 		//else
 		//	printf("OK!!  on pos %d - %f^2 != %f\n", i, *(buf_src+i), *(buf_dest+i));
+		else {
+			if(C_t[i] < max) max = C_t[i];
+		}
 	}
 
 	printf("Tests finished!\n");
+
+	printf("C_t[i] max = %f\n", max);
+
+	cout<<"CBLAS Execution time (sec:nanosecs): 		"<<diff(start,end).tv_sec<<":"<<diff(start,end).tv_nsec<<endl;
+
+	cout<<"FPGA Execution time (sec:nanosecs): 		"<<diff(start_f,end_f).tv_sec<<":"<<diff(start_f,end_f).tv_nsec<<endl;
 
 	//
 	//
@@ -236,11 +291,11 @@ int main(int argc, char *argv[])
 	printf("Tests finished!\n");*/
 
 	// Ask the FPGA-side CSR manager the AFU's frequency
-	/*cout << endl
+	cout << endl
 		<< "# AFU frequency: " << csrs.getAFUMHz() << " MHz"
 		<< (fpga.hwIsSimulated() ? " [simulated]" : "")
 		<< endl;
-	*/
+	
 	// All shared buffers are automatically released and the FPGA connection
 	// is closed when their destructors are invoked here.
 	return 0;

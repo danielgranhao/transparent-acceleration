@@ -300,7 +300,7 @@ module ccip_std_afu
     app_afu
       app
        (
-	.pClk(pClk),
+	.pClkDiv2(pClkDiv2),
         .clk(afu_clk),
         .fiu(afu),
         .csrs,

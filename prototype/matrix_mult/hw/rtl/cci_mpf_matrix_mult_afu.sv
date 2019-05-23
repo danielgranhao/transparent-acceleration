@@ -35,7 +35,7 @@
 
 module app_afu
 		(
-		input  logic pClk,
+		input  logic pClkDiv2,
 		input  logic clk, // pClkDiv2
 
 		// Connection toward the host.  Reset comes in here.
@@ -347,57 +347,7 @@ module app_afu
 	assign read_buffer_rd_enable_A = (! write_buffer_full_n && ! read_buffer_empty_A && ! read_buffer_empty_B)? 1 : 0;
 	assign read_buffer_rd_enable_B = (! write_buffer_full_n && ! read_buffer_empty_A && ! read_buffer_empty_B)? 1 : 0;
 	
-	//
-	// FFT Kernel
-	//
-	
-	/*logic aes_valid_input;
-	logic [127:0] aes_state;
-	logic [127:0] out;
-	
-	always_ff @(posedge clk) begin
-		if (reset)  begin
-			aes_state <= 128'd0;
-			aes_valid_input <= 1'b0;
-		end
-		else begin
-			if ( run ) begin
-				aes_state[127:64] <= iv_1[63:0];
-				aes_state[63:0] <= iv_0[63:0];
-			end
-			else begin
-				if(aes_valid_input) begin
-					aes_state <= aes_state + 1'b1;				
-				end
-			end
-			aes_valid_input <= read_buffer_rd_enable;
-		end
-	end
-		
-	// out is valid 29 clk cycles after state and key are valid
-	aes_256 aes_256 (
-			.clk    (clk   ), 
-			.state  (aes_state ), 
-			.key    (key   ), 
-			.out    (out   )
-		);
-	
-	// Shift register to delay data
-	logic [127:0] data_shift_reg[0:29];
-	logic valid_shift_reg[0:29];
-	
-	//assign data_shift_reg[127:0][0] = read_buffer_data_out[127:0];
-	assign data_shift_reg[0] = read_buffer_data_out[127:0];
-	assign valid_shift_reg[0]		= aes_valid_input;
-	
-	always_ff @(posedge clk) begin
-		for(int i = 1; i<=29; i++) begin
-			//data_shift_reg[127:0][i] 	<= data_shift_reg[127:0][i-1];
-			data_shift_reg[i] 	<= data_shift_reg[i-1];
-			valid_shift_reg[i]			<= valid_shift_reg[i-1];
-		end
-	end*/
-	
+
 	//
 	// Multiply add 512 bits of data (floats)
 	//
@@ -441,13 +391,36 @@ module app_afu
 	logic end_line;
 	assign end_line = (current_col_cl == K_cl - 1'd1);
 	
-	// Shift register to delay valid signal
-	logic signal_shift_reg[0:16];
-	assign signal_shift_reg[0]	= (end_line && mults_input_valid); // At the end of this cycle the last 512 bits of data of the line enters the mults
+	// Shift register to delay mult valid signal
+	logic mult_signal_shift_reg[0:4];
+	assign mult_signal_shift_reg[0]	= (end_line && mults_input_valid); // At the end of this cycle the last 512 bits of data of the line enters the mults
+	
+	logic accumulate;
+	assign accumulate 	= (!start_line);
 	
 	always_ff @(posedge clk) begin
-		for(int i = 1; i<=16; i++) begin
-			signal_shift_reg[i]	<= signal_shift_reg[i-1];
+		if( mults_input_valid || (!accumulate) ) begin
+			for(int i = 1; i<=4; i++) begin
+				mult_signal_shift_reg[i]	<= mult_signal_shift_reg[i-1];
+			end
+		end
+	end
+	
+	// Shift register to delay add signal
+	logic add_signal_shift_reg[0:12];
+	//assign add_signal_shift_reg[0]	= (end_line && mults_input_valid); // At the end of this cycle the last 512 bits of data of the line enters the mults
+	
+	always_ff @(posedge clk) begin
+		
+		if( mult_signal_shift_reg[3] && (mults_input_valid || !accumulate ) ) begin
+			add_signal_shift_reg[0] <= 1'd1;
+		end
+		else begin
+			add_signal_shift_reg[0] <= 1'd0;
+		end
+		
+		for(int i = 1; i<=12; i++) begin
+			add_signal_shift_reg[i]	<= add_signal_shift_reg[i-1];
 		end
 	end
 	
@@ -456,15 +429,15 @@ module app_afu
 	generate
 		for(i = 0; i<16; i=i+1) begin : genmults
 			
-			logic accumulate;
+			logic enable;
 			logic [31:0] fp_mult_result;
 			
-			assign accumulate = (!start_line);
+			assign enable		= mults_input_valid || (!accumulate);
 			
 			fp_mult_accumulate fp_mult_accumulate_inst (
 					.clk		(clk										),		//    clk.clk
 					.aclr   	(reset										),   	//   aclr.aclr
-					.ena		(mults_input_valid							),		//    ena.ena
+					.ena		(enable										),		//    ena.ena
 					.accumulate	(accumulate									),		// accumulate or not
 					.ay     	(read_buffer_data_out_A[ 31 + i*32 : i*32 ]	),     	//     ay.ay
 					.az     	(read_buffer_data_out_B[ 31 + i*32 : i*32 ]	),     	//     az.az
@@ -474,6 +447,7 @@ module app_afu
 		end
 	endgenerate
 	
+	//Adds	
 	generate
 		for(i = 0; i<8; i=i+1) begin : genadds1
 			
@@ -482,7 +456,7 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (signal_shift_reg[4]				),    	//    ena.ena
+					.ena    (1'd1								),    	//    ena.ena
 					.ax     (genmults[i*2].fp_mult_result		),     	//     ax.ax
 					.ay     (genmults[i*2+1].fp_mult_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
@@ -499,7 +473,7 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (signal_shift_reg[7]				),    	//    ena.ena
+					.ena    (1'd1								),    	//    ena.ena
 					.ax     (genadds1[i*2].fp_add_result		),     	//     ax.ax
 					.ay     (genadds1[i*2+1].fp_add_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
@@ -516,7 +490,7 @@ module app_afu
 			fp_add fp_add_inst (
 					.clk    (clk								),    	//    clk.clk
 					.aclr   (reset								),   	//   aclr.aclr
-					.ena    (signal_shift_reg[10]				),    	//    ena.ena
+					.ena    (1'd1								),    	//    ena.ena
 					.ax     (genadds2[i*2].fp_add_result		),     	//     ax.ax
 					.ay     (genadds2[i*2+1].fp_add_result		),     	//     ay.ay
 					.result (fp_add_result						)  		// result.result
@@ -530,14 +504,14 @@ module app_afu
 	fp_add fp_add_inst (
 			.clk    (clk								),    	//    clk.clk
 			.aclr   (reset								),   	//   aclr.aclr
-			.ena    (signal_shift_reg[13]				),    	//    ena.ena
+			.ena    (1'd1								),    	//    ena.ena
 			.ax     (genadds3[0].fp_add_result			),     	//     ax.ax
 			.ay     (genadds3[1].fp_add_result			),     	//     ay.ay
 			.result (fp_add_result						)  		// result.result
 		);
 	
 	logic fp_add_result_valid;
-	assign fp_add_result_valid = signal_shift_reg[16];
+	assign fp_add_result_valid = add_signal_shift_reg[12];
 	
 	logic [3:0] write_position;
 	always_ff @(posedge clk) begin

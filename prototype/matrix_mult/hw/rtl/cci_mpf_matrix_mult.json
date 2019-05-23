@@ -19,9 +19,9 @@
       "accelerator-clusters":
          [
             {
-               "name": "cci_mpf_aes",
+               "name": "cci_mpf_matrix_mult",
                "total-contexts": 1,
-               "accelerator-type-uuid": "6e192d1a-84ca-462d-a77a-0c668f57b75f"
+               "accelerator-type-uuid": "ae211840-4d28-4e52-9085-0f13fc3e48e6"
             }
          ]
    }
