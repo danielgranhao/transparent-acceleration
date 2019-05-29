@@ -82,6 +82,17 @@ class OPAE_SVC_WRAPPER
     //
     fpga::types::shared_buffer::ptr_t allocBuffer(size_t nBytes);
 
+    // ALTERED
+    //
+    // Expose a buffer allocate method that hides the details of
+    // the various allocation interfaces.  When VTP is present, large
+    // multi-page, virtually contiguous buffers may be allocated.
+    // When VTP is not present, the standard physical page allocator
+    // is used.
+    //
+    fpga::types::shared_buffer::ptr_t attachBuffer(uint8_t *base, size_t nBytes);
+
+
     fpga::types::handle::ptr_t accel;
     mpf::types::mpf_handle::ptr_t mpf;
 

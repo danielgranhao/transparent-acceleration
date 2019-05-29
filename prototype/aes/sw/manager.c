@@ -30,7 +30,7 @@
 #define REL32_SZ 5
 
 // callq dummy_mult addr
-#define BREAKADDR 0x400cbe
+#define BREAKADDR 0x400cfe
 
 static const char *text_area = " r-xp ";
 static const char *lib_string = "/libaes_ctr_acc";

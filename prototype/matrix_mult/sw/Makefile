@@ -1,4 +1,4 @@
-include ../../base/sw/base_include.mk
+include ./base/sw/base_include.mk
 
 # Primary test name
 TEST = cci_mpf_matrix_mult

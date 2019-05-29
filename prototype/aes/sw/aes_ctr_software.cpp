@@ -85,6 +85,16 @@ int main(int argc, char *argv[])
         } else {
                 printf("FAILURE!\n");
         }	
+	
+	for(int i = 0; i < DATA_LENGTH; i++){
+		if(in[i] != in_control[i])
+			printf("ERROR on pos %d - must be %d and is %d\n", i, in_control[i], in[i]);
+		//else
+		//	printf("OK!!  on pos %d - %f^2 != %f\n", i, *(buf_src+i), *(buf_dest+i));
+
+	}
+	
+	printf("Tests finished!\n");
 
 	cout<<"Execution time (sec:nanosecs): "<<diff(start,end).tv_sec<<":"<<diff(start,end).tv_nsec<<endl;
 

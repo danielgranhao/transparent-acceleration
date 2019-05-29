@@ -99,64 +99,61 @@ module app_afu
 	// Consume configuration CSR writes
 	//
 
-	// MMIO address 0 to store source address
-	logic is_src_addr_csr_write;
-	assign is_src_addr_csr_write = csrs.cpu_wr_csrs[0].en;
-	t_byteAddr src_addr;
-	t_cci_clAddr src_clAddr;
-	assign src_clAddr = byteAddrToClAddr(src_addr);
-
-	// MMIO address 2 to store destination address
-	logic is_dest_addr_csr_write;
-	assign is_dest_addr_csr_write = csrs.cpu_wr_csrs[1].en;
-	t_byteAddr dest_addr;
-	t_cci_clAddr dest_clAddr;
-	assign dest_clAddr = byteAddrToClAddr(dest_addr);
-
-	// MMIO address 4 to store data length 
-	logic is_data_length_addr_csr_write;
-	assign is_data_length_addr_csr_write = csrs.cpu_wr_csrs[2].en;
-	logic [63:0] data_length;
-
-	// MMIO address 6 receive run order
+	// MMIO address 0 receive run order
 	logic is_run_csr_write;
-	assign is_run_csr_write = csrs.cpu_wr_csrs[3].en;
+	assign is_run_csr_write = csrs.cpu_wr_csrs[0].en;
 	// Initialization vector
 	logic [63:0] run;
 	
-	// MMIO address 8 to store initialization vector
+	// MMIO address 1 to store source/destination address
+	logic is_src_addr_csr_write;
+	assign is_src_addr_csr_write = csrs.cpu_wr_csrs[1].en;
+	t_byteAddr src_addr;
+	t_cci_clAddr src_clAddr;
+	assign src_clAddr = byteAddrToClAddr(src_addr);
+	t_byteAddr dest_addr;
+	t_cci_clAddr dest_clAddr;
+	assign dest_addr = src_addr;
+	assign dest_clAddr = byteAddrToClAddr(dest_addr);
+
+	// MMIO address 2 to store source/destination size
+	logic is_data_length_csr_write;
+	assign is_data_length_csr_write = csrs.cpu_wr_csrs[2].en;
+	logic [63:0] data_length;
+
+	// MMIO address 3 to store initialization vector 0
 	logic is_iv_0_csr_write;
-	assign is_iv_0_csr_write = csrs.cpu_wr_csrs[4].en;
+	assign is_iv_0_csr_write = csrs.cpu_wr_csrs[3].en;
 	// Initialization vector
 	logic [63:0] iv_0;
 	
-	// MMIO address 10 to store initialization vector
+	// MMIO address 4 to store initialization vector 1
 	logic is_iv_1_csr_write;
-	assign is_iv_1_csr_write = csrs.cpu_wr_csrs[5].en;
+	assign is_iv_1_csr_write = csrs.cpu_wr_csrs[4].en;
 	// Initialization vector
 	logic [63:0] iv_1;
 	
-	// MMIO address 12 receive key 0
+	// MMIO address 5 receive key 0
 	logic is_key_0_csr_write;
-	assign is_key_0_csr_write = csrs.cpu_wr_csrs[6].en;
+	assign is_key_0_csr_write = csrs.cpu_wr_csrs[5].en;
 	// Initialization vector
 	logic [63:0] key_0;
 	
-	// MMIO address 14 receive key 1
+	// MMIO address 6 receive key 1
 	logic is_key_1_csr_write;
-	assign is_key_1_csr_write = csrs.cpu_wr_csrs[7].en;
+	assign is_key_1_csr_write = csrs.cpu_wr_csrs[6].en;
 	// Initialization vector
 	logic [63:0] key_1;
 	
-	// MMIO address 16 receive key 2
+	// MMIO address 7 receive key 2
 	logic is_key_2_csr_write;
-	assign is_key_2_csr_write = csrs.cpu_wr_csrs[8].en;
+	assign is_key_2_csr_write = csrs.cpu_wr_csrs[7].en;
 	// Initialization vector
 	logic [63:0] key_2;
 	
-	// MMIO address 18 receive key 3
+	// MMIO address 8 receive key 3
 	logic is_key_3_csr_write;
-	assign is_key_3_csr_write = csrs.cpu_wr_csrs[9].en;
+	assign is_key_3_csr_write = csrs.cpu_wr_csrs[8].en;
 	// Initialization vector
 	logic [63:0] key_3;
 	
@@ -168,7 +165,6 @@ module app_afu
 	begin
 		if (reset) begin
 			src_addr <= 64'h0000_0000_0000_0000;
-			dest_addr <= 64'h0000_0000_0000_0000;
 			data_length <= 64'h0000_0000_0000_0000;
 			run <= 64'h0000_0000_0000_0000;
 			iv_0 <= 64'h0000_0000_0000_0000;
@@ -183,45 +179,41 @@ module app_afu
 				run <= 64'h0000_0000_0000_0000;
 			end
 			else begin
-				if (is_src_addr_csr_write) begin
-					src_addr <= csrs.cpu_wr_csrs[0].data;
-					$display("Received source address: %0h", csrs.cpu_wr_csrs[0].data);
+				if (is_run_csr_write) begin
+					run <= csrs.cpu_wr_csrs[0].data;
+					$display("Received run order: %0d", csrs.cpu_wr_csrs[0].data);
 				end
-				else if (is_dest_addr_csr_write) begin
-					dest_addr <= csrs.cpu_wr_csrs[1].data;
-					$display("Received destination address: %0h", csrs.cpu_wr_csrs[1].data);
+				else if (is_src_addr_csr_write) begin
+					src_addr <= csrs.cpu_wr_csrs[1].data;
+					$display("Received source address: %0h", csrs.cpu_wr_csrs[1].data);
 				end
-				else if (is_data_length_addr_csr_write) begin
-					data_length <= csrs.cpu_wr_csrs[2].data;
+				else if (is_data_length_csr_write) begin
+					data_length <= csrs.cpu_wr_csrs[2].data >> 6;
 					$display("Received data length: %0d", csrs.cpu_wr_csrs[2].data);
 				end
-				else if (is_run_csr_write) begin
-					run <= csrs.cpu_wr_csrs[3].data;
-					$display("Received run order: %0d", csrs.cpu_wr_csrs[3].data);
-				end
 				else if (is_iv_0_csr_write) begin
-					iv_0 <= csrs.cpu_wr_csrs[4].data;
-					$display("Received iv_0: %0h", csrs.cpu_wr_csrs[4].data);
+					iv_0 <= csrs.cpu_wr_csrs[3].data;
+					$display("Received iv_0: %0h", csrs.cpu_wr_csrs[3].data);
 				end
 				else if (is_iv_1_csr_write) begin
-					iv_1 <= csrs.cpu_wr_csrs[5].data;
-					$display("Received iv_1: %0h", csrs.cpu_wr_csrs[5].data);
+					iv_1 <= csrs.cpu_wr_csrs[4].data;
+					$display("Received iv_1: %0h", csrs.cpu_wr_csrs[4].data);
 				end
 				else if (is_key_0_csr_write) begin
-					key_0 <= csrs.cpu_wr_csrs[6].data;
-					$display("Received key_0: %0h", csrs.cpu_wr_csrs[6].data);
+					key_0 <= csrs.cpu_wr_csrs[5].data;
+					$display("Received key_0: %0h", csrs.cpu_wr_csrs[5].data);
 				end
 				else if (is_key_1_csr_write) begin
-					key_1 <= csrs.cpu_wr_csrs[7].data;
-					$display("Received key_1: %0h", csrs.cpu_wr_csrs[7].data);
+					key_1 <= csrs.cpu_wr_csrs[6].data;
+					$display("Received key_1: %0h", csrs.cpu_wr_csrs[6].data);
 				end
 				else if (is_key_2_csr_write) begin
-					key_2 <= csrs.cpu_wr_csrs[8].data;
-					$display("Received key_2: %0h", csrs.cpu_wr_csrs[8].data);
+					key_2 <= csrs.cpu_wr_csrs[7].data;
+					$display("Received key_2: %0h", csrs.cpu_wr_csrs[7].data);
 				end
 				else if (is_key_3_csr_write) begin
-					key_3 <= csrs.cpu_wr_csrs[9].data;
-					$display("Received key_3: %0h", csrs.cpu_wr_csrs[9].data);
+					key_3 <= csrs.cpu_wr_csrs[8].data;
+					$display("Received key_3: %0h", csrs.cpu_wr_csrs[8].data);
 				end
 			end
 		end

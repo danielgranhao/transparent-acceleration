@@ -6,7 +6,7 @@
 #define __AFU_JSON_INFO__
 
 #define AFU_ACCEL_NAME "cci_mpf_matrix_mult"
-#define AFU_ACCEL_UUID "6E192D1A-84CA-462D-A77A-0C668F57B75F"
+#define AFU_ACCEL_UUID "AE211840-4D28-4E52-9085-0F13FC3E48E6"
 #define AFU_IMAGE_POWER 0
 #define AFU_TOP_IFC "ccip_std_afu"
 

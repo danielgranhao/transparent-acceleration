@@ -1,0 +1,12 @@
+	component fp_mult_accumulate is
+		port (
+			accumulate : in  std_logic                     := 'X';             -- accumulate
+			aclr       : in  std_logic                     := 'X';             -- aclr
+			ay         : in  std_logic_vector(31 downto 0) := (others => 'X'); -- ay
+			az         : in  std_logic_vector(31 downto 0) := (others => 'X'); -- az
+			clk        : in  std_logic                     := 'X';             -- clk
+			ena        : in  std_logic                     := 'X';             -- ena
+			result     : out std_logic_vector(31 downto 0)                     -- result
+		);
+	end component fp_mult_accumulate;
+

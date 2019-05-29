@@ -1,0 +1,115 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 256 304)
+	(text "fp_mult_accumulate" (rect 69 -1 150 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 288 20 300)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "accumulate" (rect 0 0 44 12)(font "Arial" (font_size 8)))
+		(text "accumulate" (rect 4 61 64 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 80 72)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "aclr" (rect 0 0 14 12)(font "Arial" (font_size 8)))
+		(text "aclr" (rect 4 101 28 112)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 80 112)(line_width 1))
+	)
+	(port
+		(pt 0 152)
+		(input)
+		(text "ay[31..0]" (rect 0 0 34 12)(font "Arial" (font_size 8)))
+		(text "ay[31..0]" (rect 4 141 58 152)(font "Arial" (font_size 8)))
+		(line (pt 0 152)(pt 80 152)(line_width 3))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "az[31..0]" (rect 0 0 31 12)(font "Arial" (font_size 8)))
+		(text "az[31..0]" (rect 4 181 58 192)(font "Arial" (font_size 8)))
+		(line (pt 0 192)(pt 80 192)(line_width 3))
+	)
+	(port
+		(pt 0 232)
+		(input)
+		(text "clk" (rect 0 0 10 12)(font "Arial" (font_size 8)))
+		(text "clk" (rect 4 221 22 232)(font "Arial" (font_size 8)))
+		(line (pt 0 232)(pt 80 232)(line_width 1))
+	)
+	(port
+		(pt 0 272)
+		(input)
+		(text "ena" (rect 0 0 14 12)(font "Arial" (font_size 8)))
+		(text "ena" (rect 4 261 22 272)(font "Arial" (font_size 8)))
+		(line (pt 0 272)(pt 80 272)(line_width 1))
+	)
+	(port
+		(pt 256 72)
+		(output)
+		(text "result[31..0]" (rect 0 0 44 12)(font "Arial" (font_size 8)))
+		(text "result[31..0]" (rect 199 61 277 72)(font "Arial" (font_size 8)))
+		(line (pt 256 72)(pt 176 72)(line_width 3))
+	)
+	(drawing
+		(text "accumulate" (rect 16 43 92 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "accumulate" (rect 85 67 230 144)(font "Arial" (color 0 0 0)))
+		(text "aclr" (rect 60 83 144 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "aclr" (rect 85 107 194 224)(font "Arial" (color 0 0 0)))
+		(text "ay" (rect 68 123 148 259)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "ay" (rect 85 147 182 304)(font "Arial" (color 0 0 0)))
+		(text "az" (rect 68 163 148 339)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "az" (rect 85 187 182 384)(font "Arial" (color 0 0 0)))
+		(text "clk" (rect 65 203 148 419)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 85 227 188 464)(font "Arial" (color 0 0 0)))
+		(text "ena" (rect 60 243 138 499)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "ena" (rect 85 267 188 544)(font "Arial" (color 0 0 0)))
+		(text "result" (rect 177 43 390 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "result" (rect 149 67 334 144)(font "Arial" (color 0 0 0)))
+		(text " fp_mult_accumulate " (rect 166 288 452 586)(font "Arial" ))
+		(line (pt 80 32)(pt 176 32)(line_width 1))
+		(line (pt 176 32)(pt 176 288)(line_width 1))
+		(line (pt 80 288)(pt 176 288)(line_width 1))
+		(line (pt 80 32)(pt 80 288)(line_width 1))
+		(line (pt 81 52)(pt 81 76)(line_width 1))
+		(line (pt 82 52)(pt 82 76)(line_width 1))
+		(line (pt 81 92)(pt 81 116)(line_width 1))
+		(line (pt 82 92)(pt 82 116)(line_width 1))
+		(line (pt 81 132)(pt 81 156)(line_width 1))
+		(line (pt 82 132)(pt 82 156)(line_width 1))
+		(line (pt 81 172)(pt 81 196)(line_width 1))
+		(line (pt 82 172)(pt 82 196)(line_width 1))
+		(line (pt 81 212)(pt 81 236)(line_width 1))
+		(line (pt 82 212)(pt 82 236)(line_width 1))
+		(line (pt 81 252)(pt 81 276)(line_width 1))
+		(line (pt 82 252)(pt 82 276)(line_width 1))
+		(line (pt 175 52)(pt 175 76)(line_width 1))
+		(line (pt 174 52)(pt 174 76)(line_width 1))
+		(line (pt 0 0)(pt 256 0)(line_width 1))
+		(line (pt 256 0)(pt 256 304)(line_width 1))
+		(line (pt 0 304)(pt 256 304)(line_width 1))
+		(line (pt 0 0)(pt 0 304)(line_width 1))
+	)
+)

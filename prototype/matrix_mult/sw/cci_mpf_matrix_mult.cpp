@@ -54,8 +54,8 @@ using namespace std;
 #define DATA_LENGTH 	1024
 
 // SIZE(A) = SIZE(B) = 32 * 32
-#define M_CL 		1
-#define N_CL		1
+#define M_CL 		3
+#define N_CL		3
 #define K_CL		3
 
 #define FLOAT_PER_CL	16
@@ -175,6 +175,12 @@ int main(int argc, char *argv[])
 	// Connect the CSR manager
 	CSR_MGR csrs(fpga);
 
+	A = (float *)aligned_alloc( getpagesize(), m*k*sizeof( float ) );
+	B = (float *)aligned_alloc( getpagesize(), k*n*sizeof( float ) );
+	C = (float *)aligned_alloc( getpagesize(), m*n*sizeof( float ) );
+	
+
+	/*
 	auto A_handle = fpga.allocBuffer(getpagesize() * ( (m*k*sizeof( float ) / getpagesize())+1 ) );
 	A = reinterpret_cast<volatile float*>(A_handle->c_type());
 	uint64_t A_pa = A_handle->io_address();
@@ -188,7 +194,7 @@ int main(int argc, char *argv[])
 	auto C_handle = fpga.allocBuffer(getpagesize() * ( (m*n*sizeof( float ) / getpagesize())+1 ) );
 	C = reinterpret_cast<volatile float*>(C_handle->c_type());
 	uint64_t C_pa = C_handle->io_address();
-	assert(NULL != C);
+	assert(NULL != C);*/
 	
 
 	printf (" Intializing matrix data \n\n");
@@ -213,6 +219,10 @@ int main(int argc, char *argv[])
 
 	/*float buf_src[(DATA_LENGTH)] __attribute__((aligned(64))) = {0};*/
 	/*auto buf_src_handle = fpga.attachBuffer((uint8_t*)buf_src, getpagesize() * 1);*/
+
+	auto A_handle = fpga.attachBuffer((uint8_t*)A, getpagesize() * ( (m*k*sizeof( float ) / getpagesize())+1 ));
+	auto B_handle = fpga.attachBuffer((uint8_t*)B, getpagesize() * ( (k*n*sizeof( float ) / getpagesize())+1 ));
+	auto C_handle = fpga.attachBuffer((uint8_t*)C, getpagesize() * ( (m*n*sizeof( float ) / getpagesize())+1 ));
 
 
 	printf("Matrix A virtual address is %p\n", A);
@@ -255,7 +265,7 @@ int main(int argc, char *argv[])
 
 	printf("Testing...\n");
 
-	float max = 0.0;
+	/*float max = 0.0;
 	for (i = 0; i < (m*n); i++) {
 		if(C_t[i] != C[i])
 			printf("ERROR on pos %d || Should be %f and is %f\n", i+1, C_t[i], C[i]);
@@ -268,7 +278,7 @@ int main(int argc, char *argv[])
 
 	printf("Tests finished!\n");
 
-	printf("C_t[i] max = %f\n", max);
+	printf("C_t[i] max = %f\n", max);*/
 
 	cout<<"CBLAS Execution time (sec:nanosecs): 		"<<diff(start,end).tv_sec<<":"<<diff(start,end).tv_nsec<<endl;
 

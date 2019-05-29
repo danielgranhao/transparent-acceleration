@@ -1,0 +1,21 @@
+{
+  "inoutStreamsNumber": 1,
+  "inStreamsNumber": 0,
+  "outStreamsNumber": 0,
+  "inStatic": {
+    "n":  2,
+    "sizes": [
+        2,
+        4
+      ]
+  },
+  "outStatic": {
+    "n":  0,
+    "sizes": [
+      ]
+  },
+  "callingOrder": {
+    "nTotal": 4,
+    "order": ["rdx", "rcx", "rsi", "rdi"]
+  }
+}

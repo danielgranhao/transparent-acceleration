@@ -2,7 +2,7 @@
 ## Define base source files
 ##
 
-include ../../../common/sw/common_include.mk
+include ../../common/sw/common_include.mk
 
 BASE_FILE_PATH = ../../base/sw
 BASE_FILE_SRC = opae_svc_wrapper.cpp
